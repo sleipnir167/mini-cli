@@ -2,7 +2,11 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/main">Main</router-link> |
+      <router-link to="/daicho">車両台帳</router-link> |
+      <router-link to="/kensa">検査計画</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/tmp">Tmp</router-link>
     </div>
     <router-view/>
   </div>
