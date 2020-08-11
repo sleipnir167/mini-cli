@@ -29,27 +29,33 @@
         </div>
         <!-- 中央領域 -->
         <div class="center-cente-group">
-          
-          <p>test1</p>
-          <div class="container">
-            <p>test2</p>
-          </div>
-          <div class="container">
-            <p>test3</p>
-            <div class="container">
-              <p>test3</p>
-              <p>test3</p>
-              <p>test3</p>
-              <p>12345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
+          <div class="Center-left-group d-flex flex-row">
+            <!-- 車号 -->
+            <div class="left-group d-flex flex-column">
+              <div class="blank" style="height:95.5px;"></div>
+              <div class="" style="height:41.5px; border:solid 1px black">TCXXX-0001</div>
+              <div class="" style="height:41.5px; border:solid 1px black">TCXXX-0002</div>
+              <div class="" style="height:41.5px; border:solid 1px black">M XXX-0003</div>
+              <div class="" style="height:41.5px; border:solid 1px black">M'XXX-0004</div>
+              <div class="" style="height:41.5px; border:solid 1px black">TCXXX-0005</div>
             </div>
-          </div>
-          <div>
-            <p>dfa</p>
-            <temp-viewdayinfo></temp-viewdayinfo>
+            <div class="left-group d-flex flex-column">
+              <div class= "d-flex flex-row">
+                <temp-MoveYM></temp-MoveYM>
+              </div>
+              <div class= "d-flex flex-row">
+                <div class="left d-flex flex-column">
+                  <temp-gridym></temp-gridym>
+                  <temp-gridym></temp-gridym>
+                  <temp-gridym></temp-gridym>
+                  <temp-gridym></temp-gridym>
+                  <temp-gridym></temp-gridym>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
-        
       </div>
 
       <!-- フッター -->
@@ -66,13 +72,15 @@
 <script>
 //  インポート
 import Vue from 'vue'
-import ViewDayInfo from '../components/Parts/ViewDayInfo'
+import GridYM from '../components/Parts/GridYM'
+import MoveYM from '../components/Parts/MoveYM'
 
 export default {
 }
 
 //  コンポーネントを登録
-Vue.component('temp-viewdayinfo', ViewDayInfo)
+Vue.component('temp-gridym', GridYM)
+Vue.component('temp-MoveYM', MoveYM)
 
 </script>
 

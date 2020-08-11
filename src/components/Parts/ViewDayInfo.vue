@@ -1,7 +1,7 @@
 <template>
-  <div class="ViewDayInfo" v-on:click="viewinfo">
+  <div class="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle">
     <div class="firstLine">
-      <p>{{ kensa }}</p>
+      <p>{{ kensaV }}</p>
     </div>
     <div class="secondLine">
       <p>{{ kiro }}</p>
@@ -14,7 +14,8 @@ export default {
   props: {
     kensa: {String,default:"車"},
     kiro: {String,default:"999.9km"},
-    end: {String,default:"2020/20/20"},
+    day: {String,default:"2020/20/20"},
+    viewstyle: {String,default:""},
   },
   // data() {
   //   return {
@@ -31,8 +32,15 @@ export default {
           "\n走行キロ : " +
           this.kiro +
           "\n日付 : " +
-          this.day
+          this.day +
+          "\nいろ : " +
+          this.viewstyle
       )
+    }
+  },
+  computed: {
+    kensaV: function () {
+      return this.kensa == " " ? "　" : this.kensa; //空なら空白にする
     }
   }
 };
@@ -45,15 +53,7 @@ export default {
           box-sizing: border-box;
   box-sizing:border-box;
   font-size: 10px;
-  border-top: solid 1px red;
-  border-left: solid 1px red;
-  border-bottom: solid 1px red;
-  /* border-right: solid 1px red; */
-}
-
-.ViewDayInfo:last-child {
-  /* border-bottom: solid 1px red; */
-  border-right: solid 1px red;
+  border: solid 1px black;
 }
 
 .ViewDayInfo .firstLine {
@@ -64,6 +64,6 @@ export default {
 .ViewDayInfo .secondLine {
   height: 20px;
   width: 50px;
-  border-top: dotted 1px;
+  border-top: dotted 1px black;
 }
 </style>

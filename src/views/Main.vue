@@ -84,6 +84,7 @@
               <a href="#!" class="btn btn-primary">詳細はここをクリック</a>
             </div>
           </div>
+          
 
           <div class="info m-2 border border-primary">
             <table class="table">
@@ -104,7 +105,7 @@
                 <tr class="table-danger">
                   <th scope="row">1</th>
                   <td>200/8/4</td>
-                  <td>東京総合</td>
+                  <td>AA総合セ</td>
                   <td>XX所属</td>
                   <td>XX所属</td>
                   <td>H101</td>
@@ -114,7 +115,7 @@
                 <tr class="table-danger">
                   <th scope="row">1</th>
                   <td>200/8/4</td>
-                  <td>東京総合</td>
+                  <td>AA総合セ</td>
                   <td>XX所属</td>
                   <td>XX所属</td>
                   <td>H101</td>
@@ -124,7 +125,7 @@
                 <tr>
                   <th scope="row">2</th>
                   <td>200/8/4</td>
-                  <td>東京総合</td>
+                  <td>AA総合セ</td>
                   <td>XX所属</td>
                   <td>XX所属</td>
                   <td>H101</td>
