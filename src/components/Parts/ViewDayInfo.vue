@@ -1,21 +1,36 @@
 <template>
-  <div class="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle">
-    <div class="firstLine">
+  <div id="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle">
+    <div class="firstBox">
       <p>{{ kensaV }}</p>
     </div>
-    <div class="secondLine">
+    <div class="secondBox">
       <p>{{ kiro }}</p>
     </div>
+    
+    <button v-on:click="openModal">Click</button>
+    <div id="overlay" v-show="showContent">
+        <div id="content">
+          <p>これがモーダルウィンドウです。</p>
+          <button v-on:click="closeModal">Close</button>
+        </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
+// import InputDayInfo from './InputDayInfo'
 export default {
   props: {
     kensa: {String,default:"車"},
     kiro: {String,default:"999.9km"},
     day: {String,default:"2020/20/20"},
     viewstyle: {String,default:""},
+  },
+  data() {
+    return {
+      showContent: false
+    }
   },
   // data() {
   //   return {
@@ -36,6 +51,12 @@ export default {
           "\nいろ : " +
           this.viewstyle
       )
+    },
+    openModal: function(){
+      this.showContent = true
+    },
+    closeModal: function(){
+      this.showContent = false
     }
   },
   computed: {
@@ -47,23 +68,24 @@ export default {
 </script>
 
 <style>
-.ViewDayInfo {
+#ViewDayInfo {
   width: 50px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   box-sizing:border-box;
   font-size: 10px;
   border: solid 1px black;
+  margin:0;
+  padding:0;
+  overflow:hiden;
 }
 
-.ViewDayInfo .firstLine {
+#ViewDayInfo .firstBox {
   height: 20px;
-  width: 50px;
+  width: 100%;
 }
 
-.ViewDayInfo .secondLine {
+#ViewDayInfo .secondBox {
   height: 20px;
-  width: 50px;
+  width: 100%;
   border-top: dotted 1px black;
 }
 </style>

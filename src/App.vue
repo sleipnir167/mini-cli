@@ -1,36 +1,86 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/main">Main</router-link> |
-      <router-link to="/daicho">車両台帳</router-link> |
-      <router-link to="/kensa">検査計画</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/tmp">Tmp</router-link>
+  <div id="Main">
+    <!-- 枠 -->
+    <div class="Main-group d-flex flex-column">
+      <!-- ヘッダー -->
+      <div class="header-group sticky-top">
+        <header class="Header">
+          <!-- タイトル -->
+          <p class="text-muted">ミニ車両管理システム</p>
+        </header>
+      </div>
+
+      <!-- 中央領域 -->
+      <div class="center-group d-flex flex-row">
+        <!-- 左側領域 -->
+        <div class="center-left-group d-flex flex-column">
+          <div class="button-group d-flex flex-column">
+            <router-link class="btn btn-secondary" to="/Info">お知らせ</router-link>
+            <router-link class="btn btn-secondary" to="/Daicho">車両台帳</router-link>
+            <router-link class="btn btn-secondary" to="/Kensa">検査計画</router-link>
+            <router-link class="btn btn-secondary" to="/Tmp">使用実績</router-link>
+            <router-link class="btn btn-secondary" to="/Tmp">検修管理</router-link>
+            <router-link class="btn btn-secondary" to="/Tmp">装備管理</router-link>
+            <router-link class="btn btn-secondary" to="/Tmp">マスタ管理</router-link>
+            <router-link class="btn btn-secondary" to="/Tmp">TMP</router-link>
+           </div>
+        </div>
+        <!-- 中央領域 -->
+        <div class="center-cente-group">
+          <router-view/>
+        </div>
+      </div>
+
+      <!-- フッター -->
+      <footer class="Footer fixed-bottom">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </footer>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+<style scoped>
+html {
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#nav {
-  padding: 30px;
+html body {
+  overflow: hidden;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.Main-group > .header-group {
+  height: 30px;
+  background-color: #3eb623;
+  overflow: hidden;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.Main-group > .center-group {
+  background-color: #6c757d;
+  height:calc(100vh - 60px);
+  width: auto;
+  overflow: hidden;
+}
+
+.Main-group > .center-group > .center-left-group {
+  min-width: 110px;
+  max-width: 110px;
+}
+
+.Main-group > .center-group > .center-cente-group {
+  width: calc(100% - 110px);
+  background-color: #ebebeb;
+}
+
+.Main-group > .center-group > .center-left-group > .button-group  {
+  border-radius: 0px;
+}
+
+.Main-group > .Footer {
+  height: 30px;
+  background-color: #3eb623;
 }
 </style>

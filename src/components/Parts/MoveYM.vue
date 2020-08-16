@@ -1,13 +1,15 @@
 <template>
-  <div class="MoveYM d-flex flex-column">
-    <div class="ViewYM">{{getThisMonth}}</div>
-    <div class="MoveYM d-flex flex-row">
-      <input type="button" v-on:click="movePrevMonth" value="<<">
-      <input type="button" v-on:click="moveNextMonth" value=">>">
-    </div>
-    <div class="center-group d-flex flex-row">
-      <div v-for="(todo, index) in new_days" v-bind:key="index" >
-        <temp-viewdayinfo v-bind:kensa='todo.kensa' v-bind:kiro="todo.kiro" v-bind:day="todo.day" v-bind:viewstyle="todo.viewstyle"></temp-viewdayinfo>
+  <div id="MoveYM">
+    <div class="MoveYM d-flex flex-column">
+      <div class="ViewYM">{{getThisMonth}}</div>
+      <div class="MoveYM d-flex flex-row">
+        <input type="button" v-on:click="movePrevMonth" value="<<">
+        <input type="button" v-on:click="moveNextMonth" value=">>">
+      </div>
+      <div class="center-group d-flex flex-row">
+        <div v-for="(todo, index) in new_days" v-bind:key="index" >
+          <temp-viewdayinfo v-bind:kensa='todo.kensa' v-bind:kiro="todo.kiro" v-bind:day="todo.day" v-bind:viewstyle="todo.viewstyle"></temp-viewdayinfo>
+        </div>
       </div>
     </div>
   </div>
@@ -38,10 +40,8 @@ export default {
       }
   } ,
   created: function(){
-       console.log(this.new_days);
       this.setThisMonth();
-      //  this.Create_callender();
-      this.addCalender();
+      this.setCalender();
        
   } ,
   methods:{
@@ -66,7 +66,6 @@ export default {
     addTodo(){
       let new_day = {kensa: this.title, kiro: this.kiro, day: this.day, viewstyle: ""}
       this.new_days.push(new_day);
-      console.log("addTodo -> new_day", new_day);
       this.new_days = this.new_days.filter(todo => !todo.completed)
     },
     setThisMonth(){
@@ -79,28 +78,15 @@ export default {
       let current = new Date(this.ViewYYYY, this.ViewMM - 1);
       this.ViewYYYY = current.getFullYear();
       this.ViewMM = current.getMonth();
-      this._get_month_calendar()
+      this.setCalender()
     },
     moveNextMonth(){
       let current = new Date(this.ViewYYYY, this.ViewMM + 1);
       this.ViewYYYY = current.getFullYear();
       this.ViewMM = current.getMonth();
-      this._get_month_calendar()
+      this.setCalender()
     },
-    addCalender(){
-      // 現在の年月の取得
-      let current = new Date(this.ViewYYYY, this.ViewMM);
-      let year = current.getFullYear();
-      let month = current.getMonth();
-
-      console.log(`●+${year} + ${month}`);
-
-      // カレンダーの情報を取得
-      let calendarData = this._get_month_calendar();
-      console.log(`●+${calendarData}`);
-
-    },
-    _get_month_calendar() {
+    setCalender() {
       this.new_days = [];
       let firstDate = new Date(this.ViewYYYY, (this.ViewMM - 1), 1); // 指定した年月の初日の情報
       let lastDay = new Date(this.ViewYYYY, (firstDate.getMonth() + 1), 0).getDate(); // 指定した年月の末日
@@ -135,12 +121,19 @@ export default {
 </script>
 
 <style>
-.ViewYM{
+#MoveYM > .ViewYM{
   text-align:left;
 }
-/* .MoveYM{
-  border: solid 1px blue;
-  background-color:cornflowerblue;
-} */
 
+#MoveYM > .ViewDayInfo {
+  text-align:center;
+}
+
+#MoveYM #ViewDayInfo > .firstBox {
+  text-align: center;
+}
+
+#MoveYM #ViewDayInfo > .secondBox {
+  text-align: center;
+}
 </style>

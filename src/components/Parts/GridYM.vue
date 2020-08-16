@@ -1,5 +1,5 @@
 <template>
-  <div class="GridYM">
+  <div id="GridYM">
     <div class="center-group d-flex flex-row">
       <div v-for="(todo, index) in new_days" v-bind:key="index" >
         <temp-viewdayinfo v-bind:kensa='todo.kensa' v-bind:kiro="todo.kiro" v-bind:day="todo.day"></temp-viewdayinfo>
@@ -25,7 +25,6 @@ export default {
       }
   } ,
   created: function(){
-       console.log(this.new_days);
        this.addSample();
        
   } ,
@@ -95,7 +94,6 @@ export default {
       addTodo(){
         var new_day = {kensa: this.title, kiro: this.kiro, day: this.day}
         this.new_days.push(new_day);
-        console.log("addTodo -> new_day", new_day);
         this.new_days = this.new_days.filter(todo => !todo.completed)
       }
   }
@@ -105,7 +103,15 @@ export default {
 
 <style>
 
-.ViewDayInfo{
+#GridYM #ViewDayInfo{
   border: solid 1px;
+}
+
+#GridYM #ViewDayInfo > .firstBox {
+  text-align: center;
+}
+
+#GridYM #ViewDayInfo > .secondBox {
+  text-align: right;
 }
 </style>

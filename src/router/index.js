@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Main from '../views/Main.vue'
+import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
 import Kensa from '../views/Kensa.vue'
 import Tmp from '../views/Tmp.vue'
@@ -15,9 +15,9 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/main',
-    name: 'Main',
-    component: Main
+    path: '/info',
+    name: 'Info',
+    component: Info
   },
   {
     path: '/daicho',
