@@ -16,7 +16,7 @@
       <div class="d_button d-flex flex-row">
         <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="更新">
         <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="取消">
-     </div>
+      </div>
     </div>
   </div>
 
