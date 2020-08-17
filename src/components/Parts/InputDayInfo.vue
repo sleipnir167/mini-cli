@@ -1,19 +1,21 @@
 <template>
+  <!-- 検査、キロ入力ダイアログ -->
   <div id="InputDayInfo">
-    <div class="dflex d-flex flex-column">
-      <span>✕</span>
-      <div class="kensa">
-        <span>検査</span>
-        <input type="text" name="kensa" id="">
+    <div class="modalWindow d-flex flex-column">
+      <!-- 検査 -->
+      <div class="d_kensa d-flex flex-row">
+        <div class="d_label">検査</div>
+        <input class="i_textbox" type="text" name="kensa" v-bind:value="kensa">
       </div>
-      <div class="kiro">
-        <span>キロ</span>
-        <input type="text" name="kiro" id="">
+      <!-- キロ -->
+      <div class="d_kiro d-flex flex-row">
+        <div class="d_label">キロ</div>
+        <input class="i_textbox" type="text" name="kiro" v-bind:value="kiro">
       </div>
-
-      <div class="dflex d-flex flex-row">
-        <input type="button" class="btn btn-primary" value="更新">
-        <input type="button" class="btn btn-primary" value="取消">
+      <!-- ボタン -->
+      <div class="d_button d-flex flex-row">
+        <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="更新">
+        <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="取消">
      </div>
     </div>
   </div>
@@ -28,13 +30,6 @@ export default {
     day: {String,default:"2020/20/20"},
     viewstyle: {String,default:""},
   },
-  // data() {
-  //   return {
-  //     kensa: "車",
-  //     kiro: "200.2km",
-  //     day: "2018/06/01",
-  //   }
-  // },
   methods: {
     viewinfo: function (event) { // eslint-disable-line
       alert(
@@ -57,18 +52,50 @@ export default {
 };
 </script>
 
+
 <style>
 
 #InputDayInfo{
-  border:solid 1px red;
+  z-index:1;
+
+  /* 画面全体を覆う設定 */
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+
+  /* 画面の中央に要素を表示させる設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#InputDayInfo div {
-  margin: 5px;
-  padding: 5px;
+#InputDayInfo .modalWindow {
+  border: solid 5px rgb(32, 185, 45);
+  background-color:white;
+  padding:20px;
 }
 
-#btn{
-  width:100px;
+#InputDayInfo .modalWindow *{
+  padding:5px;
 }
+
+/* ラベル汎用 */
+#InputDayInfo .d_label{
+  width:60px;
+  border: solid 1px;
+}
+
+/* テキスト入力汎用 */
+#InputDayInfo .i_textbox{
+  border: solid 1px;
+}
+
+/* ボタン汎用 */
+#InputDayInfo .i_button{
+  border: solid 1px;
+}
+
 </style>

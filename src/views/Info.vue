@@ -1,5 +1,5 @@
 <template>
-  <div class="Info">
+  <div id="Info">
     <!-- 中央領域 -->
     <div
       class="card text-white bg-primary m-2 d-inline-block"
@@ -111,14 +111,15 @@
 
 
 <style scoped>
-.Info {
+#Info {
   background-color: #ebebeb;
   overflow:scroll;
   width:100%;
   height:100%;
+  margin: 5px;
 }
 
-.Info > .card {
+#Info > .card {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 </style>

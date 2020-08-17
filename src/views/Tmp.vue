@@ -1,16 +1,17 @@
 <template>
-  <div class="about">
+  <div id="about">
     <h5>ViewDayInfo.vue</h5>
     <temp-viewdayinfo ></temp-viewdayinfo>
     <hr>
     <h5>GridYM.vue</h5>
-    <temp-GridYM></temp-GridYM>
+    <!-- <temp-GridYM></temp-GridYM> -->
     <hr>
     <h5>MoveYM.vue</h5>
-    <temp-MoveYM></temp-MoveYM>
+    <!-- <temp-MoveYM></temp-MoveYM> -->
     <hr>
     <h5>InputDayInfo.vue</h5>
-    <temp-InputDayInfo></temp-InputDayInfo>
+    <!-- <temp-InputDayInfo v-show="showContent"></temp-InputDayInfo> -->
+    
     <hr>
   </div>
 </template>

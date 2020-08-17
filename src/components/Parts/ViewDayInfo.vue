@@ -1,44 +1,41 @@
 <template>
-  <div id="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle">
-    <div class="firstBox">
-      <p>{{ kensaV }}</p>
+  <!-- <div id="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle"> -->
+  <div id="ViewDayInfo">
+    <div class="nakami" v-on:click="openModal" v-bind:style="viewstyle">
+      <div class="firstBox">
+        <p>{{ kensaV }}</p>
+      </div>
+      <div class="secondBox">
+        <p>{{ kiro }}</p>
+      </div>
     </div>
-    <div class="secondBox">
-      <p>{{ kiro }}</p>
-    </div>
-    
-    <button v-on:click="openModal">Click</button>
-    <div id="overlay" v-show="showContent">
+    <!-- <button v-on:click="openModal">Click</button> -->
+    <!-- <div id="overlay" v-show="showModal">
         <div id="content">
           <p>これがモーダルウィンドウです。</p>
           <button v-on:click="closeModal">Close</button>
         </div>
-    </div>
+    </div> -->
     
+    <temp-inputdayinfo  v-show="showModal" @close="closeModal"></temp-inputdayinfo>
   </div>
 </template>
 
 <script>
-// import InputDayInfo from './InputDayInfo'
+//  インポート
+import Vue from 'vue'
+import InputDayInfo from './InputDayInfo'
+//  コンポーネントを登録
+Vue.component('temp-inputdayinfo', InputDayInfo)
+
 export default {
   props: {
     kensa: {String,default:"車"},
     kiro: {String,default:"999.9km"},
     day: {String,default:"2020/20/20"},
     viewstyle: {String,default:""},
+    showModal: {Boolean,default:false},
   },
-  data() {
-    return {
-      showContent: false
-    }
-  },
-  // data() {
-  //   return {
-  //     kensa: "車",
-  //     kiro: "200.2km",
-  //     day: "2018/06/01",
-  //   }
-  // },
   methods: {
     viewinfo: function (event) { // eslint-disable-line
       alert(
@@ -53,10 +50,10 @@ export default {
       )
     },
     openModal: function(){
-      this.showContent = true
+      this.showModal = true
     },
     closeModal: function(){
-      this.showContent = false
+      this.showModal = false
     }
   },
   computed: {
@@ -75,17 +72,24 @@ export default {
   border: solid 1px black;
   margin:0;
   padding:0;
-  overflow:hiden;
+  overflow:hidden;
 }
 
 #ViewDayInfo .firstBox {
   height: 20px;
   width: 100%;
+  text-align: center;
 }
 
 #ViewDayInfo .secondBox {
   height: 20px;
   width: 100%;
   border-top: dotted 1px black;
+  text-align: center;
+}
+
+#ViewDayInfo:hover {
+  color: #3eb623;
+  border: solid 1px #3eb623;
 }
 </style>

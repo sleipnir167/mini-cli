@@ -25,8 +25,7 @@ export default {
       }
   } ,
   created: function(){
-       this.addSample();
-       
+    this.addSample();
   } ,
   methods:{
       addSample(){
@@ -102,11 +101,6 @@ export default {
 
 
 <style>
-
-#GridYM #ViewDayInfo{
-  border: solid 1px;
-}
-
 #GridYM #ViewDayInfo > .firstBox {
   text-align: center;
 }
@@ -114,4 +108,5 @@ export default {
 #GridYM #ViewDayInfo > .secondBox {
   text-align: right;
 }
+
 </style>

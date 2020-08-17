@@ -1,6 +1,6 @@
 <template>
   <!-- 中央領域 -->
-  <div class="kensa">
+  <div id="kensa">
     <div class="HeaderButton-Group d-flex flex-row">
       <button type="button" class="btn btn-primary">あれ</button>
       <button type="button" class="btn btn-primary">それ</button>
@@ -63,18 +63,19 @@ Vue.component('temp-MoveYM', MoveYM)
 </script>
 
 <style scoped>
-.kensa {
+#kensa {
   background-color: #ebebeb;
   overflow:scroll;
   width:100%;
   height:100%;
+  margin:5px;
 }
 
-.kensa > .HeaderButton-Group > .btn-primary{
+#kensa > .HeaderButton-Group > .btn-primary{
   margin-left:10px;
 }
 
-.kensa > .kensaYM > .syagou {
+#kensa > .kensaYM > .syagou {
   min-width: 110px;
   max-width: 110px;
 }

@@ -43,7 +43,7 @@ export default {
       }
   } ,
   created: function(){
-       console.log(this.new_days);
+      //  console.log(this.new_days);
   } ,
   methods:{
       addTodo(){
@@ -53,7 +53,6 @@ export default {
           else{
               var new_day = {kensa: this.title, kiro: this.kiro, day: this.day}
               this.new_days.push(new_day);
-              console.log("addTodo -> new_day", new_day);
               this.new_days = this.new_days.filter(todo => !todo.completed)
           }
       }
