@@ -36,6 +36,9 @@
             <router-link class="btn btn-secondary" to="/Tmp"
               >マスタ管理</router-link
             >
+            <router-link class="btn btn-secondary" to="/Navi"
+              >操作ナビ</router-link
+            >
             <router-link class="btn btn-secondary" to="/Tmp">TMP</router-link>
           </div>
         </div>
@@ -97,7 +100,7 @@ html body {
 .Main-group > .Footer {
   height: 30px;
   background-color: #6c9bd2;
-  color:black;
+  color: black;
 }
 
 /* JR_COLOR=#3eb623 */

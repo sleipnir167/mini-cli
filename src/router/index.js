@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
 import Kensa from '../views/Kensa.vue'
+import Navi from '../views/Navi.vue'
 import Tmp from '../views/Tmp.vue'
 
 Vue.use(VueRouter)
@@ -36,6 +37,11 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/navi',
+    name: 'Vavi',
+    component: Navi
   },
   {
     path: '/tmp',
