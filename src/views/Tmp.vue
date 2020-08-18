@@ -18,20 +18,21 @@
 
 
 <script>
-//  インポート
-import Vue from 'vue'
-import ViewDayInfo from '../components/Parts/ViewDayInfo'
-import GridYM from '../components/Parts/GridYM'
-import MoveYM from '../components/Parts/MoveYM'
-import InputDayInfo from '../components/Parts/InputDayInfo'
+  //  インポート
+  import Vue from 'vue'
+  import ViewDayInfo from '../components/Parts/ViewDayInfo'
+  import GridYM from '../components/Parts/GridYM'
+  import MoveYM from '../components/Parts/MoveYM'
+  import InputDayInfo from '../components/Parts/InputDayInfo'
 
-export default {
-}
+  export default {
+  }
 
-//  コンポーネントを登録
-Vue.component('temp-viewdayinfo', ViewDayInfo)
-Vue.component('temp-GridYM', GridYM)
-Vue.component('temp-MoveYM', MoveYM)
-Vue.component('temp-InputDayInfo', InputDayInfo)
+  //  コンポーネントを登録
+  Vue.component('temp-viewdayinfo', ViewDayInfo)
+  Vue.component('temp-GridYM', GridYM)
+  Vue.component('temp-MoveYM', MoveYM)
+  Vue.component('temp-InputDayInfo', InputDayInfo)
 
 </script>
+

@@ -68,7 +68,7 @@ Vue.component('temp-MoveYM', MoveYM)
   overflow:scroll;
   width:100%;
   height:100%;
-  margin:5px;
+  margin:10px;
 }
 
 #kensa > .HeaderButton-Group > .btn-primary{

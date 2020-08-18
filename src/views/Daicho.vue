@@ -1,58 +1,52 @@
 <template>
-  <!-- 中央領域 -->
-  <div class="center-cente-group">
-
-    <form class="form-horizontal">
-      <div class="form-row m-3">
-        <div class="形式 form-group">
-          <label for="text5a">形式:</label>
-          <label class="sr-only" for="text5a">形式</label>
-          <input type="text" class="form-control mb-2" id="text5a" placeholder="形式"/>
-        </div>
-        <div class="車号 form-group">
-            <label for="text5b"><span>車号:</span></label>
-            <label class="sr-only" for="text5b">車号</label>
-          <input type="text" class="form-control mb-2" id="text5b" placeholder="車号"
-          />
-        </div>
-      </div>
-  
-      <div class="form-row m-3">
-        <div class="所属1 form-group">
-          <label for="group1">所属1:</label>
-          <select id="group1" class="form-control">
-            <option></option>
-            <option>秋田車両センター</option>
-            <option>新潟車両センター</option>
-          </select>
-        </div>
-        <div class="所属2 form-group">
-          <label for="group2">所属2:</label>
-          <select id="group2" class="form-control">
-            <option></option>
-            <option>ロングシート</option>
-            <option>A車両グループ</option>
-            <option>B車両グループ</option>
-          </select>
-        </div>
-        <div class="所属3 form-group">
-          <label for="group3">所属3:</label>
-          <select id="group3" class="form-control">
-            <option></option>
-            <option>H101</option>
-            <option>山手線</option>
-            <option>XX編成</option>
-          </select>
-        </div>
-      </div>
-    
-        <div class="form-row m-3">
-          <input type="submit" class="btn btn-primary" />
-        </div>
-    </form>
+  <div id="daicho">
+    <div id="demo">
+      <form id="search">
+        検索 <input name="query" v-model="searchQuery" />
+      </form>
+      <temp-listsyaryou
+        :heroes="gridData"
+        :columns="gridColumns"
+        :filter-key="searchQuery"
+      >
+      </temp-listsyaryou>
+    </div>
   </div>
 </template>
 
+<script>
+//  インポート
+import Vue from "vue";
+import ListSyaryou from "../components/Parts/ListSyaryou";
 
+export default {
+  data() {
+    return {
+      searchQuery: "",
+      gridColumns: ["SGO", "FYMD", "TYMD","所属1","所属2","所属3"],
+      gridData: [
+        { SGO: "Tc XX-0001", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "XX所属" , 所属3: "A1所属" },
+        { SGO: "M  XX-0002", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "XX所属" , 所属3: "A1所属" },
+        { SGO: "M' XX-0003", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "XX所属" , 所属3: "A2所属" },
+        { SGO: "Tc'XX-0004", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "XX所属" , 所属3: "A2所属" },
+        { SGO: "Tc XX-0005", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "ZZ所属" , 所属3: "B1所属" },
+        { SGO: "Tc XX-0006", FYMD: "2020/01/01", TYMD: "----/--/--" , 所属1: "AA総合セ" , 所属2: "ZZ所属" , 所属3: "B2所属" },
+      ],
+    };
+  },
+};
 
+//  コンポーネントを登録
+Vue.component("temp-listsyaryou", ListSyaryou);
+</script>
 
+<style scoped>
+#daicho {
+  background-color: #ebebeb;
+  overflow:scroll;
+  width:100%;
+  height:100%;
+  margin:10px;
+}
+
+</style>
