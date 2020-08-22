@@ -47,15 +47,7 @@ export default {
         this.new_days.push(new_day);
         new_day = {kensa: " ", kiro: "176.0km", day: "2020/01/09"}
         this.new_days.push(new_day);
-        new_day = {kensa: " ", kiro: "186.0km", day: "2020/01/10"}
-        this.new_days.push(new_day);
-        new_day = {kensa: " ", kiro: "196.0km", day: "2020/01/11"}
-        this.new_days.push(new_day);
-        new_day = {kensa: " ", kiro: "216.0km", day: "2020/01/12"}
-        this.new_days.push(new_day);
-        new_day = {kensa: " ", kiro: "226.0km", day: "2020/01/13"}
-        this.new_days.push(new_day);
-        new_day = {kensa: " ", kiro: "246.0km", day: "2020/01/14"}
+        new_day = {kensa: " ", kiro: "186Columns.0km", day: "2020/01/14"}
         this.new_days.push(new_day);
         new_day = {kensa: " ", kiro: "256.0km", day: "2020/01/15"}
         this.new_days.push(new_day);

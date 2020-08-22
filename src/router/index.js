@@ -5,7 +5,9 @@ import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
 import Kensa from '../views/Kensa.vue'
 import Navi from '../views/Navi.vue'
+import Graph from '../views/Graph.vue'
 import Tmp from '../views/Tmp.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -41,7 +43,36 @@ Vue.use(VueRouter)
   {
     path: '/navi',
     name: 'Vavi',
-    component: Navi
+    component: Navi,
+    // ここにname要素を指定するとエラーになる
+    children: [
+      {
+        path: '/childA', 
+        component: Kensa,
+        name: 'childA'
+      },
+      {
+        path: '/childB', 
+        component: About,
+        name: 'childB',
+        meta: {
+          requiresAuth: 'true'
+        }
+      },
+      {
+        path: '/childC', 
+        component: Kensa,
+        name: 'childC',
+        meta: {
+          requiresAuth: 'true'
+        }
+      }
+    ]
+  },
+  {
+    path: '/Graph',
+    name: 'Graph',
+    component: Graph
   },
   {
     path: '/tmp',
@@ -57,3 +88,4 @@ const router = new VueRouter({
 })
 
 export default router
+

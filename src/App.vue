@@ -39,6 +39,9 @@
             <router-link class="btn btn-secondary" to="/Navi"
               >操作ナビ</router-link
             >
+            <router-link class="btn btn-secondary" to="/Graph"
+              >グラフ</router-link
+            >
             <router-link class="btn btn-secondary" to="/Tmp">TMP</router-link>
           </div>
         </div>
