@@ -1,13 +1,13 @@
 <template>
   <div id="daicho">
     <div id="demo">
-      <form id="search">
-        検索 <input name="query" v-model="searchQuery" />
+      <form id="search2">
+        検索 <input type="text" v-model="searchQuery" />
       </form>
       <temp-listsyaryou
         :heroes="gridData"
         :columns="gridColumns"
-        :filter-key="searchQuery"
+        :filterKey="searchQuery"
       >
       </temp-listsyaryou>
     </div>

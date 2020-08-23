@@ -8,6 +8,7 @@ import Navi from '../views/Navi.vue'
 import Graph from '../views/Graph.vue'
 import Tmp from '../views/Tmp.vue'
 import About from '../views/About.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ Vue.use(VueRouter)
     path: '/tmp',
     name: 'Tmp',
     component: Tmp
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login
   },
 ]
 

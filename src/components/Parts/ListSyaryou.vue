@@ -42,7 +42,6 @@ export default {
     };
   },
   created: function(){
-    // console.log(this.filterKey);
     // console.log(this.columns);
     // console.log(this.heroes);
   } ,

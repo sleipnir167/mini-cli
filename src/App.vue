@@ -43,6 +43,7 @@
               >グラフ</router-link
             >
             <router-link class="btn btn-secondary" to="/Tmp">TMP</router-link>
+            <router-link class="btn btn-secondary" to="/Login">Login</router-link>
           </div>
         </div>
         <!-- 中央領域 -->
