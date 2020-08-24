@@ -13,3 +13,32 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+
+
+// firebase用 >>>
+// import Login from './views/Login'
+import firebase from 'firebase'
+
+Vue.config.productionTip = false
+
+const config = {
+  apiKey: "AIzaSyDbaVTETBeLgzfed4VFs9VVPypP2MZ-mtY",
+  authDomain: "vue-authentication-ac53f.firebaseapp.com",
+  databaseURL: "https://vue-authentication-ac53f.firebaseio.com",
+  projectId: "vue-authentication-ac53f",
+  storageBucket: "vue-authentication-ac53f.appspot.com",
+  messagingSenderId: "633224124755",
+}
+firebase.initializeApp(config);
+
+// /* eslint-disable no-new */
+// new Vue({
+//   el: '#Login2',
+//   router,
+//   template: '<Login/>',
+//   components: { Login }
+// })
+
+// <<< firebase用 
