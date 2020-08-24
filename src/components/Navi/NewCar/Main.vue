@@ -4,7 +4,8 @@
 
     <div class="row">
       <div class="col-md-8">
-        <h1>Step:{{ stepNumber }}</h1>
+        <h1>新車登録</h1>
+        <h2>Step:{{ stepNumber }}   {{stepItems[stepNumber-1]}}</h2>
         <keep-alive>
           <form-navi1 v-if="stepNumber === 1" @update="updateForm"></form-navi1>
           <form-navi2 v-if="stepNumber === 2" @update="updateForm"></form-navi2>
@@ -45,13 +46,20 @@ export default {
     return {
 			stepNumber: 1,
 			form: {
+        syas:null,
+        keis:null,
+        syaNo:null,
+				NewYmd: null,
+				Kasho1: null,
+				Kasho2: null,
+				Kasho3: null,
 				firstName: null,
 				lastName: null,
 				Email: null,
 				tel: null,
 				birthday: null
       },
-      stepItems:["新車登録","検査登録","装備入力","その他","確認","完了"]
+      stepItems:["台帳登録","検査登録","装備入力","その他","確認","完了"]
     };
   },
   methods:{
