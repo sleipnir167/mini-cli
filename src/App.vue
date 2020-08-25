@@ -45,6 +45,7 @@
             <router-link class="btn btn-secondary" to="/Tmp">TMP</router-link>
             <router-link class="btn btn-secondary" to="/Signup">Signup</router-link>
             <router-link class="btn btn-secondary" to="/Signin">Signin</router-link>
+            <router-link class="btn btn-secondary" to="/Json1">Json表示</router-link>
           </div>
         </div>
         <!-- 中央領域 -->

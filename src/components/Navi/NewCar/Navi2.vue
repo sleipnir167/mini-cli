@@ -1,14 +1,10 @@
 <template>
   <div id="NewCarNavi2" class="container mt-5">
     <form @input="submit">
-      <h2>Contact Info</h2>
+      <h2>検査情報</h2>
       <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" class="form-control" v-model="Email" placeholder="Enter email">
-      </div>					
-      <div class="form-group">
-        <label for="tel">Tel</label>
-        <input type="text" class="form-control" v-model="tel" placeholder="Enter phone number">
+        <label for="KsGun">検査周期群</label>
+        <input type="KsGun" class="form-control" v-model="KsGun" placeholder="検査周期群">
       </div>
     </form>
   </div>
@@ -18,14 +14,14 @@
 export default {
 	data(){
 		return {
-			Email: null,
+			KsGun: null,
 			tel: null
 		}
 	},
 	methods: {
 		submit: function(){
 			this.$emit('update',{
-				Email: this.Email,
+				KsGun: this.KsGun,
 				tel: this.tel
 			});
 		}

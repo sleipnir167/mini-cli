@@ -10,6 +10,7 @@ import Tmp from '../views/Tmp.vue'
 import About from '../views/About.vue'
 import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
+import Json1 from '../views/Json1.vue'
 
 Vue.use(VueRouter)
 
@@ -90,6 +91,11 @@ Vue.use(VueRouter)
     path: '/Signin',
     name: 'Signin',
     component: Signin
+  },
+  {
+    path: '/Json1',
+    name: 'Json1',
+    component: Json1
   },
 ]
 

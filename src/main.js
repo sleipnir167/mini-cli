@@ -19,7 +19,9 @@ new Vue({
 
 // firebase用 >>>
 // import Login from './views/Login'
-import firebase from 'firebase'
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
 
 Vue.config.productionTip = false
 

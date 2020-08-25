@@ -53,6 +53,7 @@ export default {
 				Kasho1: null,
 				Kasho2: null,
 				Kasho3: null,
+				KsGun: null,
 				firstName: null,
 				lastName: null,
 				Email: null,
