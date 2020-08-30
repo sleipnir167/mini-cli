@@ -1,5 +1,7 @@
 <template>
   <div id="daicho">
+
+    <div>test</div>
     <div id="demo">
       <form id="search2">
         検索 <input type="text" v-model="searchQuery" />
