@@ -1,15 +1,31 @@
 <template>
   <div id="MasterSyaryou">
     <v-app id="inspire">
+
       <v-data-table
         :headers="headers"
         :items="desserts"
-        sort-by="SyasID"
+        :search="search"
+        :sort-by="['SyasID']"
+        :sort-desc="[false, true]"
+        multi-sort
         class="elevation-1"
+        item-key="SyasID"
+        :loading="Lstate" loading-text="Loading... Please wait"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
             <v-toolbar-title>車種マスタ</v-toolbar-title>
+            <!-- ソート -->
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+
             <v-divider
               class="mx-4"
               inset
@@ -84,12 +100,15 @@
 </template>
 
 <script>
+import firebase from "firebase/app"
 import Vuetify from "vuetify";
 
 export default {
   vuetify: new Vuetify(),
   data: () => ({
     dialog: false,
+    Lstate:true,
+    search: '',
     headers: [
       { text: '車種ID', value: 'SyasID', },
       { text: '車種', value: 'SyasName' },
@@ -123,8 +142,139 @@ export default {
     this.initialize()
   },
 
+  mounted(){
+    setTimeout(() => {
+      this.Lstate = false;
+    }, 100);
+  },
+
   methods: {
     initialize () {
+      this.selFireBase();
+      //this.sampleData();
+    },
+
+    editItem (item) {
+      this.editedIndex = this.desserts.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+
+    deleteItem (item) {
+      const index = this.desserts.indexOf(item)
+      if(confirm('削除すると戻すことができません。本当に削除しますか?'))
+      {
+        if(!this.delFireBase(item)){
+          alert("削除エラー");
+          return false;
+        }
+        this.desserts.splice(index, 1)
+      } 
+    },
+    close () {
+      this.dialog = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
+
+    save () {
+      if (this.editedIndex > -1) {//修正
+        Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        if(!this.updFireBase())
+        {
+          alert("更新エラー");
+          return false;
+        }
+      } else {//新規
+        if(!this.insFireBase()){
+          alert("追加エラー");
+          return false;
+        }
+        this.desserts.push(this.editedItem)
+      }
+      this.close()
+    },
+
+    selFireBase () {
+      try {
+        const db = firebase.firestore();
+        db.collection('syasMaster')  
+          .get()  
+          .then(snapshot => {  
+            snapshot.forEach(doc => {  
+              let item = doc.data();
+              item.id = doc.id;
+              this.desserts.push(item);
+            })  
+          }) 
+        return true;
+      }
+      catch(e)
+      {
+        console.log("catch");
+        console.log(e);
+        return false;
+      }
+    },
+    updFireBase () {
+      try {
+        const db = firebase.firestore();
+        console.log(this.editedItem.id);
+        let dbData = db.collection('syasMaster').doc(this.editedItem.id)
+        dbData.set({
+          SyasID: this.editedItem.SyasID,
+          SyasName: this.editedItem.SyasName
+        })
+        return true;
+      }
+      catch(e)
+      {
+        console.log("catch");
+        console.log(e);
+        return false;
+      }
+    },
+    
+    insFireBase () {
+      try {
+        const db = firebase.firestore();
+        let dbData = db.collection('syasMaster');
+        dbData
+        .add({
+          SyasID: this.editedItem.SyasID,
+          SyasName: this.editedItem.SyasName,
+        })
+        .then(ref => {
+          console.log('Add ID: ', ref.id);
+        })
+        return true;
+      }
+      catch(e)
+      {
+        console.log("catch");
+        console.log(e);
+        return false;
+      }
+    },
+    
+    delFireBase (item) {
+      try {
+        const db = firebase.firestore();
+        let dbData = db.collection('syasMaster').doc(item.id)
+        dbData.delete();
+        return true;
+      }
+      catch(e)
+      {
+        console.log("catch");
+        console.log(e);
+        return false;
+      }
+    },
+
+    sampleData () {
       this.desserts = [
         {
           SyasID: '0',
@@ -159,34 +309,6 @@ export default {
           SyasName: "FC",
         },
       ]
-    },
-
-    editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
-    },
-
-    deleteItem (item) {
-      const index = this.desserts.indexOf(item)
-      confirm('削除すると戻すことができません。本当に削除しますか?') && this.desserts.splice(index, 1)
-    },
-
-    close () {
-      this.dialog = false
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      })
-    },
-
-    save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
-      }
-      this.close()
     },
   },
 }
