@@ -32,16 +32,16 @@
 
         <div class="form-group">
           <label for="Kasho1">箇所1  <span class="badge badge-info">任意</span></label>
-          <input type="text" class="form-control" v-model="Kasho1" placeholder="箇所1">
+          <input type="text" class="form-control" v-model="kasho1" placeholder="箇所1">
         </div>
         <div class="form-group">
-          <label for="Kasho1">箇所2  <span class="badge badge-info">任意</span></label>
+          <label for="Kasho2">箇所2  <span class="badge badge-info">任意</span></label>
           <input type="text" class="form-control" v-model="Kasho1" placeholder="箇所2">
         </div>
 
         <div class="form-group">
-          <label for="Kasho1">箇所3  <span class="badge badge-info">任意</span></label>
-          <input type="text" class="form-control" v-model="Kasho1" placeholder="箇所3">
+          <label for="Kasho3">箇所3  <span class="badge badge-info">任意</span></label>
+          <input type="text" class="form-control" v-model="Kasho3" placeholder="箇所3">
         </div>   
       </form>
     </div>
