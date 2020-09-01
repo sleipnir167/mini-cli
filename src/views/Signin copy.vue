@@ -1,9 +1,6 @@
 mponents/Signin.vue
 <template>
   <div class="signin">
-    <v-app>
-
-    </v-app>
     <h2>Sign in</h2>
     <input type="text" placeholder="Username" v-model="username">
     <input type="password" placeholder="Password" v-model="password">
