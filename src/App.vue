@@ -47,7 +47,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 $leftwidth:260px;
 
 html {
@@ -85,7 +84,7 @@ html body {
     }
 
     & .center-cente-group {
-      width: calc(100% - 110px);
+      width: calc(100% - 260px);
       background-color: #ebebeb;
     }
   }

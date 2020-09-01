@@ -1,6 +1,11 @@
 <template>
   <div id="MasterSyaryou" class="kokoko">
     <v-app id="inspire">
+      <!-- ローディング -->
+      <div v-if="DispLoading" id="DispLoading">
+        <v-progress-circular indeterminate />
+      </div>
+
       <v-data-table
         :headers="headers"
         :items="desserts"
@@ -103,6 +108,7 @@ import Vuetify from "vuetify";
 export default {
   vuetify: new Vuetify(),
   data: () => ({
+    DispLoading: true,
     dialog: false,
     search: '',
     headers: [
@@ -190,6 +196,13 @@ export default {
   created () {
     this.initialize()
   },
+
+  mounted () {
+    setTimeout(() => {
+      this.DispLoading = false;
+    }, 500);
+  },
+
 
   methods: {
     initialize () {
@@ -558,5 +571,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+#DispLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:100%;
+  z-index:9999;
+  position: absolute;
+  background-color: rgba(#000, 0.5);
+}
 </style>

@@ -145,7 +145,7 @@ export default {
   mounted(){
     setTimeout(() => {
       this.Lstate = false;
-    }, 100);
+    }, 500);
   },
 
   methods: {

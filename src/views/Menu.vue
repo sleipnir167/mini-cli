@@ -16,7 +16,8 @@
             <v-list dense nav class="py-0" >
               <v-list-item two-line :class="miniVariant && 'px-0'">
                 <v-list-item-avatar>
-                  <img src="https://randomuser.me/api/portraits/men/81.jpg">
+                  <!-- <img src="https://randomuser.me/api/portraits/men/81.jpg"> -->
+                  <v-icon>mdi-account-circle</v-icon>
                 </v-list-item-avatar>
     
                 <v-list-item-content>
@@ -109,7 +110,7 @@ export default {
         { name: 'Signup', icon: 'mdi-help-box' , active: false , link:"/Signup"},
         { name: 'Signin', icon: 'mdi-help-box' , active: false , link:"/Signin"},
         { name: 'Json表示', icon: 'mdi-help-box' , active: false , link:"/Json1"},
-        { name: 'Menu', icon: 'mdi-help-box' , active: false , link:"/Menu"},
+        { name: 'カレンダー', icon: 'mdi-help-box' , active: false , link:"/Calender"},
       ],
       color: 'gray',
       colors: [

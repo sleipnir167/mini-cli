@@ -2,35 +2,15 @@ mponents/Signin.vue
 <template>
   <div class="signin">
     <v-app>
-      <v-card width="400px" class="mx-auto mt-5">
-        <v-card-title>
-          <h1 class="display-1">ログイン</h1>
-        </v-card-title>
-        <v-card-text>
-          <v-form>
-            <v-text-field prepend-icon="mdi-account-circle" label="ユーザ名" v-model="username"/>
-            <v-text-field v-bind:type="showPassword ? 'text' : 'password'" 
-                          prepend-icon="mdi-lock" 
-                          v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" 
-                          label="パスワード" 
-                          @click:append="showPassword = !showPassword" 
-                          v-model="password"/>
-            
-            <v-card-actions>
-              <v-btn class="info" @click="signIn">ログイン</v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-app>
 
-<!--     
+    </v-app>
+    <h2>Sign in</h2>
     <input type="text" placeholder="Username" v-model="username">
     <input type="password" placeholder="Password" v-model="password">
     <button @click="signIn">Signin</button>
     <p>You don't have an account? 
       <router-link to="/signup">create account now!!</router-link>
-    </p> -->
+    </p>
   </div>
 </template>
 
@@ -43,7 +23,6 @@ export default {
   name: 'Signin',
   data: function () {
     return {
-      showPassword : false,
       username: '',
       password: ''
     }
