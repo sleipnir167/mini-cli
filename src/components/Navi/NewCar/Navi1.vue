@@ -29,7 +29,7 @@
           <label for="NewYmd">新製日  <span class="badge badge-info">任意</span></label>
           <input type="date" class="form-control" v-model="NewYmd" placeholder="新製日" />
         </div>
-
+<!-- 
         <div class="form-group">
           <label for="Kasho1">箇所1  <span class="badge badge-info">任意</span></label>
           <input type="text" class="form-control" v-model="kasho1" placeholder="箇所1">
@@ -42,7 +42,7 @@
         <div class="form-group">
           <label for="Kasho3">箇所3  <span class="badge badge-info">任意</span></label>
           <input type="text" class="form-control" v-model="Kasho3" placeholder="箇所3">
-        </div>   
+        </div>    -->
       </form>
     </div>
 </template>
