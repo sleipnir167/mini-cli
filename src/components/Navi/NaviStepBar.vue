@@ -12,7 +12,7 @@
 export default {
   props:{
     stepNumber:Number,
-		items: Object
+		items: {}
 	},
 };
 </script>

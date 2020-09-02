@@ -90,7 +90,6 @@
 import Vuetify from "vuetify";
 
 export default {
-  el: '#Menu',
   vuetify: new Vuetify(),
   data () {
     return {
