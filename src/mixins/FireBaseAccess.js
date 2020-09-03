@@ -20,7 +20,6 @@ export default {
     },
     selSyasMaster () {
       try {
-        console.log("selsyas");
         const db = firebase.firestore();
         db.collection('syasMaster')  
           .get()  
