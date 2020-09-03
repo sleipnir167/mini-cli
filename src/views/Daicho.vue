@@ -34,47 +34,21 @@
               vertical
             ></v-divider>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" max-width="500px">
+            <v-dialog v-model="dialog" max-width="90%" max-height="60%">
 
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="primary"
-                  dark
-                  class="mb-2"
-                  v-bind="attrs"
-                  v-on="on"
-                >New Item</v-btn>
-              </template>
-              <v-card>
-                <v-card-title>
-                  <span class="headline">{{ formTitle }}</span>
-                </v-card-title>
-    
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field v-model="editedItem.SyasID" label="車種ID"></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field v-model="editedItem.SyasName" label="車種名"></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-    
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-                </v-card-actions>
-              </v-card>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                dark
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
+              >New Item</v-btn>
+            </template>
+            
+            <!-- <form-navi1></form-navi1> -->
+            <form-daichoedit :editedItem=editedItem :editedItem2=headers></form-daichoedit>
+
             </v-dialog>
           </v-toolbar>
         </template>
@@ -102,8 +76,15 @@
 </template>
 
 <script>
+import Vue from "vue";
 import firebase from "firebase/app"
 import Vuetify from "vuetify";
+import DaichoEdit from "./DaichoEdit"
+
+import Navi1 from '../components/Navi/NewCar/Navi1';
+//  コンポーネントを登録
+Vue.component("form-navi1", Navi1);
+Vue.component("form-daichoedit", DaichoEdit);
 
 export default {
   vuetify: new Vuetify(),
@@ -113,6 +94,7 @@ export default {
     search: '',
     headers: [
       { text: '車両ID', align: 'start', value: 'Srid' },
+      { text: '車種', value: 'Syas' },
       { text: '系式', value: 'Keis' },
       { text: '形式', value: 'Katas' },
       { text: '基本編成', value: 'Khhens' },
@@ -137,6 +119,7 @@ export default {
     editedIndex: -1,
     editedItem: {
       Srid: null,
+      Syas: null,
       Nymd: null,
       Dymd: null,
       Fymd: null,
@@ -153,12 +136,12 @@ export default {
       Srgrp: null,
       Keis: null,
       Katas: null,
-      
-          Khhens: "01",
+      Khhens: null,
       khgousya: null,
     },
     defaultItem: {
       Srid: null,
+      Syas: null,
       Nymd: null,
       Dymd: null,
       Fymd: null,
@@ -175,8 +158,7 @@ export default {
       Srgrp: null,
       Keis: null,
       Katas: null,
-      
-          Khhens: "01",
+      Khhens: null,
       khgousya: null,
     },
   }),
@@ -334,6 +316,7 @@ export default {
       this.desserts = [
         {
           Srid: 1,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -355,6 +338,7 @@ export default {
         },
         {
           Srid: 2,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -377,6 +361,7 @@ export default {
         },
         {
           Srid: 3,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -398,6 +383,7 @@ export default {
         },
         {
           Srid: 4,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -419,6 +405,7 @@ export default {
         },
         {
           Srid: 5,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -440,6 +427,7 @@ export default {
         },
         {
           Srid: 6,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -461,6 +449,7 @@ export default {
         },
         {
           Srid: 7,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -482,6 +471,7 @@ export default {
         },
         {
           Srid: 8,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -503,6 +493,7 @@ export default {
         },
         {
           Srid: 9,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -524,6 +515,7 @@ export default {
         },
         {
           Srid: 10,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",
@@ -545,6 +537,7 @@ export default {
         },
         {
           Srid: 11,
+          Syas: 2,
           Nymd: "2020-01-01",
           Dymd: null,
           Fymd: "2020-01-01",

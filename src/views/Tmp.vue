@@ -11,6 +11,9 @@
     <hr>
     <h5>InputDayInfo.vue</h5>
     <!-- <temp-InputDayInfo v-show="showContent"></temp-InputDayInfo> -->
+    <hr>
+    <h5>temp-SyasCombobox</h5>
+    <temp-SyasCombobox></temp-SyasCombobox>
     
     <hr>
   </div>
@@ -24,6 +27,7 @@
   import GridYM from '../components/Parts/GridYM'
   import MoveYM from '../components/Parts/MoveYM'
   import InputDayInfo from '../components/Parts/InputDayInfo'
+  import SyasCombobox from '../../src/components/Master/SyasCombo'
 
   export default {
   }
@@ -33,6 +37,7 @@
   Vue.component('temp-GridYM', GridYM)
   Vue.component('temp-MoveYM', MoveYM)
   Vue.component('temp-InputDayInfo', InputDayInfo)
+  Vue.component('temp-SyasCombobox', SyasCombobox)
 
 </script>
 

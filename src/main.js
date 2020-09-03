@@ -8,15 +8,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css' // add
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-}).$mount('#app')
-
-
-
 
 // firebase用 >>>
 // import Login from './views/Login'
@@ -46,5 +37,14 @@ firebase.initializeApp(config);
 // })
 
 // <<< firebase用 
+
+
+
+new Vue({
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+}).$mount('#app')
 
 

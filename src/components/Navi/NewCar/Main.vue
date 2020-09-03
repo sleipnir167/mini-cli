@@ -58,7 +58,8 @@ export default {
 				lastName: null,
 				Email: null,
 				tel: null,
-				birthday: null
+        birthday: null,
+        SyasID:null
       },
       stepItems:["台帳登録","検査登録","装備入力","その他","確認","完了"]
     };

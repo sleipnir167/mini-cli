@@ -1,6 +1,7 @@
 
 <template>
   <div id="NewCarNavi1" class="container mt-5">
+
       <form @input="submit">
         <h2>車体情報</h2>
         
@@ -13,7 +14,7 @@
         </div>	
 
         <div class="form-group">
-          <label for="keis">形式  
+          <label for="keis">形式
             <span class="badge badge-danger">必須</span>
             <q-tip class="qtip" qtext="例)TC XXX等"></q-tip>
           </label>
@@ -50,6 +51,7 @@
 <script>
 import Vue from "vue";
 import QuestionTipText from '../../Parts/QuestionTipText';
+import firebase from "firebase/app"
 
 Vue.component("q-tip", QuestionTipText)
 
@@ -61,8 +63,15 @@ export default {
         syaNo: null,
         NewYmd: null,
 				firstName: null,
-				lastName: null
+        lastName: null,
+        items: [],
+				SyasID: null,
+        FBsyasMaster: [],
     };
+  },
+  created(){
+    this.selSyasMaster()
+    
   },
   methods: {
 		submit: function(){
@@ -72,9 +81,40 @@ export default {
         syaNo: this.syaNo,
         NewYmd: this.NewYmd,
 				firstName: this.firstName,
-				lastName: this.lastName
+				lastName: this.lastName,
+				SyasID: this.SyasID
 			});
-		}
+    },
+    tst: function(){
+      console.log(this.SyasID)
+
+    },
+    selSyasMaster () {
+      try {
+        const db = firebase.firestore();
+        db.collection('syasMaster')  
+          .get()  
+          .then(snapshot => {  
+            snapshot.forEach(doc => {  
+              let item = doc.data();
+              item.id = doc.id;
+              this.FBsyasMaster.push(item);
+              this.items.push(item.SyasName)
+            })  
+          }) 
+        console.log(this.FBsyasMaster)
+        console.log("selsyas3");
+
+
+        return true;
+      }
+      catch(e)
+      {
+        console.log("catchA");
+        console.log(e);
+        return false;
+      }
+    },
 	}
 };
 </script>
