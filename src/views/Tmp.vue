@@ -13,7 +13,7 @@
     <!-- <temp-InputDayInfo v-show="showContent"></temp-InputDayInfo> -->
     <hr>
     <h5>temp-SyasCombobox</h5>
-    <temp-SyasCombobox></temp-SyasCombobox>
+    <temp-SyasCombobox :FBsyasMaster="FBSyasData" :SelItem="FBitem"></temp-SyasCombobox>
     
     <hr>
   </div>
@@ -28,10 +28,31 @@
   import MoveYM from '../components/Parts/MoveYM'
   import InputDayInfo from '../components/Parts/InputDayInfo'
   import SyasCombobox from '../../src/components/Master/SyasCombo'
+  import FBAccess from '../../src/mixins/FireBaseAccess'
 
   export default {
+    mixins: [FBAccess],
+    FBSyasData:[],
+    FBitem:null,
+    created(){
+      console.log("temp:created")
+      this.FBSyasData = this.selSyasMasteritem()
+      console.log(this.FBSyasData)
+      this.FBitem = this.FBSyasData.length
+      console.log(this.FBitem)
+    },
+    data () {
+      return{
+      }
+    },
+    mounted() {
+      console.log('Two')
+      this.$nextTick(() => {
+        console.log('three')
+        
+      });
+    }
   }
-
   //  コンポーネントを登録
   Vue.component('temp-viewdayinfo', ViewDayInfo)
   Vue.component('temp-GridYM', GridYM)

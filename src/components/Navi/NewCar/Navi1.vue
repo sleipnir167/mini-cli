@@ -1,4 +1,3 @@
-
 <template>
   <div id="NewCarNavi1" class="container mt-5">
 
@@ -85,10 +84,6 @@ export default {
 				SyasID: this.SyasID
 			});
     },
-    tst: function(){
-      console.log(this.SyasID)
-
-    },
     selSyasMaster () {
       try {
         const db = firebase.firestore();
@@ -103,9 +98,6 @@ export default {
             })  
           }) 
         console.log(this.FBsyasMaster)
-        console.log("selsyas3");
-
-
         return true;
       }
       catch(e)

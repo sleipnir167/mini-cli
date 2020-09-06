@@ -128,7 +128,6 @@ export default {
   },
   methods:{
     menu_close(){
-      console.log("test");
       this.nav_lists.forEach( nav_list => nav_list.active = false)
     }
   },

@@ -6,27 +6,28 @@
         item-text="SyasName"
         item-value="SyasID"
         label="車種"
-        v-model="SyasID"
+        v-model="SelItem"
       required>
       </v-select>
     </v-app>
-    </div>
+  </div>
 </template>
 
 <script>
-import firebase from "firebase/app"
 
 export default {
+  props:{
+    FBsyasMaster: null,
+    SelItem: null,
+  },
   data() {
 		return {
-        items: [],
         SyasID: null,
         SyasName: null,
-        FBsyasMaster: [],
+        // FBsyasMaster: [],
     };
   },
   created(){
-    this.selSyasMaster()
   },
   methods: {
 		submit: function(){
@@ -34,28 +35,6 @@ export default {
 				syas: this.syas,
 				SyasID: this.SyasID
 			});
-    },
-    selSyasMaster () {
-      try {
-        const db = firebase.firestore();
-        db.collection('syasMaster')  
-          .get()  
-          .then(snapshot => {  
-            snapshot.forEach(doc => {  
-              let item = doc.data();
-              item.id = doc.id;
-              this.FBsyasMaster.push(item);
-              this.items.push(item.SyasName)
-            })  
-          }) 
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catchA");
-        console.log(e);
-        return false;
-      }
     },
 	}
 };
@@ -65,6 +44,7 @@ export default {
 #SyasCombobox{
   width:400px;
   height:100px;
+  overflow:hidden;
 }
 </style>
 

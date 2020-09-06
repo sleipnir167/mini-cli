@@ -39,6 +39,32 @@ export default {
         return false;
       }
     },
+    selSyasMasteritem () {
+      try {
+        console.log("selSyasMasteritemStart");
+        const db = firebase.firestore();
+        db.collection('syasMaster')  
+          .get()  
+          .then(snapshot => {  
+            snapshot.forEach(doc => {  
+              let item = doc.data();
+              item.id = doc.id;
+              this.FBsyasMaster.push(item);
+              console.log(item);
+            })  
+          }) 
+
+        console.log("selSyasMasteritemEnd");
+        console.log(this.FBsyasMaster);
+        return this.FBsyasMaster;
+      }
+      catch(e)
+      {
+        console.log("catchA");
+        console.log(e);
+        return false;
+      }
+    },
     getSyasMaster: function() {
       return "xyza";
     },
@@ -47,6 +73,6 @@ export default {
     },
     endParse: function(end) {
       return moment(end).format('YYYY-MM-DD')
-    }
+    },
   },
 }
