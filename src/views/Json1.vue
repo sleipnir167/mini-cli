@@ -112,6 +112,11 @@ export default {
         // TODOリストにリスト要素を追加する
         todoContainer.appendChild(li);
       }
+      
+    })
+    .catch(error => {
+        // 失敗した時
+        console.log(error)
     })
   }
 };
