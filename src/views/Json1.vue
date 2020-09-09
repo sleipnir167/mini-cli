@@ -81,8 +81,6 @@ export default {
         })
     .then(response => this.users = response.data.results)
 
-
-
     // ■ローカルWEBサービス
     axios.get('http://localhost:3000/api/v1/list')
     .then(response => this.localweb = response.data)
