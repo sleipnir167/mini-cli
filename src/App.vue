@@ -15,46 +15,124 @@
 
       <!-- 右寄せ -->
       <v-toolbar-items>
+      
+        <!-- 「ベル」アイコン表示 -->
+        <v-menu offset-y>
+          <template v-slot:activator="{on}" >
+          <v-btn icon v-on="on" >
+            <v-badge
+              :content="alert_Meassages.length"
+              :value="alert_Meassages.length"
+              color="green"
+              overlap
+            >
+              <v-icon>mdi-bell</v-icon>
+            </v-badge>
+          </v-btn>
+          </template>
+            <v-card max-width="500" class="mx-auto" >
+            <v-toolbar color="green" dark dense>
+              <v-toolbar-title>通知</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn icon>
+                <v-icon>mdi-checkbox-marked-circle</v-icon>
+              </v-btn>
+            </v-toolbar>
 
-      <!-- ヘルプアイコン表示 -->
-      <v-menu offset-y>
-        <template v-slot:activator="{on}">
-        <v-btn icon v-on="on" >
-          <v-icon>mdi-help</v-icon>
-        </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="nav_list in nav_lists" :key="nav_list" >
-            <v-list-item-icon>
-              <v-icon>{{ nav_list.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ nav_list.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+            <v-list two-line>
+              <v-list-item-group v-model="selected" multiple active-class="pink--text" >
+                <template v-for="(alert_Meassage, index) in alert_Meassages">
+                  <v-list-item :key="alert_Meassage.title">
+                    <!-- <template v-slot:default="{ active, toggle }"> -->
+                    <template v-slot:default="{ active }">
+                      <v-list-item-content>
+                        <v-list-item-title v-text="alert_Meassage.title"></v-list-item-title>
+                        <v-list-item-subtitle class="text--primary" v-text="alert_Meassage.headline"></v-list-item-subtitle>
+                        <v-list-item-subtitle v-text="alert_Meassage.subtitle"></v-list-item-subtitle>
+                      </v-list-item-content>
+        
+                      <v-list-item-action>
+                        <v-list-item-action-text v-text="alert_Meassage.action"></v-list-item-action-text>
+                        <v-icon v-if="!active" color="grey lighten-1">star_border</v-icon>
+                        <v-icon v-else color="yellow">star</v-icon>
+                      </v-list-item-action>
+                    </template>
+                  </v-list-item>
+                  <!-- 罫線 -->
+                  <v-divider
+                    v-if="index + 1 < alert_Meassages.length"
+                    :key="index"
+                  ></v-divider>
+                </template>
+              </v-list-item-group>
+            </v-list>
+          </v-card>
+        </v-menu>
+        
+        <!-- ヘルプ -->
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+          <!-- <v-btn icon v-on="on" >
+            <v-icon>mdi-help</v-icon>
+          </v-btn> -->
+          <v-btn v-on="on" text>
+            ヘルプ
+            <v-icon>mdi-menu-down</v-icon>
+          </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="nav_list in nav_lists" :key="nav_list" >
+              <v-list-item-icon>
+                <v-icon>{{ nav_list.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ nav_list.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
 
-      <v-menu offset-y>
-        <template v-slot:activator="{on}" >
-        <v-btn icon v-on="on" >
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="dot_vatical in dot_vaticals" :key="dot_vatical">
-            <v-list-item-icon>
-              <v-icon>{{ dot_vatical.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ dot_vatical.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+        <!-- サポート -->
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+          <!-- <v-btn icon v-on="on" >
+            <v-icon>mdi-help</v-icon>
+          </v-btn> -->
+          <v-btn v-on="on" text> サポート 
+            <v-icon>mdi-menu-down</v-icon>
+          </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="Support in Supports" :key="Support" >
+              <v-list-item-icon>
+                <v-icon>{{ Support.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ Support.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
 
-    </v-toolbar-items>
-
+        <!-- 「:」アイコン表示 -->
+        <v-menu offset-y>
+          <template v-slot:activator="{on}" >
+          <v-btn icon v-on="on" >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="dot_vatical in dot_vaticals" :key="dot_vatical">
+              <v-list-item-icon>
+                <v-icon>{{ dot_vatical.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ dot_vatical.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar-items>
     </v-app-bar>
 
     <!-- メニュー -->
@@ -73,7 +151,8 @@
 
         <v-list-item-content>
           <v-list-item-title>msok</v-list-item-title>
-          <v-list-item-subtitle>A所属</v-list-item-subtitle>
+          <v-list-item-subtitle>所属：A箇所</v-list-item-subtitle>
+          <v-list-item-subtitle>担当：作業員</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       
@@ -169,17 +248,23 @@ export default {
         { name: 'お知らせ', icon: 'mdi-information-outline' , active: false , link:"/Info"},
         { name: '車両台帳', icon: 'mdi-train' , active: false , link:"/Daicho"},
         { name: '検査計画', icon: 'mdi-timetable' , active: false , link:"/Kensa"},
-        { name: '使用実績', icon: 'mdi-speedometer' , active: false , link:"/Tmp"},
+        { name: '使用実績', icon: 'mdi-table-edit' , active: false , link:"/Siyou"},
         { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Tmp"},
-        { name: '装備管理', icon: 'mdi-battery-positive' , active: false , link:"/Tmp"},
+        { name: '装備管理', icon: 'mdi-sync' , active: false , link:"/Tmp"},
         { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: 'quick2', icon: 'mdi-pencil' , link:"/Info"}]},
-        { name: '操作ナビ', icon: 'mdi-help-box' , active: false , link:"/Navi", lists:[{name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}]},
+        { name: '操作ナビ', icon: 'mdi-library' , active: false , link:"/Navi", lists:[{name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}]},
         { name: 'グラフ', icon: 'mdi-chart-bar' , active: false , link:"/Graph"}, 
+        { name: 'ユーザー登録', icon: 'mdi-account-plus' , active: false , link:"/Signup"},
+        { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
+        { name: 'Json表示', icon: 'mdi-message' , active: false , link:"/Json1"},
+        { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
         { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
-        { name: 'Signup', icon: 'mdi-help-box' , active: false , link:"/Signup"},
-        { name: 'Signin', icon: 'mdi-help-box' , active: false , link:"/Signin"},
-        { name: 'Json表示', icon: 'mdi-help-box' , active: false , link:"/Json1"},
-        { name: 'カレンダー', icon: 'mdi-help-box' , active: false , link:"/Calender"},
+      ],
+      Supports: [
+        { name: '管理者問い合わせ', icon: 'mdi-whatsapp' , active: true , link:"/"},
+        { name: 'サポート問い合わせ', icon: 'mdi-ambulance' , active: false , link:"/"},
+        { name: 'メッセージを送る', icon: 'mdi-message' , active: false , link:"/"},
+        { name: '報告する', icon: 'mdi-message-alert' , active: false , link:"/"},
       ],
       dot_vaticals: [
         { name: '設定', icon: 'mdi-brightness-5' , active: true , link:"/"},
@@ -187,7 +272,13 @@ export default {
         { name: 'パスワード変更', icon: 'mdi-account-key' , active: false , link:"/"},
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/"},
         { name: 'ログアウト', icon: 'mdi-logout' , active: false , link:"/"},
-        
+      ],
+      alert_Meassages: [
+        { id: 1 , title: '検査切れ', headline: "A保全", subtitle: 'A保全の検査切れが発生しました', action: '15分前', icon: 'mdi-whatsapp'},
+        { id: 2 , title: '故障', headline: "故障発生", subtitle: 'XXXが故障' , action: '15分前', icon: 'mdi-whatsapp'},
+        { id: 3 , title: '故障', headline: "対応中", subtitle: 'XXXに入場中' , action: '30分前', icon: 'mdi-whatsapp'},
+        { id: 4 , title: '故障', headline: "修理中", subtitle: 'XXに入場中' , action: '1時間前', icon: 'mdi-whatsapp'},
+        { id: 5 , title: '故障', headline: "完了", subtitle: '対応完了しました。' , action: '3日前', icon: 'mdi-whatsapp'},
       ],
       color: 'gray',
       colors: [
@@ -222,12 +313,10 @@ export default {
 </script>
 
 <style lang="scss">
-
 html,
 html.overflow-y-hidden {
   overflow-y: hidden !important;
 }
-
 
 .v-application--wrap {
   background-color: #ebebeb;
