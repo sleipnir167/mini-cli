@@ -53,8 +53,8 @@
         
                       <v-list-item-action>
                         <v-list-item-action-text v-text="alert_Meassage.action"></v-list-item-action-text>
-                        <v-icon v-if="!active" color="grey lighten-1">star_border</v-icon>
-                        <v-icon v-else color="yellow">star</v-icon>
+                        <v-icon v-if="!active" color="blue lighten-1">mdi-checkbox-blank-outline</v-icon>
+                        <v-icon v-else color="blue">mdi-checkbox-marked-outline</v-icon>
                       </v-list-item-action>
                     </template>
                   </v-list-item>
@@ -81,7 +81,7 @@
           </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="nav_list in nav_lists" :key="nav_list" >
+            <v-list-item v-for="nav_list in nav_lists" :key="nav_list.name" >
               <v-list-item-icon>
                 <v-icon>{{ nav_list.icon }}</v-icon>
               </v-list-item-icon>
@@ -103,7 +103,7 @@
           </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="Support in Supports" :key="Support" >
+            <v-list-item v-for="Support in Supports" :key="Support.name" >
               <v-list-item-icon>
                 <v-icon>{{ Support.icon }}</v-icon>
               </v-list-item-icon>
@@ -122,7 +122,7 @@
           </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="dot_vatical in dot_vaticals" :key="dot_vatical">
+            <v-list-item v-for="dot_vatical in dot_vaticals" :key="dot_vatical.name">
               <v-list-item-icon>
                 <v-icon>{{ dot_vatical.icon }}</v-icon>
               </v-list-item-icon>
@@ -210,14 +210,6 @@
     </v-navigation-drawer>
 
     <!-- メイン部分 -->
-    <!-- <v-main>
-      <v-content>
-        <v-container >
-          <router-view />
-        </v-container>
-      </v-content>
-    </v-main> -->
-
     <v-main class="ma-2">
       <router-view />
     </v-main>
@@ -249,7 +241,7 @@ export default {
         { name: '車両台帳', icon: 'mdi-train' , active: false , link:"/Daicho"},
         { name: '検査計画', icon: 'mdi-timetable' , active: false , link:"/Kensa"},
         { name: '使用実績', icon: 'mdi-table-edit' , active: false , link:"/Siyou"},
-        { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Tmp"},
+        { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Kensyu"},
         { name: '装備管理', icon: 'mdi-sync' , active: false , link:"/Tmp"},
         { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: 'quick2', icon: 'mdi-pencil' , link:"/Info"}]},
         { name: '操作ナビ', icon: 'mdi-library' , active: false , link:"/Navi", lists:[{name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}]},
@@ -280,6 +272,7 @@ export default {
         { id: 4 , title: '故障', headline: "修理中", subtitle: 'XXに入場中' , action: '1時間前', icon: 'mdi-whatsapp'},
         { id: 5 , title: '故障', headline: "完了", subtitle: '対応完了しました。' , action: '3日前', icon: 'mdi-whatsapp'},
       ],
+      selected:[2],
       color: 'gray',
       colors: [
         'primary',

@@ -5,6 +5,8 @@ import DashBoard from '../views/DashBoard.vue'
 import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
 import Kensa from '../views/Kensa.vue'
+import Siyou from '../views/Siyou.vue'
+import Kensyu from '../views/Kensyu.vue'
 import MasterSyasyu from '../views/MasterSyasyu.vue'
 import Navi from '../views/Navi.vue'
 import Graph from '../views/Graph.vue'
@@ -42,6 +44,16 @@ Vue.use(VueRouter)
     path: '/kensa',
     name: 'Kensa',
     component: Kensa
+  },
+  {
+    path: '/siyou',
+    name: 'Siyou',
+    component: Siyou
+  },
+  {
+    path: '/kensyu',
+    name: 'Kensyu',
+    component: Kensyu
   },
   {
     path: '/about',
