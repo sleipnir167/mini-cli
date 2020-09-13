@@ -46,8 +46,97 @@
             </div>
           </div>
         </v-col>
-      </v-row>
 
+                <!-- 1つ目 -->
+        <v-col>
+          <div style="position:relative;width:200px;height:200px">
+            <!-- 右側の180度分の領域 -->
+            <div class="square" style="right:0">
+              <div class="square" style="right:100%;transform-origin: 100% 50%;" :style="rightAngle">
+                <div class="outside_circle" style="left:0"></div>
+              </div>
+            </div>
+            <!-- 左側の180度分の領域 -->
+            <div class="square" style="left:0;">
+              <div class="square" style="left:100%;transform-origin: 0% 50%;" :style="leftAngle">
+                <div class="outside_circle" style="right:0">
+                </div>
+              </div>
+            </div>
+            <!-- 文字 -->
+            <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
+              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
+              <span v-else> {{ 144 - tweetLength}}</span>
+            </div>
+            <!-- 内側線 -->
+            <div class="inside_circle icon_spin" style="position:absolute;">
+              <!-- 謎のドット -->
+              <div class="inside_dot" style="position:absolute;">
+              </div>
+            </div>
+          </div>
+        </v-col>
+
+                <!-- 1つ目 -->
+        <v-col>
+          <div style="position:relative;width:200px;height:200px">
+            <!-- 右側の180度分の領域 -->
+            <div class="square" style="right:0">
+              <div class="square" style="right:100%;transform-origin: 100% 50%;" :style="rightAngle">
+                <div class="outside_circle" style="left:0"></div>
+              </div>
+            </div>
+            <!-- 左側の180度分の領域 -->
+            <div class="square" style="left:0;">
+              <div class="square" style="left:100%;transform-origin: 0% 50%;" :style="leftAngle">
+                <div class="outside_circle" style="right:0">
+                </div>
+              </div>
+            </div>
+            <!-- 文字 -->
+            <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
+              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
+              <span v-else> {{ 144 - tweetLength}}</span>
+            </div>
+            <!-- 内側線 -->
+            <div class="inside_circle icon_spin" style="position:absolute;">
+              <!-- 謎のドット -->
+              <div class="inside_dot" style="position:absolute;">
+              </div>
+            </div>
+          </div>
+        </v-col>
+
+                <!-- 1つ目 -->
+        <v-col>
+          <div style="position:relative;width:200px;height:200px">
+            <!-- 右側の180度分の領域 -->
+            <div class="square" style="right:0">
+              <div class="square" style="right:100%;transform-origin: 100% 50%;" :style="rightAngle">
+                <div class="outside_circle" style="left:0"></div>
+              </div>
+            </div>
+            <!-- 左側の180度分の領域 -->
+            <div class="square" style="left:0;">
+              <div class="square" style="left:100%;transform-origin: 0% 50%;" :style="leftAngle">
+                <div class="outside_circle" style="right:0">
+                </div>
+              </div>
+            </div>
+            <!-- 文字 -->
+            <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
+              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
+              <span v-else> {{ 144 - tweetLength}}</span>
+            </div>
+            <!-- 内側線 -->
+            <div class="inside_circle icon_spin" style="position:absolute;">
+              <!-- 謎のドット -->
+              <div class="inside_dot" style="position:absolute;">
+              </div>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
     </v-app>
   </div>
 </template>

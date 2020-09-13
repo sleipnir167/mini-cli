@@ -15,6 +15,14 @@
     <h5>temp-SyasCombobox</h5>
     <temp-SyasCombobox :FBsyasMaster="FBSyasData" :SelItem="FBitem"></temp-SyasCombobox>
     
+
+    <div data-v-1d75d652="" data-v-50bb1d33="" id="screenfull" class="right-menu-item hover-effect">
+      <svg data-v-f9f7fefc="" data-v-1d75d652="" aria-hidden="true" class="svg-icon">
+        <use data-v-f9f7fefc="" xlink:href="#icon-fullscreen">
+        </use>
+      </svg>
+    </div>
+
     <hr>
   </div>
 </template>

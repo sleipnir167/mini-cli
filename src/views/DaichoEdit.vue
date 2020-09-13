@@ -1,11 +1,11 @@
 <template>
-  <div id="MasterSyaryou" class="kokoko">
     <v-app id="inspire">
       <!-- ローディング -->
       <!-- <div v-if="DispLoading" id="DispLoading">
         <v-progress-circular indeterminate />
       </div> -->
-      <v-container>
+      <v-content>
+      <v-container fluid>
         <v-row>
           <v-col cols="12" sm="6" md="3">
           <v-text-field v-model="editedItem.Srid" label="車種ID" ></v-text-field>
@@ -88,8 +88,8 @@
         </v-row>
 
       </v-container>
+      </v-content>
     </v-app>
-  </div>
 </template>
 
 <script>

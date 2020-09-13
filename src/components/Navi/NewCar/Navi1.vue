@@ -1,58 +1,48 @@
 <template>
-  <div id="NewCarNavi1" class="container mt-5">
+  <v-form ref="form" v-model="valid" lazy-validation>
+    <h2>車体情報</h2>
+    <v-container ma-4 pa-0>
+      <v-row>
+        <!-- 車種 -->
+        <v-col cols="6">
+          <v-select v-model="syas" :items="items" :rules="syasRules" label="車種" hint='EC,DLなど車種を選択します。' persistent-hint=true required outlined>
+            <!-- ？のtooltipを表示 -->
+            <template slot="append-outer">
+              <v-tooltip right>
+              <template v-slot:activator="{on}">
+                <v-icon v-on="on">mdi-help-circle</v-icon>
+              </template>
+              <div>対象の車種が存在しない場合は</div>
+              <div>マスタ管理の車種マスタから車種の追加を行ってください。</div>
+              </v-tooltip>
+            </template>
+          </v-select>
+        </v-col>
 
-      <form @input="submit">
-        <h2>車体情報</h2>
-        
-        <div class="form-group">
-          <label for="syas">車種  
-            <span class="badge badge-danger">必須</span>
-            <q-tip class="qtip" qtext="車種 EC,DC,EL,DL,FC,SL"></q-tip>
-          </label>
-          <input type="text" class="form-control" v-model="syas" placeholder="車種">
-        </div>	
+      </v-row>
+      <v-row>
+        <!-- 系式 -->
+        <v-col cols="2">
+          <v-text-field v-model="keis" :counter="5" :rules="nameRules" label="系式" suffix="系" required outlined ></v-text-field>
+        </v-col>
+        <!-- 車体番号 -->
+        <v-col cols="2">
+          <v-text-field v-model="syaNo" :counter="5" :rules="nameRules" label="車体番号" required outlined ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-container>
 
-        <div class="form-group">
-          <label for="keis">形式
-            <span class="badge badge-danger">必須</span>
-            <q-tip class="qtip" qtext="例)TC XXX等"></q-tip>
-          </label>
-          <input type="text" class="form-control" v-model="keis" placeholder="形式">
-        </div>
+    <!-- <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required></v-checkbox> -->
 
-        <div class="form-group">
-          <label for="syaNo">車体番号  <span class="badge badge-danger">必須</span></label>
-          <input type="text" class="form-control" v-model="syaNo" placeholder="車体番号">
-        </div>					
-
-        <div class="form-group">
-          <label for="NewYmd">新製日  <span class="badge badge-info">任意</span></label>
-          <input type="date" class="form-control" v-model="NewYmd" placeholder="新製日" />
-        </div>
-<!-- 
-        <div class="form-group">
-          <label for="Kasho1">箇所1  <span class="badge badge-info">任意</span></label>
-          <input type="text" class="form-control" v-model="kasho1" placeholder="箇所1">
-        </div>
-        <div class="form-group">
-          <label for="Kasho2">箇所2  <span class="badge badge-info">任意</span></label>
-          <input type="text" class="form-control" v-model="Kasho1" placeholder="箇所2">
-        </div>
-
-        <div class="form-group">
-          <label for="Kasho3">箇所3  <span class="badge badge-info">任意</span></label>
-          <input type="text" class="form-control" v-model="Kasho3" placeholder="箇所3">
-        </div>    -->
-      </form>
-    </div>
+    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate" > 次へ </v-btn>
+  </v-form>
 </template>
 
 <script>
-import Vue from "vue";
-import QuestionTipText from '../../Parts/QuestionTipText';
-import firebase from "firebase/app"
+// import Vue from "vue";
+// import QuestionTipText from '../../Parts/QuestionTipText';
 
-Vue.component("q-tip", QuestionTipText)
+// Vue.component("q-tip", QuestionTipText)
 
 export default {
   data() {
@@ -63,13 +53,31 @@ export default {
         NewYmd: null,
 				firstName: null,
         lastName: null,
-        items: [],
 				SyasID: null,
         FBsyasMaster: [],
+        
+        valid: true,
+        name: '',
+        syasRules:[v => !!v || '入力してください'],
+        nameRules: [
+          v => !!v || '入力してください',
+          v => (v && v.length <= 5) || '入力できるのは5文字までです。',
+        ],
+        select: null,
+        items: [
+          'SL',
+          'EL',
+          'EC',
+          'DL',
+          'DC',
+          'PC',
+          'TEC',
+        ],
+        checkbox: false,
     };
   },
   created(){
-    this.selSyasMaster()
+    // this.selSyasMaster()
     
   },
   methods: {
@@ -84,27 +92,10 @@ export default {
 				SyasID: this.SyasID
 			});
     },
-    selSyasMaster () {
-      try {
-        const db = firebase.firestore();
-        db.collection('syasMaster')  
-          .get()  
-          .then(snapshot => {  
-            snapshot.forEach(doc => {  
-              let item = doc.data();
-              item.id = doc.id;
-              this.FBsyasMaster.push(item);
-              this.items.push(item.SyasName)
-            })  
-          }) 
-        console.log(this.FBsyasMaster)
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catchA");
-        console.log(e);
-        return false;
+    validate () {
+      if(this.$refs.form.validate()){
+        this.submit()
+          this.$emit('nextStep');
       }
     },
 	}
@@ -112,44 +103,6 @@ export default {
 </script>
 
 <style scoped>
-.sample li {
-  position:relative;
-  margin:20px 0px;
-  padding: 10px;
-  list-style-type: none;
-}
-.sample li:hover {
-  background: #ddbbbb;
-}
-.tooltips {
-  display: none;
-  position: absolute;
-  bottom: -2.5em;
-  z-index: 1000;
-  padding: 0.5em;
-  color: #FFFFFF;
-  background: #cc3333;
-  border-radius: 0.5em;
-}
-.tooltips:after {
-  width: 100%;
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0.5em;
-  top: -8px;
-  border-top:8px solid transparent;
-  border-left:8px solid #c72439;
-}
 
-.sample li:hover .tooltips {
-  display: block;
-}
-
-.qtip {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left:5px;
-}
 </style>
 

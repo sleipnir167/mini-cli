@@ -20,7 +20,7 @@
               <v-spacer></v-spacer>
             </v-toolbar>
           </v-sheet>
-          <v-sheet height="600">
+          <v-sheet height="85%">
             <v-calendar
               ref="calendar"
               v-model="focus"
@@ -49,9 +49,6 @@
                   </v-btn>
                   <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-btn icon>
-                    <v-icon>mdi-heart</v-icon>
-                  </v-btn>
                   <v-btn icon>
                     <v-icon>mdi-dots-vertical</v-icon>
                   </v-btn>
@@ -98,7 +95,7 @@ export default {
   methods: {
     viewDay ({ date }) {
       this.focus = date
-      this.type = 'day'
+      // this.type = 'day'
     },
     getEventColor (event) {
       return event.color
@@ -151,7 +148,7 @@ export default {
       let first = new Date('2020-09-02')
       let end = new Date('2020-09-07')
       events.push({
-        name: "車体",
+        name: "車体保全",
         start: first,
         end: end,
         color: this.colors[this.rnd(0, this.colors.length - 1)],
@@ -161,7 +158,7 @@ export default {
       first = new Date('2020-09-23')
       end = new Date('2020-09-23')
       events.push({
-        name: "月",
+        name: "月保全",
         start: first,
         end: end,
         color: this.colors[this.rnd(0, this.colors.length - 1)],

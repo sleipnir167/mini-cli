@@ -114,6 +114,14 @@
           </v-list>
         </v-menu>
 
+
+        <!-- フルスクリーン切り替え -->
+        <v-btn text @click="toggleFullScreen">
+          <v-icon v-if="fullscreenflg">mdi-fullscreen-exit</v-icon>
+          <v-icon v-else>mdi-fullscreen</v-icon>
+        </v-btn>
+        
+
         <!-- 「:」アイコン表示 -->
         <v-menu offset-y>
           <template v-slot:activator="{on}" >
@@ -241,6 +249,7 @@ export default {
         { name: '車両台帳', icon: 'mdi-train' , active: false , link:"/Daicho"},
         { name: '検査計画', icon: 'mdi-timetable' , active: false , link:"/Kensa"},
         { name: '使用実績', icon: 'mdi-table-edit' , active: false , link:"/Siyou"},
+        { name: '編成管理', icon: 'mdi-view-list' , active: false , link:"/Hensei"},
         { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Kensyu"},
         { name: '装備管理', icon: 'mdi-sync' , active: false , link:"/Tmp"},
         { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: 'quick2', icon: 'mdi-pencil' , link:"/Info"}]},
@@ -286,6 +295,7 @@ export default {
       miniVariant: false,
       expandOnHover: false,
       background: false,
+      fullscreenflg:false,
     }
   },
   created () {
@@ -294,6 +304,33 @@ export default {
   methods:{
     menu_close(){
       this.nav_lists.forEach( nav_list => nav_list.active = false)
+    },
+    toggleFullScreen() {
+      let elem = document.body
+      console.log(elem)
+      if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+          elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+          elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+        this.fullscreenflg = true;
+      } else {
+        if (document.cancelFullScreen) {
+          document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+        this.fullscreenflg = false;
+      }
     }
   },
   computed: {
@@ -313,5 +350,18 @@ html.overflow-y-hidden {
 
 .v-application--wrap {
   background-color: #ebebeb;
+}
+
+html, body {
+  background: white;
+  padding: 0;
+  margin: 0;
+}
+
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   overflow: auto !important;
 }
 </style>

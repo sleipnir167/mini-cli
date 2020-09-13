@@ -6,6 +6,7 @@ import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
 import Kensa from '../views/Kensa.vue'
 import Siyou from '../views/Siyou.vue'
+import Hensei from '../views/Hensei.vue'
 import Kensyu from '../views/Kensyu.vue'
 import MasterSyasyu from '../views/MasterSyasyu.vue'
 import Navi from '../views/Navi.vue'
@@ -49,6 +50,11 @@ Vue.use(VueRouter)
     path: '/siyou',
     name: 'Siyou',
     component: Siyou
+  },
+  {
+    path: '/hensei',
+    name: 'Hensei',
+    component: Hensei
   },
   {
     path: '/kensyu',

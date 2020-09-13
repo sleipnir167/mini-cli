@@ -1,5 +1,5 @@
 <template>
-  <div id="NewCarNavi5" class="container mt-5">
+  <v-form ref="form" v-model="valid" lazy-validation>
     <div>
 			<h2>登録内容</h2>
       <p>車種: {{ form.syas }}</p>
@@ -11,13 +11,8 @@
       <p>箇所3: {{ form.kasho3 }}</p>
       <p>検査周期群: {{ form.KsGun }}</p>
     </div>
-       <button
-     type="button"
-     @click="submit"
-   >
-     Submit
-   </button>
-  </div>
+    <v-btn color="success" class="mr-4" @click="submit">登録</v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -49,6 +44,7 @@ export default {
       })
       .then(ref => {
         console.log('Add ID: ', ref.id)
+        this.$emit('nextStep');
       }
     )
   },
@@ -62,7 +58,7 @@ export default {
       NewYmd: this.form.NewYmd,
       KsGun: this.form.KsGun,
       }).then(ref => {
-        console.log('Add ID: ', ref.id)
+        console.log('Add ID: ', ref.id);
       }
     )
    },

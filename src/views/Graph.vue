@@ -12,6 +12,10 @@ export default {
     return {
     }
   },
+  methods:{
+    test(){
+    }
+  },
   components: {
     LineChart
   }
