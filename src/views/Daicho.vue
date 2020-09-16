@@ -1,11 +1,12 @@
 <template>
-  <div id="MasterSyaryou" class="kokoko">
+  <div id="MasterSyaryou">
     <v-app id="inspire">
       <!-- ローディング -->
       <div v-if="DispLoading" id="DispLoading">
         <v-progress-circular indeterminate />
       </div>
 
+      <!-- 車両台帳一覧 -->
       <v-data-table
         :headers="headers"
         :items="desserts"
@@ -20,6 +21,8 @@
             <v-toolbar-title>車両台帳</v-toolbar-title>
             <!-- ソート -->
             <v-spacer></v-spacer>
+            
+            <!-- 検索 -->
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
@@ -27,50 +30,39 @@
               single-line
               hide-details
             ></v-text-field>
+            <!-- 区切り線 -->
+            <v-divider class="mx-4" inset vertical ></v-divider>
 
-            <v-divider
-              class="mx-4"
-              inset
-              vertical
-            ></v-divider>
+            <!-- 追加ボタン(+) -->
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" max-width="90%" max-height="60%">
+            <v-btn class="mx-2" fab dark color="blue" @click="editItem(defaultItem)">
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
 
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="primary"
-                dark
-                class="mb-2"
-                v-bind="attrs"
-                v-on="on"
-              >New Item</v-btn>
-            </template>
-            
-            <!-- <form-navi1></form-navi1> -->
-            <form-daichoedit :editedItem=editedItem :editedItem2=headers></form-daichoedit>
-
-            </v-dialog>
           </v-toolbar>
         </template>
+
+        <!-- 表示、修正、削除 -->
         <template v-slot:[`item.actions`]="{ item }">
-          <v-icon
-            small
-            class="mr-2"
-            @click="editItem(item)"
-          >
-            mdi-pencil
-          </v-icon>
-          <v-icon
-            small
-            @click="deleteItem(item)"
-          >
-            mdi-delete
-          </v-icon>
+          <v-icon small class="mr-2" @click="viewItem(item)" >mdi-magnify</v-icon>
+          <v-icon small class="mr-2" @click="editItem(item)" >mdi-pencil</v-icon>
+          <v-icon small @click="deleteItem(item)" > mdi-delete </v-icon>
         </template>
         <template v-slot:no-data>
           <v-btn color="primary" @click="initialize">Reset</v-btn>
         </template>
       </v-data-table>
+
+      <!-- エディットダイアログ -->
+      <v-dialog v-model="viewdialogshow"  max-width="90%" max-height="60%">
+        <form-daichoview :editedItem=editedItem :editedItem2=headers></form-daichoview>
+      </v-dialog>
+      
+      <!-- エディットダイアログ -->
+      <v-dialog v-model="editdialogshow"  max-width="90%" max-height="60%">
+        <form-daichoedit :editedItem=editedItem :editedItem2=headers></form-daichoedit>
+      </v-dialog>
+      
     </v-app>
   </div>
 </template>
@@ -80,17 +72,21 @@ import Vue from "vue";
 import firebase from "firebase/app"
 import Vuetify from "vuetify";
 import DaichoEdit from "./DaichoEdit"
+import DaichoView from "./DaichoView"
 
 import Navi1 from '../components/Navi/NewCar/Navi1';
 //  コンポーネントを登録
 Vue.component("form-navi1", Navi1);
 Vue.component("form-daichoedit", DaichoEdit);
+Vue.component("form-daichoview", DaichoView);
 
 export default {
   vuetify: new Vuetify(),
   data: () => ({
     DispLoading: true,
     dialog: false,
+    viewdialogshow: false,
+    editdialogshow: false,
     search: '',
     headers: [
       { text: '車両ID', align: 'start', value: 'Srid' },
@@ -170,7 +166,7 @@ export default {
   },
 
   watch: {
-    dialog (val) {
+    editdialogshow (val) {
       val || this.close()
     },
   },
@@ -192,10 +188,17 @@ export default {
       this.sampleData();
     },
 
+    viewItem (item) {
+      this.viewedIndex = this.desserts.indexOf(item)
+      this.viewedItem = Object.assign({}, item)
+      this.viewdialogshow = true
+    },
+
     editItem (item) {
+      console.log("aaa")
       this.editedIndex = this.desserts.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.dialog = true
+      this.editdialogshow = true
     },
 
     deleteItem (item) {
@@ -210,7 +213,7 @@ export default {
       } 
     },
     close () {
-      this.dialog = false
+      this.editdialogshow = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1

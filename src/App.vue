@@ -219,7 +219,9 @@
 
     <!-- メイン部分 -->
     <v-main class="ma-2">
-      <router-view />
+      <transition mode=”out-in”>
+        <router-view />
+      </transition> 
     </v-main>
 
     <!-- フッター -->
@@ -260,6 +262,7 @@ export default {
         { name: 'Json表示', icon: 'mdi-message' , active: false , link:"/Json1"},
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
         { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
+        { name: 'Map', icon: 'mdi-map-marker' , active: false , link:"/vMap"},
       ],
       Supports: [
         { name: '管理者問い合わせ', icon: 'mdi-whatsapp' , active: true , link:"/"},
@@ -363,5 +366,33 @@ html, body {
 *:-webkit-full-screen,
 *:-moz-full-screen {
    overflow: auto !important;
+}
+
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s;
+}
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
+.v-enter {
+  transform: translate(10px, 0);
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
+.v-enter-active {
+  transition: all 1s 0.1s ease;
+}
+.v-leave {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.v-leave-to {
+  transform: translate(10px, 0);
+  opacity: 0;
+}
+.v-leave-active {
+  transition: all .3s 0s ease;
 }
 </style>

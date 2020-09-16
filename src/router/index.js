@@ -17,6 +17,7 @@ import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
 import Json1 from '../views/Json1.vue'
 import Calender from '../views/Calender.vue'
+import vMap from '../views/vMap.vue'
 
 Vue.use(VueRouter)
 
@@ -132,6 +133,11 @@ Vue.use(VueRouter)
     path: '/Calender',
     name: 'Calender',
     component: Calender
+  },
+  {
+    path: '/vMap',
+    name: 'vMap',
+    component: vMap
   },
 ]
 

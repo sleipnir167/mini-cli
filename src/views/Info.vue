@@ -1,6 +1,7 @@
 <template>
   <div id="Info">
     <!-- 全体お知らせ -->
+    <!-- 新車情報 -->
     <v-row justify="start" align-content="start">
       <v-card max-width="400" class="ma-3">
         <v-img
@@ -20,6 +21,7 @@
         </v-card-actions>
       </v-card>
 
+      <!-- 運行情報 -->
       <v-card max-width="400" class="ma-3">
         <v-img
           class="white--text align-end"
@@ -38,8 +40,31 @@
           <v-btn color="blue" text >詳細</v-btn>
         </v-card-actions>
       </v-card>
+
+      <!-- 警告 -->
+      <v-card max-width="400" class="ma-3">
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          contain
+          src="../Picture/caution-01.png"
+        >
+          <v-card-title></v-card-title>
+        </v-img>
+    
+        <v-card-subtitle class="pb-0">一斉点検のお知らせ</v-card-subtitle>
+    
+        <v-card-text class="text--primary">
+          <div>M月D日の定期検査でＥXX系に使用されている台車のディスクブレーキ装置取付部にヒビが見つかりました。</div>
+          <div>型番ZXXXX-の100番台を対象として一斉点検を行います。</div>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="blue" text >詳細</v-btn>
+        </v-card-actions>
+      </v-card>
     </v-row>
-    <!-- 3段目お知らせ -->
+
+    <!-- 2段目お知らせ -->
     <v-row justify="start" align-content="start">
     <!-- 管理者からのお知らせ -->
       <v-card max-width="400" class="ma-3">
@@ -68,9 +93,6 @@
                     <v-card-title class="headline" v-text="item.title" ></v-card-title>
                     <v-card-subtitle v-text="item.artist"></v-card-subtitle>
                   </div>
-                  <v-avatar class="ma-3" size="125" tile >
-                    <v-img :src="item.src"></v-img>
-                  </v-avatar>
                 </div>
               </v-card>
             </v-col>
@@ -253,10 +275,10 @@ export default {
         artist: '10/11〜11/16はイベントのため作業規制となります。',
       },
       {
-        color: '#1F7087',
+        color: '#1F11B7',
         // src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-        title: 'あれのおしらせ',
-        artist: 'あれです。',
+        title: '一斉点検のおしらせ',
+        artist: '通達の通りEXX系の台車について順次点検を行います。日程は別途調整します。',
       },
       {
         color: '#952175',

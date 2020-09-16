@@ -63,21 +63,15 @@ Vue.component('temp-MoveYM', MoveYM)
 </script>
 
 <style scoped>
-#kensa {
-  background-color: #ebebeb;
-  overflow:scroll;
-  width:100%;
-  height:100%;
-  margin:10px;
-}
-
-#kensa > .HeaderButton-Group > .btn-primary{
-  margin-left:10px;
-}
-
-#kensa > .kensaYM > .syagou {
-  min-width: 110px;
-  max-width: 110px;
-}
+	.wj-flexgrid {
+		max-height: 250px; 
+		margin: 10px 0;
+	}
+	
+	/* style frozen cells */
+	#sample-grid .wj-cell.wj-frozen:not(.wj-header):not(.wj-group):not(.wj-state-selected):not(.wj-state-multi-selected),
+	#sample-grid .wj-cell.wj-frozen.wj-alt:not(.wj-header):not(.wj-group):not(.wj-state-selected):not(.wj-state-multi-selected) {
+		background: rgb(255,255,125);
+	}
 </style>
 
