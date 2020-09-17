@@ -2,240 +2,207 @@
   <div id="Info">
     <!-- 全体お知らせ -->
     <!-- 新車情報 -->
-    <v-row justify="start" align-content="start">
-      <v-card max-width="400" class="ma-3">
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          src="../Picture/yamate1.jpg"
-        >
-          <v-card-title>新車情報</v-card-title>
-        </v-img>
-        <v-card-subtitle class="pb-0">新車投入のお知らせ</v-card-subtitle>
-        <v-card-text class="text--primary">
-          <div>9/15日にA箇所にEXX系の新車投入が行われます。</div>
-          <div>画像転載元：https://www.photock.jp/list/r/train/</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="blue" text >詳細</v-btn>
-        </v-card-actions>
-      </v-card>
-
-      <!-- 運行情報 -->
-      <v-card max-width="400" class="ma-3">
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          src="../Picture/SL1.jpg"
-        >
-          <v-card-title>運行情報</v-card-title>
-        </v-img>
-    
-        <v-card-subtitle class="pb-0">SL運転取りやめのお知らせ</v-card-subtitle>
-    
-        <v-card-text class="text--primary">
-          <div>大雨のため大幅な遅れや運転見合わせなどが予想されるため、９／１２（土）運転予定のＳＬつきましては運転を取りやめます。</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="blue" text >詳細</v-btn>
-        </v-card-actions>
-      </v-card>
-
-      <!-- 警告 -->
-      <v-card max-width="400" class="ma-3">
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          contain
-          src="../Picture/caution-01.png"
-        >
-          <v-card-title></v-card-title>
-        </v-img>
-    
-        <v-card-subtitle class="pb-0">一斉点検のお知らせ</v-card-subtitle>
-    
-        <v-card-text class="text--primary">
-          <div>M月D日の定期検査でＥXX系に使用されている台車のディスクブレーキ装置取付部にヒビが見つかりました。</div>
-          <div>型番ZXXXX-の100番台を対象として一斉点検を行います。</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="blue" text >詳細</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-row>
-
-    <!-- 2段目お知らせ -->
-    <v-row justify="start" align-content="start">
-    <!-- 管理者からのお知らせ -->
-      <v-card max-width="400" class="ma-3">
-        <!-- <v-system-bar color="pink darken-2" dark >
-          <v-spacer></v-spacer>
-          <v-icon>mdi-window-minimize</v-icon>
-          <v-icon>mdi-window-maximize</v-icon>
-          <v-icon>mdi-close</v-icon>
-        </v-system-bar> -->
-    
-        <v-app-bar dark color="pink" >
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
-          <v-toolbar-title>管理者からのお知らせ</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-        </v-app-bar>
-    
-        <v-container>
-          <v-row dense>
-            <v-col v-for="(item, i) in items" :key="i" cols="12" >
-              <v-card :color="item.color" dark >
-                <div class="d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline" v-text="item.title" ></v-card-title>
-                    <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-                  </div>
-                </div>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-
-      <!-- システムからのお知らせ -->
-      <v-card class="ma-3">
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-          :sort-by="['Srid']"
-          :sort-desc="[false, true]"
-          multi-sort
-          class="elevation-1"
-        >
-          <template v-slot:top>
-            <v-toolbar flat color="white">
-              <v-toolbar-title>システムからのお知らせ</v-toolbar-title>
-              <!-- ソート -->
-              <v-spacer></v-spacer>
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-              ></v-text-field>
-
-              <v-divider
-                class="mx-4"
-                inset
-                vertical
-              ></v-divider>
-              <v-spacer></v-spacer>
-              <v-dialog v-model="dialog" max-width="90%" max-height="60%">
-
-              </v-dialog>
-            </v-toolbar>
-          </template>
-          <template v-slot:[`item.actions`]="{ item }">
-            <v-icon
-              outlined
-              fab 
-              small
-              class="mr-2"
-              @click="editItem(item)"
+    <v-main >
+      <v-row justify="start" align-content="start">
+        <v-col cols="12" sm="6" md="4" lg="3" v-for="Infoa in Infoas" :key="Infoa.id">
+          <v-card height="380px" class="ma-3">
+            <v-img
+              class="white--text align-end"
+              height="200px"
+              :src="Infoa.src"
             >
-              mdi-magnify
-            </v-icon>
-          </template>
-          <template v-slot:no-data>
-            <v-btn color="primary" @click="initialize">Reset</v-btn>
-          </template>
-        </v-data-table>
-      </v-card>
-    </v-row>
+              <v-card-title>{{Infoa.title}}</v-card-title>
+            </v-img>
+            <v-card-subtitle class="pb-0">{{Infoa.subtitle}}</v-card-subtitle>
+            <v-card-text class="text--primary">
+              <div>{{Infoa.text}}</div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="blue" text >{{Infoa.btntext}}</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
 
-    <!-- その他お知らせ -->
-    <v-row justify="start" align-content="start">
-      <v-card max-width="344" class="ma-3">
-        <v-card-text>
-          <div>その他お知らせ</div>
-          <p class="display-1 text--primary">作業規制期間</p>
-          <p>10/11〜11〜16</p>
-          <div class="text--primary">イベントのため作業規制期間となります。</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn text color="blue">詳細</v-btn>
-        </v-card-actions>
-      </v-card>
+      <!-- 2段目お知らせ -->
+      <v-row justify="start" align-content="start">
+      <!-- 管理者からのお知らせ -->
+        <v-card max-width="400" class="ma-3">
+          <!-- <v-system-bar color="pink darken-2" dark >
+            <v-spacer></v-spacer>
+            <v-icon>mdi-window-minimize</v-icon>
+            <v-icon>mdi-window-maximize</v-icon>
+            <v-icon>mdi-close</v-icon>
+          </v-system-bar> -->
+      
+          <v-app-bar dark color="pink" >
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-toolbar-title>管理者からのお知らせ</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </v-app-bar>
+      
+          <v-container>
+            <v-row dense>
+              <v-col v-for="(item, i) in items" :key="i" cols="12" >
+                <v-card :color="item.color" dark >
+                  <div class="d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline" v-text="item.title" ></v-card-title>
+                      <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
 
-      <v-card max-width="344" class="ma-3">
-        <v-card-text>
-          <div>その他お知らせ</div>
-          <p class="display-1 text--primary">あれのお知らせ</p>
-          <p>あれです</p>
-          <div class="text--primary">あれです</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn text color="blue">詳細</v-btn>
-        </v-card-actions>
-      </v-card>
+        <!-- システムからのお知らせ -->
+        <v-card class="ma-3">
+          <v-data-table
+            :headers="headers"
+            :items="desserts"
+            :search="search"
+            :sort-by="['Srid']"
+            :sort-desc="[false, true]"
+            multi-sort
+            class="elevation-1"
+          >
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-toolbar-title>システムからのお知らせ</v-toolbar-title>
+                <!-- ソート -->
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
 
-      <v-card max-width="344" class="ma-3">
-        <v-card-text>
-          <div>その他お知らせ</div>
-          <p class="display-1 text--primary">それのお知らせ</p>
-          <p>それです</p>
-          <div class="text--primary">それです</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn text color="blue">詳細</v-btn>
-        </v-card-actions>
-      </v-card>
+                <v-divider
+                  class="mx-4"
+                  inset
+                  vertical
+                ></v-divider>
+                <v-spacer></v-spacer>
+                <v-dialog v-model="dialog" max-width="90%" max-height="60%">
 
+                </v-dialog>
+              </v-toolbar>
+            </template>
+            <template v-slot:[`item.actions`]="{ item }">
+              <v-icon
+                outlined
+                fab 
+                small
+                class="mr-2"
+                @click="editItem(item)"
+              >
+                mdi-magnify
+              </v-icon>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">Reset</v-btn>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-row>
 
-      <!-- 中央領域 -->
-      <v-card
-        class="card text-white bg-primary m-2 d-inline-block"
-        style="max-width: 20rem;"
-      >
-        <div class="card-header">あれのおしらせ</div>
-        <div class="card-body">
-          <p class="card-title">あれがあれです。</p>
-          <p class="card-text">あれしてください。</p>
-        </div>
-      </v-card>
-      <v-card
-        class="card text-white bg-dark m-2 d-inline-block"
-        style="max-width: 20rem;"
-      >
-        <div class="card-header">それのおしらせ</div>
-        <div class="card-body">
-          <p class="card-title">それがそれです。</p>
-          <p class="card-text">それしてください。</p>
-        </div>
-      </v-card>
+      <!-- その他お知らせ -->
+      <!-- <v-row justify="start" align-content="start">
+        <v-card max-width="344" class="ma-3">
+          <v-card-text>
+            <div>その他お知らせ</div>
+            <p class="display-1 text--primary">作業規制期間</p>
+            <p>10/11〜11〜16</p>
+            <div class="text--primary">イベントのため作業規制期間となります。</div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text color="blue">詳細</v-btn>
+          </v-card-actions>
+        </v-card>
 
-      <v-card
-        class="card text-black alert-primary m-2 d-inline-block"
-        style="max-width: 20rem;"
-      >
-        <div class="card-header">あれのおしらせ</div>
-        <div class="card-body">
-          <p class="card-title">あれがあれです。</p>
-          <p class="card-text">あれしてください。</p>
-        </div>
-      </v-card>
-      <v-card
-        class="card text-black alert-dark m-2 d-inline-block"
-        style="max-width: 20rem;"
-      >
-        <div class="card-header">それのおしらせ</div>
-        <div class="card-body">
-          <p class="card-title">それがそれです。</p>
-          <p class="card-text">それしてください。</p>
-        </div>
-      </v-card>
-    </v-row>
+        <v-card max-width="344" class="ma-3">
+          <v-card-text>
+            <div>その他お知らせ</div>
+            <p class="display-1 text--primary">あれのお知らせ</p>
+            <p>あれです</p>
+            <div class="text--primary">あれです</div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text color="blue">詳細</v-btn>
+          </v-card-actions>
+        </v-card>
 
+        <v-card max-width="344" class="ma-3">
+          <v-card-text>
+            <div>その他お知らせ</div>
+            <p class="display-1 text--primary">それのお知らせ</p>
+            <p>それです</p>
+            <div class="text--primary">それです</div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text color="blue">詳細</v-btn>
+          </v-card-actions>
+        </v-card>
+
+        <v-card
+          class="card text-white bg-primary m-2 d-inline-block"
+          style="max-width: 20rem;"
+        >
+          <div class="card-header">あれのおしらせ</div>
+          <div class="card-body">
+            <p class="card-title">あれがあれです。</p>
+            <p class="card-text">あれしてください。</p>
+          </div>
+        </v-card>
+        <v-card
+          class="card text-white bg-dark m-2 d-inline-block"
+          style="max-width: 20rem;"
+        >
+          <div class="card-header">それのおしらせ</div>
+          <div class="card-body">
+            <p class="card-title">それがそれです。</p>
+            <p class="card-text">それしてください。</p>
+          </div>
+        </v-card>
+
+        <v-card
+          class="card text-black alert-primary m-2 d-inline-block"
+          style="max-width: 20rem;"
+        >
+          <div class="card-header">あれのおしらせ</div>
+          <div class="card-body">
+            <p class="card-title">あれがあれです。</p>
+            <p class="card-text">あれしてください。</p>
+          </div>
+        </v-card>
+        <v-card
+          class="card text-black alert-dark m-2 d-inline-block"
+          style="max-width: 20rem;"
+        >
+          <div class="card-header">それのおしらせ</div>
+          <div class="card-body">
+            <p class="card-title">それがそれです。</p>
+            <p class="card-text">それしてください。</p>
+          </div>
+        </v-card>
+      </v-row> -->
+
+      <v-conteiner>
+        <v-row>
+          <v-col cols="6">
+            <form-calender></form-calender>
+          </v-col>
+        </v-row>
+      </v-conteiner>
+
+    </v-main>
   </div>
 </template>
 
@@ -245,9 +212,12 @@ import Vuetify from "vuetify";
 import DaichoEdit from "./DaichoEdit"
 
 import Navi1 from '../components/Navi/NewCar/Navi1';
+import Calender from '../components/Parts/Calender';
+
 //  コンポーネントを登録
 Vue.component("form-navi1", Navi1);
 Vue.component("form-daichoedit", DaichoEdit);
+Vue.component("form-calender", Calender);
 
 export default {
   vuetify: new Vuetify(),
@@ -255,8 +225,13 @@ export default {
     DispLoading: true,
     dialog: false,
     search: '',
+    Infoas: [
+      { id: 1 , src: '/Picture/yamate1.jpg', title: '新車情報', subtitle: '新車投入のお知らせ', text: '9/15日にA箇所にEXX系の新車投入が行われます。画像転載元：https://www.photock.jp/list/r/train/', btntext: '詳細'},
+      { id: 2 , src: '/Picture/SL1.jpg', title: '運行情報', subtitle: 'SL運転取りやめのお知らせ', text: '大雨のため大幅な遅れや運転見合わせなどが予想されるため、９／１２（土）運転予定のＳＬつきましては運転を取りやめます。', btntext: '詳細'},
+      { id: 3 , src: '/Picture/caution-01.png', title: '', subtitle: '一斉点検のお知らせ', text: 'M月D日の定期検査でＥXX系に使用されている台車のディスクブレーキ装置取付部にヒビが見つかりました。。型番ZXXXX-の100番台を対象として一斉点検を行います。', btntext: '詳細'},
+    ],
     headers: [
-      { text: 'No', value: 'No' },
+      { text: 'No', value: '新車情報' },
       { text: '車両ID', value: 'Srid' },
       { text: '車種', value: 'Syas' },
       { text: '系式', value: 'Keis' },

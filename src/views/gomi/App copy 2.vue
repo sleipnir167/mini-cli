@@ -217,11 +217,9 @@
 
     <!-- メイン部分 -->
     <v-main class="ma-2">
-      <!-- <v-container fluid> -->
-        <transition mode=”out-in”>
-          <router-view />
-        </transition> 
-      <!-- </v-container> -->
+      <transition mode=”out-in”>
+        <router-view />
+      </transition> 
     </v-main>
 
     <!-- フッター -->

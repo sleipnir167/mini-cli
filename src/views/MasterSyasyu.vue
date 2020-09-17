@@ -36,12 +36,12 @@
 
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="primary"
-                  dark
-                  class="mb-2"
+                  class="mx-2" fab dark color="blue"
                   v-bind="attrs"
                   v-on="on"
-                >New Item</v-btn>
+                >
+                  <v-icon dark>mdi-plus</v-icon>
+                </v-btn>
               </template>
               <v-card>
                 <v-card-title>

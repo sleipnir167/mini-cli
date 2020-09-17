@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import Home from '../views/Home.vue'
 import Home from '../views/Home.vue'
 import DashBoard from '../views/DashBoard.vue'
 import Info from '../views/Info.vue'

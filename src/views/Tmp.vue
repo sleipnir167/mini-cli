@@ -1,32 +1,57 @@
 <template>
-  <div id="about">
-    <h5>ViewDayInfo.vue</h5>
-    <temp-viewdayinfo ></temp-viewdayinfo>
-    <hr>
-    <h5>GridYM.vue</h5>
-    <!-- <temp-GridYM></temp-GridYM> -->
-    <hr>
-    <h5>MoveYM.vue</h5>
-    <!-- <temp-MoveYM></temp-MoveYM> -->
-    <hr>
-    <h5>InputDayInfo.vue</h5>
-    <!-- <temp-InputDayInfo v-show="showContent"></temp-InputDayInfo> -->
-    <hr>
-    <h5>temp-SyasCombobox</h5>
-    <temp-SyasCombobox :FBsyasMaster="FBSyasData" :SelItem="FBitem"></temp-SyasCombobox>
-    
-
-    <div data-v-1d75d652="" data-v-50bb1d33="" id="screenfull" class="right-menu-item hover-effect">
-      <svg data-v-f9f7fefc="" data-v-1d75d652="" aria-hidden="true" class="svg-icon">
-        <use data-v-f9f7fefc="" xlink:href="#icon-fullscreen">
-        </use>
-      </svg>
-    </div>
-
-    <hr>
-  </div>
+  <v-app id="inspire">
+    <v-container fluid>
+      <v-row :align="alignment" :justify="justify" class="grey lighten-5" style="height: 300px;" >
+        <v-col cols="12" sm="6" md="4" lg="3">
+            <v-card class="ma-3 pa-6" outlined tile >
+              Column
+            </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+      </v-row>
+      <v-row :align="alignment" :justify="justify" class="green lighten-5" style="height: 300px;" >
+        <v-col cols="12" sm="6" md="4" lg="3">
+            <v-card class="ma-3 pa-6" outlined tile >
+              Column
+            </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+      </v-row>
+      <v-row :align="alignment" :justify="justify" class="green lighten-5" style="height: 300px;" >
+        <v-col cols="12" sm="6" md="4" lg="3">
+            <v-card class="ma-3 pa-6" outlined tile >
+              Column
+            </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+        <SaleGraph />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
-
 
 <script>
   //  インポート

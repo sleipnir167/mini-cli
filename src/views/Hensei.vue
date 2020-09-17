@@ -1,34 +1,32 @@
 <template>
   <v-app id="inspire">
-    <v-main>
-      <div id="status">
-        <span v-show="status.moving">移動中</span>
-        <span v-show="status.fixed">そのアイテムは操作できません</span>
-      </div>
-      <div v-for="item in items" :key="item.title">
-        <span>{{item.grp}}{{item.hens}}編成（{{item.soseis.length}}）</span>
-        <draggable
-          v-model="itemsA"
-          group="myGroup"
-          :options="options"
+    <div id="status">
+      <span v-show="status.moving">移動中</span>
+      <span v-show="status.fixed">そのアイテムは操作できません</span>
+    </div>
+    <div v-for="item in items" :key="item.title">
+      <span>{{item.grp}}{{item.hens}}編成（{{item.soseis.length}}）</span>
+      <draggable
+        v-model="itemsA"
+        group="myGroup"
+        :options="options"
 
-          @choose="onChoose"
-          @start="onStart"
-          @clone="onClone"
-          @add="onAdd"
-          @remove="onRemove"
-          @update="onUpdate"
-          @sort="onSort"
-          @filter="onFilter"
-          @end="onEnd"
-        >
-          <div class="item" v-for="sosei in item.soseis" :key="sosei.id" :class="isFixed(sosei.fixed)">
-            <div>{{sosei.name.substring(0,8)}}</div>
-            <div>{{sosei.name.substring(8,12)}}</div>
-          </div>
-        </draggable>
-      </div>
-    </v-main>
+        @choose="onChoose"
+        @start="onStart"
+        @clone="onClone"
+        @add="onAdd"
+        @remove="onRemove"
+        @update="onUpdate"
+        @sort="onSort"
+        @filter="onFilter"
+        @end="onEnd"
+      >
+        <div class="item" v-for="sosei in item.soseis" :key="sosei.id" :class="isFixed(sosei.fixed)">
+          <div>{{sosei.name.substring(0,8)}}</div>
+          <div>{{sosei.name.substring(8,12)}}</div>
+        </div>
+      </draggable>
+    </div>
   </v-app>
 </template>
 
