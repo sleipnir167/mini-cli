@@ -35,8 +35,8 @@
             </div>
             <!-- 文字 -->
             <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
-              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
-              <span v-else> {{ 144 - tweetLength}}</span>
+              <span v-if="message <= 144"> {{ message}}</span>
+              <span v-else> {{ 144 - message}}</span>
             </div>
             <!-- 内側線 -->
             <div class="inside_circle icon_spin" style="position:absolute;">
@@ -65,8 +65,8 @@
             </div>
             <!-- 文字 -->
             <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
-              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
-              <span v-else> {{ 144 - tweetLength}}</span>
+              <span v-if="message <= 144"> {{ message}}</span>
+              <span v-else> {{ 144 - message}}</span>
             </div>
             <!-- 内側線 -->
             <div class="inside_circle icon_spin" style="position:absolute;">
@@ -95,8 +95,8 @@
             </div>
             <!-- 文字 -->
             <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
-              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
-              <span v-else> {{ 144 - tweetLength}}</span>
+              <span v-if="message <= 144"> {{ message}}</span>
+              <span v-else> {{ 144 - message}}</span>
             </div>
             <!-- 内側線 -->
             <div class="inside_circle icon_spin" style="position:absolute;">
@@ -125,8 +125,8 @@
             </div>
             <!-- 文字 -->
             <div style="position:absolute;width:200px;line-height: 200px;text-align: center;font-size:20px;font-weight: bold;">
-              <span v-if="tweetLength <= 144"> {{ tweetLength}}</span>
-              <span v-else> {{ 144 - tweetLength}}</span>
+              <span v-if="message <= 144"> {{ message}}</span>
+              <span v-else> {{ 144 - message}}</span>
             </div>
             <!-- 内側線 -->
             <div class="inside_circle icon_spin" style="position:absolute;">
@@ -155,7 +155,7 @@
     },
     data () {
       return{
-        message:"Hello678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
+        message:70,
         bui:{bui:1, Max:400, limit:100, Now:100}
       }
     },
@@ -164,36 +164,27 @@
     },
     computed:{
       styles(){
-        let width = this.message.length/144*100
+        let width = this.message/144*100
         return {
           "border": "5px solid red",
           "width": width + '%'
         }
       },
-      textLength(){
-        return this.message.length;
-      },
       currentAngle(){
-        console.log(Math.floor(360*this.textLength/144));
-        return Math.floor(360*this.textLength/144);
+        return Math.floor(360*this.message/144);
       },  
       rightAngle(){
-        console.log("rightAngle")
         let angle = Math.min(this.currentAngle, 180);
         return {
           "transform": "rotate(" + angle + "deg)",
         }
       },
       leftAngle(){
-        console.log("leftAngle")
         let angle = Math.min(Math.max(this.currentAngle-180, 0),180);
         return {
           "transform": "rotate(" + angle + "deg)",
         }
-      },    
-      tweetLength(){
-        return this.message.length;
-      }    
+      },
     }
   }
 </script>

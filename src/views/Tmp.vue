@@ -1,52 +1,10 @@
+
 <template>
   <v-app id="inspire">
     <v-container fluid>
-      <v-row :align="alignment" :justify="justify" class="grey lighten-5" style="height: 300px;" >
-        <v-col cols="12" sm="6" md="4" lg="3">
-            <v-card class="ma-3 pa-6" outlined tile >
-              Column
-            </v-card>
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-      </v-row>
-      <v-row :align="alignment" :justify="justify" class="green lighten-5" style="height: 300px;" >
-        <v-col cols="12" sm="6" md="4" lg="3">
-            <v-card class="ma-3 pa-6" outlined tile >
-              Column
-            </v-card>
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-      </v-row>
-      <v-row :align="alignment" :justify="justify" class="green lighten-5" style="height: 300px;" >
-        <v-col cols="12" sm="6" md="4" lg="3">
-            <v-card class="ma-3 pa-6" outlined tile >
-              Column
-            </v-card>
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
-        </v-col>
-        <v-col cols="12" sm="6" md="4" lg="3">
-        <SaleGraph />
+      <v-row>
+        <v-col>
+          <!-- <a id="aaa" class="mydrag" href="http://example.com" >このリンクをドラッグ！！</a> -->
         </v-col>
       </v-row>
     </v-container>
@@ -61,10 +19,10 @@
   import MoveYM from '../components/Parts/MoveYM'
   import InputDayInfo from '../components/Parts/InputDayInfo'
   import SyasCombobox from '../../src/components/Master/SyasCombo'
-  import FBAccess from '../../src/mixins/FireBaseAccess'
+  import {t3m1} from '../myscript/aone.js'
+
 
   export default {
-    mixins: [FBAccess],
     FBSyasData:[],
     FBitem:null,
     created(){
@@ -75,15 +33,12 @@
       console.log(this.FBitem)
     },
     data () {
-      return{
+      return {
+        msg: 'you are ok.'
       }
     },
     mounted() {
-      console.log('Two')
-      this.$nextTick(() => {
-        console.log('three')
-        
-      });
+      t3m1()
     }
   }
   //  コンポーネントを登録
@@ -94,4 +49,7 @@
   Vue.component('temp-SyasCombobox', SyasCombobox)
 
 </script>
+
+
+
 

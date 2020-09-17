@@ -64,6 +64,7 @@
             </v-col>
           </v-row>
 
+          <!-- 2段目 -->
           <v-row>
             <!-- 故障情報 -->
             <v-col lg="4" cols="md" class="pb-2">
@@ -115,24 +116,25 @@
               </v-card>
             </v-col>
 
-            <!-- 故障情報の右 -->
+            <!-- 中間 -->
             <v-col lg="4" cols="md" class="pb-2">
               <v-card min-height="252">
                 <v-card-title class="font-weight-light text-truncate primary--text">
-                  施策情報
+                  一斉点検
                 </v-card-title>
                 
                 <v-card-text>
                   <p class="primary--text subtitle-1">
-                    今年度の予定
+                    EXX系の台車確認状況
                   </p>
                   <div class="my-5">
                     <v-progress-linear
-                      indeterminate
-                      height="8"
                       color="primary"
+                      height="10"
+                      value="60"
+                      striped
                     ></v-progress-linear>
-                    <h6>SINCE JAN 2020</h6>
+                    <h3>30/50</h3>
                   </div>
                 </v-card-text>
 
@@ -169,6 +171,7 @@
             </v-col>
           </v-row>
           
+          <!-- 3段目 -->
           <v-row>
             <!-- 作業実施状況 -->
             <v-col lg="4" >
