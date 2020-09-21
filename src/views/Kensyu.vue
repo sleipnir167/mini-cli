@@ -1,20 +1,16 @@
 <template>
   <div id="Kensyu">
     <v-app id="inspire">
-      <!-- <v-row align="center" justify="space-around">
-        <h1>ste</h1>
-        <v-icon class="icon_spin">mdi-minus-circle</v-icon>
-        <v-icon class="icon_spin">mdi-camera-iris</v-icon>
-        <v-icon class="icon_spin">mdi-ubuntu</v-icon>
-        <v-icon class="icon_spin">mdi-backup-restore</v-icon>
-        <v-icon class="icon_spin">mdi-google-circles-communities</v-icon>
-        <h1>ste</h1>
-      </v-row> -->
 
-      <!-- <div id="app">
-        <textarea v-model="message"></textarea>
-        <div :style="styles"></div>
-      </div> -->
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        class="elevation-1"
+      >
+        <template v-slot:[`item.score`]="{ item }">
+          <v-chip :color="getColor(item.score)" dark>{{ item.score }}</v-chip>
+        </template>
+      </v-data-table>
 
       <v-row align="center" justify="space-around">
         <!-- 1つ目 -->
@@ -47,7 +43,7 @@
           </div>
         </v-col>
 
-                <!-- 1つ目 -->
+        <!-- 2つ目 -->
         <v-col>
           <div style="position:relative;width:200px;height:200px">
             <!-- 右側の180度分の領域 -->
@@ -77,7 +73,7 @@
           </div>
         </v-col>
 
-                <!-- 1つ目 -->
+        <!-- 3つ目 -->
         <v-col>
           <div style="position:relative;width:200px;height:200px">
             <!-- 右側の180度分の領域 -->
@@ -107,7 +103,7 @@
           </div>
         </v-col>
 
-                <!-- 1つ目 -->
+        <!-- 4つ目 -->
         <v-col>
           <div style="position:relative;width:200px;height:200px">
             <!-- 右側の180度分の領域 -->
@@ -136,6 +132,7 @@
             </div>
           </div>
         </v-col>
+
       </v-row>
     </v-app>
   </div>
@@ -155,12 +152,43 @@
     },
     data () {
       return{
+        // テーブル用
+        headers: [
+          {
+            text: '部位',
+            align: 'start',
+            sortable: false,
+            value: 'name',
+          },
+          { text: 'スコア', value: 'score' },
+          { text: '測定値', value: 'measuredvalue' },
+          { text: '健全値', value: 'Healthyvalue' },
+          { text: '前回(測定値)', value: 'prevmeasuredvalue' },
+          { text: '使用率', value: 'iron' },
+        ],
+        desserts: [
+          {name: 'パンタグラフ', score: 25, measuredvalue: 6.0, Healthyvalue: 24, prevmeasuredvalue: 4.0, iron: '8%',},
+          {name: '制輪子制輪子', score: 25, measuredvalue: 9.0, Healthyvalue: 37, prevmeasuredvalue: 4.3, iron: '72%',},
+          {name: '連結器', score: 30, measuredvalue: 16.0, Healthyvalue: 23, prevmeasuredvalue: 6.0, iron: '63%',},
+          {name: '車輪1',score: 100, measuredvalue: 3.7, Healthyvalue: 67, prevmeasuredvalue: 4.3, iron: '0%',},
+          {name: '車輪2', score: 50, measuredvalue: 16.0, Healthyvalue: 49, prevmeasuredvalue: 3.9, iron: '16%', },
+          {name: '車輪3', score: 75, measuredvalue: 0.0, Healthyvalue: 94, prevmeasuredvalue: 0.0, iron: '16%',},
+          {name: '車輪4', score: 100, measuredvalue: 0.2, Healthyvalue: 98, prevmeasuredvalue: 0, iron: '0%',},
+          {name: '起動試験', score: 60, measuredvalue: 3.2, Healthyvalue: 87, prevmeasuredvalue: 6.5, iron: '45%',},
+        ],
         message:70,
         bui:{bui:1, Max:400, limit:100, Now:100}
       }
     },
     mounted() {
-
+    },
+    methods: {
+      getColor (score) {
+        if (score < 30) return 'red'
+        else if (score < 50) return 'orange'
+        else if (score < 80) return 'lime darken-2'
+        else return 'green'
+      },
     },
     computed:{
       styles(){

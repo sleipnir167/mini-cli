@@ -50,7 +50,7 @@
           </v-row>
 
           <!-- 曜日スライダー -->
-          <v-row>
+          <!-- <v-row>
             <v-col>
               <v-card scrollable elevation="4" class="overflow-y-auto">
                 <v-slider
@@ -62,7 +62,7 @@
                 ></v-slider>
               </v-card>
             </v-col>
-          </v-row>
+          </v-row> -->
 
           <!-- 2段目 -->
           <v-row>
@@ -120,7 +120,7 @@
             <v-col lg="4" cols="md" class="pb-2">
               <v-card min-height="252">
                 <v-card-title class="font-weight-light text-truncate primary--text">
-                  一斉点検
+                  一斉点検実施状況
                 </v-card-title>
                 
                 <v-card-text>
@@ -134,7 +134,8 @@
                       value="60"
                       striped
                     ></v-progress-linear>
-                    <h3>30/50</h3>
+                    <h3 class="font-weight-light text-truncate primary--text" >30/53(60%)</h3>
+
                   </div>
                 </v-card-text>
 
@@ -178,7 +179,7 @@
               <v-card class="mx-auto">
                 <v-list-item two-line>
                   <v-list-item-content class="cyan--text">
-                    <v-list-item-title class="headline">作業実施状況</v-list-item-title>
+                    <v-list-item-title class="headline">本日の作業実施状況</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
             
@@ -259,6 +260,27 @@
                 </v-card-actions> -->
               </v-card>
             </v-col>
+
+            <v-col lg="4" cols="md" class="pb-2">
+              <v-card min-height="252">
+                <v-card-title class="font-weight-light text-truncate success--text">
+                  XXXX
+                </v-card-title>
+                <v-card-text>
+                  <span class="success--text subtitle-1">
+                    XXX XXX
+                  </span>
+                  <div class="mb-3">
+                    <h3>XXXX XXXX</h3>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn outlined rounded color="success">
+                    View
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
           </v-row>
           
           <!-- お知らせ -->
@@ -266,7 +288,7 @@
             <v-col>
               <v-card height="170" scrollable elevation="4" class="overflow-y-auto">
                 <v-card-text>
-                  <p>表示したいものは特にない・・・・</p>
+                  <p>その他情報等</p>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -341,10 +363,12 @@ export default {
         { name: '仕業検査', temp: '4件', icon: 'mdi-magnify' },
       ],
       Placements: [
-        { name: 'E101', temp: '4件', icon: 'mdi-magnify'},
-        { name: 'E102', temp: '5件', icon: 'mdi-magnify' },
-        { name: 'E111', temp: '12件', icon: 'mdi-magnify' },
-        { name: 'E123', temp: '14件', icon: 'mdi-magnify' },
+        { name: 'E101', temp: '5両', icon: 'mdi-magnify'},
+        { name: 'E102', temp: '5両', icon: 'mdi-magnify' },
+        { name: 'E111', temp: '10両', icon: 'mdi-magnify' },
+        { name: 'E123', temp: '10両', icon: 'mdi-magnify' },
+        { name: 'E232', temp: '11両', icon: 'mdi-magnify' },
+        { name: 'E233', temp: '11両', icon: 'mdi-magnify' },
       ]
   }),
   created(){
@@ -352,7 +376,8 @@ export default {
   },
   methods: {
     toggleTheme() {
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;      
+        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;   
+        this.$vuetify.theme.dark = true; //やっぱり固定
     },
   }
 };

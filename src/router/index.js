@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import DashBoard from '../views/DashBoard.vue'
 import Info from '../views/Info.vue'
 import Daicho from '../views/Daicho.vue'
+import DaichoView from '../views/DaichoView.vue'
 import Kensa from '../views/Kensa.vue'
 import Siyou from '../views/Siyou.vue'
 import Hensei from '../views/Hensei.vue'
@@ -42,6 +43,11 @@ Vue.use(VueRouter)
     path: '/daicho',
     name: 'Daicho',
     component: Daicho
+  },
+  {
+    path: '/daichoview',
+    name: 'DaichoView',
+    component: DaichoView
   },
   {
     path: '/kensa',

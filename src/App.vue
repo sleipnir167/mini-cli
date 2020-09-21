@@ -80,7 +80,7 @@
             <v-icon>mdi-menu-down</v-icon>
           </v-btn>
           </template>
-          <v-list>
+          <v-list dense>
             <v-list-item v-for="nav_list in nav_lists" :key="nav_list.name" >
               <v-list-item-icon>
                 <v-icon>{{ nav_list.icon }}</v-icon>
@@ -249,17 +249,18 @@ export default {
         { name: 'ダッシュボード', icon: 'mdi-television-guide' , active: false , link:"/DashBoard"},
         { name: 'お知らせ', icon: 'mdi-information-outline' , active: false , link:"/Info"},
         { name: '車両台帳', icon: 'mdi-train' , active: false , link:"/Daicho"},
+        { name: '車両台帳詳細', icon: 'mdi-train' , active: false , link:"/DaichoView"},
         { name: '検査計画', icon: 'mdi-timetable' , active: false , link:"/Kensa"},
         { name: '使用実績', icon: 'mdi-table-edit' , active: false , link:"/Siyou"},
         { name: '編成管理', icon: 'mdi-view-list' , active: false , link:"/Hensei"},
         { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Kensyu"},
         { name: '装備管理', icon: 'mdi-sync' , active: false , link:"/Tmp"},
-        { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: 'quick2', icon: 'mdi-pencil' , link:"/Info"}]},
+        { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: '系式マスタ', icon: 'mdi-pencil' , link:"/MasterSyasyu"}]},
         { name: '操作ナビ', icon: 'mdi-library' , active: false , link:"/Navi", lists:[{name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}]},
         { name: 'グラフ', icon: 'mdi-chart-bar' , active: false , link:"/Graph"}, 
         { name: 'ユーザー登録', icon: 'mdi-account-plus' , active: false , link:"/Signup"},
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
-        { name: 'Json表示', icon: 'mdi-message' , active: false , link:"/Json1"},
+        { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/Json1"},
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
         { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
         { name: 'Map', icon: 'mdi-map-marker' , active: false , link:"/vMap"},
@@ -348,7 +349,7 @@ export default {
 <style lang="scss">
 html,
 html.overflow-y-hidden {
-  overflow-y: hidden !important;
+  // overflow-y: hidden !important;
 }
 
 .v-application--wrap {

@@ -1,7 +1,7 @@
 <template>
   <div id="Json1">
 
-    <h1>TODO List</h1>
+    <h1>オープンデータ</h1>
     <div>
         <ul id="todo-container"></ul>
     </div>

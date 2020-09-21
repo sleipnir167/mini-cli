@@ -1,117 +1,126 @@
 <template>
   <div id="Info">
-    <!-- 全体お知らせ -->
-    <!-- 新車情報 -->
-    <v-main >
-      <v-row justify="start" align-content="start">
-        <v-col cols="12" sm="6" md="4" lg="3" v-for="Infoa in Infoas" :key="Infoa.id">
-          <v-card height="380px" class="ma-3">
-            <v-img
-              class="white--text align-end"
-              height="200px"
-              :src="Infoa.src"
-            >
-              <v-card-title>{{Infoa.title}}</v-card-title>
-            </v-img>
-            <v-card-subtitle class="pb-0">{{Infoa.subtitle}}</v-card-subtitle>
-            <v-card-text class="text--primary">
-              <div>{{Infoa.text}}</div>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="blue" text >{{Infoa.btntext}}</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-app id="inspire">
+      <!-- 全体お知らせ -->
+      <!-- 新車情報 -->
+      <v-container fluid>
+        <v-row>
+          <v-col class="row-eq-height pa-1" cols="12" sm="6" md="6" lg="4" v-for="Infoa in Infoas" :key="Infoa.id">
+            <v-card class="rounded-card">
+              <v-img
+                class="white--text align-end"
+                height="200px"
+                :src="Infoa.src"
+              >
+                <v-card-title>{{Infoa.title}}</v-card-title>
+              </v-img>
+              <v-card-subtitle class="pb-0">{{Infoa.subtitle}}</v-card-subtitle>
+              <v-card-text class="text--primary">
+                <div>{{Infoa.text}}</div>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn color="blue" text >{{Infoa.btntext}}</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
 
       <!-- 2段目お知らせ -->
-      <v-row justify="start" align-content="start">
-      <!-- 管理者からのお知らせ -->
-        <v-card max-width="400" class="ma-3">
-          <!-- <v-system-bar color="pink darken-2" dark >
-            <v-spacer></v-spacer>
-            <v-icon>mdi-window-minimize</v-icon>
-            <v-icon>mdi-window-maximize</v-icon>
-            <v-icon>mdi-close</v-icon>
-          </v-system-bar> -->
-      
-          <v-app-bar dark color="pink" >
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            <v-toolbar-title>管理者からのお知らせ</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-          </v-app-bar>
-      
-          <v-container>
-            <v-row dense>
-              <v-col v-for="(item, i) in items" :key="i" cols="12" >
-                <v-card :color="item.color" dark >
-                  <div class="d-flex flex-no-wrap justify-space-between">
-                    <div>
-                      <v-card-title class="headline" v-text="item.title" ></v-card-title>
-                      <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-                    </div>
-                  </div>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-
-        <!-- システムからのお知らせ -->
-        <v-card class="ma-3">
-          <v-data-table
-            :headers="headers"
-            :items="desserts"
-            :search="search"
-            :sort-by="['Srid']"
-            :sort-desc="[false, true]"
-            multi-sort
-            class="elevation-1"
-          >
-            <template v-slot:top>
-              <v-toolbar flat color="white">
-                <v-toolbar-title>システムからのお知らせ</v-toolbar-title>
-                <!-- ソート -->
+      <v-container fluid>
+        <v-row>
+          <!-- 管理者からのお知らせ -->
+          <v-col class="row-eq-height pa-1" cols="12" sm="12" md="12" lg="4">
+            <v-card>
+              <!-- <v-system-bar color="pink darken-2" dark >
                 <v-spacer></v-spacer>
-                <v-text-field
-                  v-model="search"
-                  append-icon="mdi-magnify"
-                  label="Search"
-                  single-line
-                  hide-details
-                ></v-text-field>
-
-                <v-divider
-                  class="mx-4"
-                  inset
-                  vertical
-                ></v-divider>
+                <v-icon>mdi-window-minimize</v-icon>
+                <v-icon>mdi-window-maximize</v-icon>
+                <v-icon>mdi-close</v-icon>
+              </v-system-bar> -->
+          
+              <v-app-bar dark color="pink" >
+                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                <v-toolbar-title>管理者からのお知らせ</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-dialog v-model="dialog" max-width="90%" max-height="60%">
+                <v-btn icon>
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+              </v-app-bar>
+          
+              <v-container>
+                <v-row dense>
+                  <v-col v-for="(item, i) in items" :key="i" cols="12" >
+                    <v-card :color="item.color" dark >
+                      <div class="d-flex flex-no-wrap justify-space-between">
+                        <div>
+                          <v-card-title class="headline" v-text="item.title" ></v-card-title>
+                          <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+                        </div>
+                      </div>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-col>
 
-                </v-dialog>
-              </v-toolbar>
-            </template>
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-icon
-                outlined
-                fab 
-                small
-                class="mr-2"
-                @click="editItem(item)"
+          <!-- システムからのお知らせ -->
+          <v-col class="row-eq-height pa-1" cols="12" sm="12" md="12" lg="8">
+            <v-card>
+              <v-data-table
+                :headers="headers"
+                :items="desserts"
+                :search="search"
+                :sort-by="['Srid']"
+                :sort-desc="[false, true]"
+                multi-sort
+                class="elevation-1"
               >
-                mdi-magnify
-              </v-icon>
-            </template>
-            <template v-slot:no-data>
-              <v-btn color="primary" @click="initialize">Reset</v-btn>
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-row>
+                <template v-slot:top>
+                  <v-toolbar flat color="white">
+                    <v-toolbar-title>システムからのお知らせ</v-toolbar-title>
+                    <!-- ソート -->
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                      v-model="search"
+                      append-icon="mdi-magnify"
+                      label="Search"
+                      single-line
+                      hide-details
+                    ></v-text-field>
+
+                    <v-divider
+                      class="mx-4"
+                      inset
+                      vertical
+                    ></v-divider>
+                    <v-spacer></v-spacer>
+                    <v-dialog v-model="dialog" max-width="90%" max-height="60%">
+
+                    </v-dialog>
+                  </v-toolbar>
+                </template>
+                <template v-slot:[`item.actions`]="{ item }">
+                  <v-icon
+                    outlined
+                    fab 
+                    small
+                    class="mr-2"
+                    @click="editItem(item)"
+                  >
+                    mdi-magnify
+                  </v-icon>
+                </template>
+                <template v-slot:no-data>
+                  <v-btn color="primary" @click="initialize">Reset</v-btn>
+                </template>
+              </v-data-table>
+            </v-card>
+          </v-col>
+        </v-row>
+
+      </v-container>
 
       <!-- その他お知らせ -->
       <!-- <v-row justify="start" align-content="start">
@@ -196,13 +205,13 @@
 
       <v-conteiner>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="12">
             <form-calender></form-calender>
           </v-col>
         </v-row>
       </v-conteiner>
 
-    </v-main>
+    </v-app>
   </div>
 </template>
 
@@ -228,7 +237,7 @@ export default {
     Infoas: [
       { id: 1 , src: '/Picture/yamate1.jpg', title: '新車情報', subtitle: '新車投入のお知らせ', text: '9/15日にA箇所にEXX系の新車投入が行われます。画像転載元：https://www.photock.jp/list/r/train/', btntext: '詳細'},
       { id: 2 , src: '/Picture/SL1.jpg', title: '運行情報', subtitle: 'SL運転取りやめのお知らせ', text: '大雨のため大幅な遅れや運転見合わせなどが予想されるため、９／１２（土）運転予定のＳＬつきましては運転を取りやめます。', btntext: '詳細'},
-      { id: 3 , src: '/Picture/caution-01.png', title: '', subtitle: '一斉点検のお知らせ', text: 'M月D日の定期検査でＥXX系に使用されている台車のディスクブレーキ装置取付部にヒビが見つかりました。。型番ZXXXX-の100番台を対象として一斉点検を行います。', btntext: '詳細'},
+      { id: 3 , src: '/Picture/caution-01.png', title: '', subtitle: '一斉点検のお知らせ', text: 'M月D日の定期検査で台車のディスクブレーキ装置取付部にヒビが見つかりました。型番ZXXXXを対象として一斉点検を行います。', btntext: '詳細'},
     ],
     headers: [
       { text: 'No', value: '新車情報' },
@@ -258,8 +267,8 @@ export default {
       {
         color: '#952175',
         // src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-        title: 'それのおしらせ',
-        artist: 'それです。',
+        title: 'あれのおしらせ',
+        artist: 'あれはあれです。',
       },
     ],
   }),
@@ -358,6 +367,7 @@ export default {
 #Info {
   background-color: #ebebeb;
   overflow:scroll;
+  overflow-y:scroll;
   width:100%;
   height:100%;
   margin: 5px;
@@ -367,4 +377,13 @@ export default {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
+/* 同じ高さにする */
+.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rounded-card {
+  border-radius:15px;
+}
 </style>

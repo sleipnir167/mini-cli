@@ -1,55 +1,108 @@
-
 <template>
-  <v-app id="inspire">
-    <v-container fluid>
+  <v-form ref="form" v-model="valid" lazy-validation>
+    <h2>車体情報</h2>
+    <v-container ma-4 pa-0>
       <v-row>
-        <v-col>
-          <!-- <a id="aaa" class="mydrag" href="http://example.com" >このリンクをドラッグ！！</a> -->
+        <!-- 車種 -->
+        <v-col cols="6">
+          <v-select v-model="syas" :items="items" :rules="syasRules" label="車種" hint='EC,DLなど車種を選択します。' persistent-hint=true required outlined>
+            <!-- ？のtooltipを表示 -->
+            <template slot="append-outer">
+              <v-tooltip right>
+              <template v-slot:activator="{on}">
+                <v-icon v-on="on">mdi-help-circle</v-icon>
+              </template>
+              <div>対象の車種が存在しない場合は</div>
+              <div>マスタ管理の車種マスタから車種の追加を行ってください。</div>
+              </v-tooltip>
+            </template>
+          </v-select>
+        </v-col>
+
+      </v-row>
+      <v-row>
+        <!-- 系式 -->
+        <v-col cols="2">
+          <v-text-field v-model="keis" :counter="5" :rules="nameRules" label="系式" suffix="系" required outlined ></v-text-field>
+        </v-col>
+        <!-- 車体番号 -->
+        <v-col cols="2">
+          <v-text-field v-model="syaNo" :counter="5" :rules="nameRules" label="車体番号" required outlined ></v-text-field>
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+
+    <!-- <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required></v-checkbox> -->
+
+    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate" > 次へ </v-btn>
+  </v-form>
 </template>
 
 <script>
-  //  インポート
-  import Vue from 'vue'
-  import ViewDayInfo from '../components/Parts/ViewDayInfo'
-  import GridYM from '../components/Parts/GridYM'
-  import MoveYM from '../components/Parts/MoveYM'
-  import InputDayInfo from '../components/Parts/InputDayInfo'
-  import SyasCombobox from '../../src/components/Master/SyasCombo'
-  import {t3m1} from '../myscript/aone.js'
+// import Vue from "vue";
+// import QuestionTipText from '../../Parts/QuestionTipText';
 
+// Vue.component("q-tip", QuestionTipText)
 
-  export default {
-    FBSyasData:[],
-    FBitem:null,
-    created(){
-      console.log("temp:created")
-      this.FBSyasData = this.selSyasMasteritem()
-      console.log(this.FBSyasData)
-      this.FBitem = this.FBSyasData.length
-      console.log(this.FBitem)
+export default {
+  data() {
+		return {
+				syas: null,
+				keis: null,
+        syaNo: null,
+        NewYmd: null,
+				firstName: null,
+        lastName: null,
+				SyasID: null,
+        FBsyasMaster: [],
+        
+        valid: true,
+        name: '',
+        syasRules:[v => !!v || '入力してください'],
+        nameRules: [
+          v => !!v || '入力してください',
+          v => (v && v.length <= 5) || '入力できるのは5文字までです。',
+        ],
+        select: null,
+        items: [
+          'SL',
+          'EL',
+          'EC',
+          'DL',
+          'DC',
+          'PC',
+          'TEC',
+        ],
+        checkbox: false,
+    };
+  },
+  created(){
+    // this.selSyasMaster()
+    
+  },
+  methods: {
+		submit: function(){
+			this.$emit('update',{
+				syas: this.syas,
+				keis: this.keis,
+        syaNo: this.syaNo,
+        NewYmd: this.NewYmd,
+				firstName: this.firstName,
+				lastName: this.lastName,
+				SyasID: this.SyasID
+			});
     },
-    data () {
-      return {
-        msg: 'you are ok.'
+    validate () {
+      if(this.$refs.form.validate()){
+        this.submit()
+          this.$emit('nextStep');
       }
     },
-    mounted() {
-      t3m1()
-    }
-  }
-  //  コンポーネントを登録
-  Vue.component('temp-viewdayinfo', ViewDayInfo)
-  Vue.component('temp-GridYM', GridYM)
-  Vue.component('temp-MoveYM', MoveYM)
-  Vue.component('temp-InputDayInfo', InputDayInfo)
-  Vue.component('temp-SyasCombobox', SyasCombobox)
-
+	}
+};
 </script>
 
+<style scoped>
 
-
+</style>
 
