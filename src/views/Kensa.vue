@@ -2,10 +2,10 @@
   <!-- 中央領域 -->
   <div id="kensa">
     <div class="HeaderButton-Group d-flex flex-row">
-      <button type="button" class="btn btn-primary">あれ</button>
-      <button type="button" class="btn btn-primary">それ</button>
-      <button type="button" class="btn btn-primary">どれ</button>
-      <button type="button" class="btn btn-primary">これ</button>
+      <!-- <button type="button" class="btn btn-primary">処理1</button>
+      <button type="button" class="btn btn-primary">処理2</button>
+      <button type="button" class="btn btn-primary">処理3</button>
+      <button type="button" class="btn btn-primary">処理4</button> -->
     </div>
     <hr>
     <div class="kensaYM d-flex flex-row">

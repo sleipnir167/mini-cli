@@ -3,8 +3,12 @@
     <div class="MoveYM d-flex flex-column">
       <div class="ViewYM">{{getThisMonth}}</div>
       <div class="MoveYM d-flex flex-row">
-        <input type="button" v-on:click="movePrevMonth" value="<<">
-        <input type="button" v-on:click="moveNextMonth" value=">>">
+        <v-btn class="ma-1" color="primary" v-on:click="movePrevMonth">
+          <v-icon>mdi-chevron-double-left</v-icon>
+        </v-btn>
+        <v-btn class="ma-1" color="primary" v-on:click="moveNextMonth">
+          <v-icon>mdi-chevron-double-right</v-icon>
+        </v-btn>
       </div>
       <div class="center-group d-flex flex-row">
         <div v-for="(todo, index) in new_days" v-bind:key="index" >
