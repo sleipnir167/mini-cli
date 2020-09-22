@@ -11,7 +11,7 @@
         <v-row>
           <v-col cols="12" sm="6" md="3" lg="3" class="py-0">
             <label>車種</label>
-            <v-text-field ref="syas" v-model="syas" placeholder="aaa" outlined dense></v-text-field>
+            <v-text-field ref="syas" v-model="syas" placeholder=" " outlined dense></v-text-field>
           </v-col>
           <v-col cols="12" sm="6" md="3" lg="3" class="py-0">
             <label>系式</label>

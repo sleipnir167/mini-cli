@@ -1,23 +1,38 @@
 <template>
-  <!-- 検査、キロ入力ダイアログ -->
+  <!-- 実績入力画面 -->
   <div id="InputDayInfo">
-    <div class="modalWindow d-flex flex-column">
-      <!-- 検査 -->
-      <div class="d_kensa d-flex flex-row">
-        <div class="d_label">検査</div>
-        <input class="i_textbox" type="text" name="kensa" v-bind:value="kensa">
-      </div>
-      <!-- キロ -->
-      <div class="d_kiro d-flex flex-row">
-        <div class="d_label">キロ</div>
-        <input class="i_textbox" type="text" name="kiro" v-bind:value="kiro">
-      </div>
-      <!-- ボタン -->
-      <div class="d_button d-flex flex-row">
-        <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="更新">
-        <input type="button" class="i_button btn btn-primary" @click="$emit('close')" value="取消">
-      </div>
-    </div>
+    <v-card>
+      <v-card-title class="headline">実績入力</v-card-title>
+
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
+            <label>日付</label>
+            <v-text-field ref="day" v-model="day" placeholder="aaa" dense disabled></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
+            <label>検査</label>
+            <v-text-field ref="kensa" v-model="kensa" placeholder="aaa" outlined dense></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
+            <label>キロ</label>
+            <v-text-field ref="kiro" v-model="kiro" placeholder=" " outlined dense></v-text-field>
+          </v-col>
+        </v-row>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" @click="$emit('close')">更新</v-btn>
+        <v-btn color="primary" outlined @click="$emit('close')">取消</v-btn>
+      </v-card-actions>
+    </v-card>
+
   </div>
 
 </template>

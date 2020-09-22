@@ -1,7 +1,7 @@
 <template>
   <!-- <div id="ViewDayInfo" v-on:click="viewinfo" v-bind:style="viewstyle"> -->
   <div id="ViewDayInfo">
-    <div class="nakami" v-on:click="openModal" v-bind:style="viewstyle">
+    <div class="nakami" @click.stop="dialog = true">
       <div class="firstBox">
         <p>{{ kensaV }}</p>
       </div>
@@ -9,15 +9,39 @@
         <p>{{ kiro }}</p>
       </div>
     </div>
-    <!-- <button v-on:click="openModal">Click</button> -->
-    <!-- <div id="overlay" v-show="showModal">
-        <div id="content">
-          <p>これがモーダルウィンドウです。</p>
-          <button v-on:click="closeModal">Close</button>
-        </div>
-    </div> -->
     
-    <temp-inputdayinfo  v-show="showModal" @close="closeModal"></temp-inputdayinfo>
+    <!-- 実績入力画面 -->
+    <v-dialog v-model="dialog" max-width="290" >
+      <v-card>
+        <v-card-title class="headline">実績入力</v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
+              <label>日付</label>
+              <v-text-field ref="day" v-model="day" placeholder="aaa" dense disabled></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
+              <label>検査</label>
+              <v-text-field ref="kensa" v-model="kensa" placeholder="aaa" outlined dense></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
+              <label>キロ</label>
+              <v-text-field ref="kiro" v-model="kiro" placeholder=" " outlined dense></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-1" text @click="dialog = false">更新</v-btn>
+          <v-btn color="primary darken-1" text @click="dialog = false">取消</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </div>
 </template>
 
@@ -29,12 +53,17 @@ import InputDayInfo from './InputDayInfo'
 Vue.component('temp-inputdayinfo', InputDayInfo)
 
 export default {
+  data() {
+		return {
+      dialog: false,
+    };
+  },
   props: {
     kensa: {String,default:"車"},
     kiro: {String,default:"999.9km"},
     day: {String,default:"2020/20/20"},
     viewstyle: {String,default:""},
-    showModal: {Boolean,default:false},
+    // showModal: {Boolean,default:false},
   },
   methods: {
     viewinfo: function (event) { // eslint-disable-line
@@ -49,12 +78,6 @@ export default {
           this.viewstyle
       )
     },
-    openModal: function(){
-      this.showModal = true
-    },
-    closeModal: function(){
-      this.showModal = false
-    }
   },
   computed: {
     kensaV: function () {
