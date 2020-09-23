@@ -11,10 +11,11 @@
 
       <!-- Content -->
       <v-row>
-        <v-col lg="4">
+        <v-col cols="12" sm="12" md="4" lg="4" >
           <uplUserDetails />
+          <uplUserCharge />
         </v-col>
-        <v-col lg="8">
+        <v-col cols="12" sm="12" md="8" lg="8">
           <uplUserAccountDetails />
         </v-col>
       </v-row>
@@ -30,6 +31,7 @@
 
 <script>
 import UserDetails from '@/components/user-profile-lite/UserDetails.vue';
+import UserCharge from '@/components/user-profile-lite/UserCharge.vue';
 import UserAccountDetails from '@/components/user-profile-lite/UserAccountDetails.vue';
 import UserHistory from '@/components/user-profile-lite/UserHistory.vue';
 
@@ -37,6 +39,7 @@ export default {
   name: 'user-profile-lite',
   components: {
     uplUserDetails: UserDetails,
+    uplUserCharge: UserCharge,
     uplUserAccountDetails: UserAccountDetails,
     uplUserHistorys: UserHistory,
   },

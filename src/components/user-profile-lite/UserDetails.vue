@@ -2,7 +2,6 @@
   <v-card
     :loading="loading"
     class="mx-auto my-12"
-    max-width="374"
   >
     <v-img height="250" :src="userDetails.src"></v-img>
     <v-card-title>{{userDetails.name}}</v-card-title>

@@ -10,19 +10,20 @@
       </v-row>
       <v-divider></v-divider>
 
-
+      <!-- カレンダー -->
       <v-row>
         <v-col cols="2" style="height:41.5px; border:solid 1px black"></v-col>
         <v-col id="ViewDayInfo2" cols="1" v-for="viewday in viewdays" :key="viewday">
-            <div class="firstBox">
-              <p>{{ viewday.day }}</p>
-            </div>
-            <div class="secondBox">
+            <v-card class="firstBox">
+              <p>{{ viewday.day.substring(5,10) }}</p>
+            </v-card>
+            <v-card class="secondBox">
               <p>{{ viewday.youbi }}</p>
-            </div>
+            </v-card>
         </v-col>
       </v-row>
 
+      <!-- カレンダー内容 -->
       <v-row v-for="syagou in syagous" :key="syagou" >
         <v-col cols="2" style="height:41.5px; border:solid 1px black">
           {{syagou}}
