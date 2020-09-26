@@ -269,13 +269,13 @@ export default {
         // { name: 'グラフ', icon: 'mdi-chart-bar' , active: false , link:"/Graph"}, 
         // { name: 'ユーザー登録', icon: 'mdi-account-plus' , active: false , link:"/Signup"},
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
-        { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/JsonTrainstatusinformation", 
+        { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/JsonOdpt_Trainstatusinformation", 
           lists:[
-            {name: '列車運行情報', icon: 'mdi-pencil-box-outline' , link:"/JsonTrainstatusinformation"},
+            {name: '列車運行情報', icon: 'mdi-pencil-box-outline' , link:"/JsonOdpt_Trainstatusinformation"},
             {name: '駅情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Station"},
             {name: '路線情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Railway"},
             {name: '列車位置情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Train"},
-            {name: 'aaaa', icon: 'mdi-pencil' , link:"/JsonOdpt_TrainTimetable"},
+            {name: '列車時刻表', icon: 'mdi-pencil' , link:"/JsonOdpt_TrainTimetable"},
           ]
         },
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},

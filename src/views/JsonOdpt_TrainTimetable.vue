@@ -1,8 +1,17 @@
 <template>
-  <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter">
+
+    <!-- <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter"> -->
+    <v-data-table :headers="headers" :items="dataj" :search="search">
+
+    <!-- ヘッダー -->
     <template v-slot:top>
-      <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line/>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>列車時刻表</v-toolbar-title>
+        <!-- 検索 -->
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line outlined rounded hide-details></v-text-field>
+      </v-toolbar>
     </template>
+
     <!-- <template v-slot:[`item.odpt:stationTitle`]="{ item }">
       <div v-for="(i) in item" :key="i">{{ i.en }}{{ i.ja }}</div>
     </template> -->
@@ -13,7 +22,7 @@
     </template>
     <template v-slot:[`item.odpt:trainTimetableObject`]="{ item }">
       <div v-for="(i) in item[`odpt:trainTimetableObject`]" :key="i">
-        {{i[`odpt:departureTime`]}} : {{i[`odpt:departureStation`]}}
+        {{i[`odpt:departureTime`]}} : {{i[`odpt:departureStation`]}} : {{i[`odpt:arrivalStation`]}}
       </div>
     </template>
   </v-data-table>
@@ -58,10 +67,10 @@ export default {
       dataj: testj,
       search: '',
       headers: [
-        {text: 'ID',value: '@id',width: '50'},
-        {text: 'type',value: '@type',width: '50'},
+        // {text: 'ID',value: '@id',width: '50'},
+        // {text: 'type',value: '@type',width: '50'},
         {text: 'データ生成時刻',value: 'dc:date',width: '50'},
-        {text: 'コンテンツ',value: '@context',width: '50'},
+        // {text: 'コンテンツ',value: '@context',width: '50'},
         {text: 'ダイヤ改正日',value: 'dct:issued',width: '50'},
         {text: '列番',value: 'odpt:train',width: '50'},
         {text: '固有識別子',value: 'owl:sameAs',width: '50'},

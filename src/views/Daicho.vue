@@ -23,15 +23,7 @@
             <v-spacer></v-spacer>
             
             <!-- 検索 -->
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="Search"
-              single-line
-              outlined
-              rounded
-              hide-details
-            ></v-text-field>
+            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line outlined rounded hide-details></v-text-field>
 
             <!-- 追加ボタン(+) -->
             <v-spacer></v-spacer>

@@ -1,8 +1,17 @@
 <template>
-  <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter">
+
+    <!-- <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter"> -->
+    <v-data-table :headers="headers" :items="dataj" :search="search">
+
+    <!-- ヘッダー -->
     <template v-slot:top>
-      <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line/>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>駅情報</v-toolbar-title>
+        <!-- 検索 -->
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line outlined rounded hide-details></v-text-field>
+      </v-toolbar>
     </template>
+
     <template v-slot:[`item.odpt:stationTitle`]="{ item }">
       <div v-for="(i) in item" :key="i">{{ i.en }}{{ i.ja }}</div>
       <!-- <div v-for="(i,index) in item" :key="i">{{ i.en }}{{ i.ja }}###{{i[index]}}{{item}}</div> -->
@@ -24,18 +33,18 @@ export default {
       dataj: testj,
       search: '',
       headers: [
-        {text: 'ID',value: '@id',},
-        {text: 'type',value: '@type',},
+        // {text: 'ID',value: '@id',},
+        // {text: 'type',value: '@type',},
         {text: 'データ生成時刻',value: 'dc:date',},
         {text: '緯度',value: 'geo:lat',},
-        {text: 'コンテンツ',value: '@context',},
+        // {text: 'コンテンツ',value: '@context',},
         {text: '駅名',value: 'dc:title',},
         {text: '経度',value: 'geo:long',},
         {text: '固有識別子',value: 'owl:sameAs',},
         {text: '路線',value: 'odpt:railway',},
         {text: '運行会社',value: 'odpt:operator',},
-        {text: '駅名en.ja',value: 'odpt:stationTitle',},
-        {text: '駅乗降人員数を表すオブジェクトへのリンク',value: 'odpt:passengerSurvey',},
+        // {text: '駅名en.ja',value: 'odpt:stationTitle',},
+        // {text: '駅乗降人員数を表すオブジェクトへのリンク',value: 'odpt:passengerSurvey',},
       ],
           // [{
           // "@id":"urn:ucode:_00001C00000000000001000003102817",

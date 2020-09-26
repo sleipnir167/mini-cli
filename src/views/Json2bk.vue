@@ -1,5 +1,5 @@
 <template>
-  <div id="JsonTrainstatusinformation">
+  <div id="JsonOdpt_Trainstatusinformation">
 
     <h1>オープンデータ</h1>
     <div>
@@ -121,7 +121,7 @@ export default {
 </script>
  
 <style>
-#JsonTrainstatusinformation {
+#JsonOdpt_Trainstatusinformation {
   color: #2c3e50;
   margin: 0 auto;
   width: 800px;

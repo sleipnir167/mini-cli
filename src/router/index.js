@@ -17,7 +17,7 @@ import Tmp from '../views/Tmp.vue'
 import About from '../views/About.vue'
 import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
-import JsonTrainstatusinformation from '../views/JsonTrainstatusinformation.vue'
+import JsonOdpt_Trainstatusinformation from '../views/JsonOdpt_Trainstatusinformation.vue'
 import JsonOdpt_Station from '../views/JsonOdpt_Station.vue'
 import JsonOdpt_Railway from '../views/JsonOdpt_Railway.vue'
 import JsonOdpt_Train from '../views/JsonOdpt_Train.vue'
@@ -136,9 +136,9 @@ Vue.use(VueRouter)
     component: Signin
   },
   {
-    path: '/JsonTrainstatusinformation',
-    name: 'JsonTrainstatusinformation',
-    component: JsonTrainstatusinformation
+    path: '/JsonOdpt_Trainstatusinformation',
+    name: 'JsonOdpt_Trainstatusinformation',
+    component: JsonOdpt_Trainstatusinformation
   },
   {
     path: '/JsonOdpt_Station',

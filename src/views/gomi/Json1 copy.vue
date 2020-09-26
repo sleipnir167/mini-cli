@@ -1,5 +1,5 @@
 <template>
-  <div id="JsonTrainstatusinformation">
+  <div id="JsonOdpt_Trainstatusinformation">
     <div>json作成直指定</div>
     <JSONView :data="data" />
     <div>東京公共</div>
@@ -76,7 +76,7 @@ oReq.send();
 </script>
  
 <style>
-#JsonTrainstatusinformation {
+#JsonOdpt_Trainstatusinformation {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

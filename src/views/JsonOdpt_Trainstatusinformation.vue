@@ -1,8 +1,17 @@
 <template>
-  <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter">
+
+    <!-- <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter"> -->
+    <v-data-table :headers="headers" :items="dataj" :search="search">
+
+    <!-- ヘッダー -->
     <template v-slot:top>
-      <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line/>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>列車運行情報</v-toolbar-title>
+        <!-- 検索 -->
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line outlined rounded hide-details></v-text-field>
+      </v-toolbar>
     </template>
+
     <template v-slot:[`item.odpt:trainInformationText`]="{ item }">
       <div v-for="(i) in item" :key="i">{{ i.en }}{{ i.ja }}</div>
       <!-- <div v-for="(i,index) in item" :key="i">{{ i.en }}{{ i.ja }}###{{i[index]}}{{item}}</div> -->
@@ -38,10 +47,10 @@ export default {
       dataj: testj,
       search: '',
       headers: [
-        {text: 'ID',value: '@id',},
-        {text: 'type',value: '@type',},
+        // {text: 'ID',value: '@id',},
+        // {text: 'type',value: '@type',},
         {text: 'データ生成時刻',value: 'dc:date',},
-        {text: 'コンテンツ',value: '@context',},
+        // {text: 'コンテンツ',value: '@context',},
         {text: 'データ保証期限',value: 'dct:valid',},
         {text: '固有識別子',value: 'owl:sameAs',},
         {text: '路線ID',value: 'odpt:railway',},

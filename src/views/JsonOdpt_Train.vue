@@ -1,8 +1,17 @@
 <template>
-  <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter">
+
+    <!-- <v-data-table :headers="headers" :items="dataj" :search="search" :custom-filter="customFilter"> -->
+    <v-data-table :headers="headers" :items="dataj" :search="search">
+
+    <!-- ヘッダー -->
     <template v-slot:top>
-      <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line/>
+      <v-toolbar flat color="white">
+        <v-toolbar-title>列車位置情報</v-toolbar-title>
+        <!-- 検索 -->
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line outlined rounded hide-details></v-text-field>
+      </v-toolbar>
     </template>
+
     <template v-slot:[`item.odpt:stationTitle`]="{ item }">
       <div v-for="(i) in item" :key="i">{{ i.en }}{{ i.ja }}</div>
       <!-- <div v-for="(i,index) in item" :key="i">{{ i.en }}{{ i.ja }}###{{i[index]}}{{item}}</div> -->
@@ -43,12 +52,12 @@ export default {
       dataj: testj,
       search: '',
       headers: [
-        {text: 'ID',value: '@id',},
-        {text: 'type',value: '@type',},
+        // {text: 'ID',value: '@id',},
+        // {text: 'type',value: '@type',},
         {text: 'データ生成時刻',value: 'dc:date',},
-        {text: 'コンテンツ',value: '@context',},
+        // {text: 'コンテンツ',value: '@context',},
         {text: 'データ保証期限',value: 'dct:valid',},
-        {text: '？',value: 'odpt:delay',},
+        {text: '遅延',value: 'odpt:delay',},
         {text: '固有識別子',value: 'owl:sameAs',},
         {text: '路線',value: 'odpt:railway',},
         {text: '運行会社',value: 'odpt:operator',},
@@ -60,19 +69,6 @@ export default {
         {text: '車両数',value: 'odpt:carComposition',},
         {text: '行先駅',value: 'odpt:destinationStation',},
       ],
-          // [{
-          // "@id":"urn:ucode:_00001C00000000000001000003102817",
-          // "@type":"odpt:Station",
-          // "dc:date":"2020-05-07T09:00:00+09:00",
-          // "geo:lat":35.69432,
-          // "@context":"http://vocab.odpt.org/context_odpt.jsonld",
-          // "dc:title":"東山梨",
-          // "geo:long":138.70297,
-          // "owl:sameAs":"odpt.Station:JR-East.Chuo.HigashiYamanashi",
-          // "odpt:railway":"odpt.Railway:JR-East.Chuo",
-          // "odpt:operator":"odpt.Operator:JR-East",
-          // "odpt:stationTitle":{"en":"Higashi-Yamanashi","ja":"東山梨"},
-          // "odpt:passengerSurvey":["odpt.PassengerSurvey:JR-East.HigashiYamanashi"]},
     }
   },
   methods: {
