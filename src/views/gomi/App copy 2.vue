@@ -257,7 +257,7 @@ export default {
         { name: 'グラフ', icon: 'mdi-chart-bar' , active: false , link:"/Graph"}, 
         { name: 'ユーザー登録', icon: 'mdi-account-plus' , active: false , link:"/Signup"},
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
-        { name: 'Json表示', icon: 'mdi-message' , active: false , link:"/Json1"},
+        { name: 'Json表示', icon: 'mdi-message' , active: false , link:"/JsonTrainstatusinformation"},
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
         { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
         { name: 'Map', icon: 'mdi-map-marker' , active: false , link:"/vMap"},

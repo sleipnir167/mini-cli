@@ -255,12 +255,29 @@ export default {
         { name: '編成管理', icon: 'mdi-view-list' , active: false , link:"/Hensei"},
         { name: '検修管理', icon: 'mdi-math-compass' , active: false , link:"/Kensyu"},
         // { name: '装備管理', icon: 'mdi-sync' , active: false , link:"/Tmp"},
-        { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", lists:[{name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},{name: '系式マスタ', icon: 'mdi-pencil' , link:"/MasterSyasyu"}]},
-        { name: '操作ナビ', icon: 'mdi-library' , active: false , link:"/Navi", lists:[{name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}]},
+        { name: 'マスタ管理', icon: 'mdi-database' , active: false , link:"/Master", 
+          lists:[
+            {name: '車種マスタ', icon: 'mdi-pencil-box-outline' , link:"/MasterSyasyu"},
+            {name: '系式マスタ', icon: 'mdi-pencil' , link:"/MasterSyasyu"},
+          ]
+        },
+        { name: '操作ナビ', icon: 'mdi-library' , active: false , link:"/Navi", 
+          lists:[
+            {name: '新車登録', icon: 'mdi-pencil-box-outline' , link:"/Navi"}
+          ]
+        },
         // { name: 'グラフ', icon: 'mdi-chart-bar' , active: false , link:"/Graph"}, 
         // { name: 'ユーザー登録', icon: 'mdi-account-plus' , active: false , link:"/Signup"},
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
-        { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/Json1"},
+        { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/JsonTrainstatusinformation", 
+          lists:[
+            {name: '列車運行情報', icon: 'mdi-pencil-box-outline' , link:"/JsonTrainstatusinformation"},
+            {name: '駅情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Station"},
+            {name: '路線情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Railway"},
+            {name: '列車位置情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Train"},
+            {name: 'aaaa', icon: 'mdi-pencil' , link:"/JsonOdpt_TrainTimetable"},
+          ]
+        },
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
         { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
         { name: 'Map', icon: 'mdi-map-marker' , active: false , link:"/vMap"},

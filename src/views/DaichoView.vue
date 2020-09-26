@@ -60,18 +60,19 @@ export default {
   data(){
     return{
       selectgosya:2,
-      henseiDatas:[{gosya:1,sgo:"クハE234-1",},
-                  {gosya:2,sgo:"モハE234-3",},
-                  {gosya:3,sgo:"モハE235-3",},
-                  {gosya:4,sgo:"サハE235-1",},
-                  {gosya:5,sgo:"モハE234-2",},
-                  {gosya:6,sgo:"モハE235-2",},
-                  {gosya:7,sgo:"サハE234-1",},
-                  {gosya:8,sgo:"モハE234-1",},
-                  {gosya:9,sgo:"モハE235-1",},
-                  {gosya:10,sgo:"サハE235-4620",},
-                  {gosya:11,sgo:"クハE235-1",},
-                  ]
+      henseiDatas:[
+        {gosya:1,sgo:"クハE234-1",},
+        {gosya:2,sgo:"モハE234-3",},
+        {gosya:3,sgo:"モハE235-3",},
+        {gosya:4,sgo:"サハE235-1",},
+        {gosya:5,sgo:"モハE234-2",},
+        {gosya:6,sgo:"モハE235-2",},
+        {gosya:7,sgo:"サハE234-1",},
+        {gosya:8,sgo:"モハE234-1",},
+        {gosya:9,sgo:"モハE235-1",},
+        {gosya:10,sgo:"サハE235-4620",},
+        {gosya:11,sgo:"クハE235-1",},
+      ]
     }
   },
   methods: {

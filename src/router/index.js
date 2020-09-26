@@ -17,7 +17,11 @@ import Tmp from '../views/Tmp.vue'
 import About from '../views/About.vue'
 import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
-import Json1 from '../views/Json1.vue'
+import JsonTrainstatusinformation from '../views/JsonTrainstatusinformation.vue'
+import JsonOdpt_Station from '../views/JsonOdpt_Station.vue'
+import JsonOdpt_Railway from '../views/JsonOdpt_Railway.vue'
+import JsonOdpt_Train from '../views/JsonOdpt_Train.vue'
+import JsonOdpt_TrainTimetable from '../views/JsonOdpt_TrainTimetable.vue'
 import Calender from '../views/Calender.vue'
 import vMap from '../views/vMap.vue'
 
@@ -132,9 +136,29 @@ Vue.use(VueRouter)
     component: Signin
   },
   {
-    path: '/Json1',
-    name: 'Json1',
-    component: Json1
+    path: '/JsonTrainstatusinformation',
+    name: 'JsonTrainstatusinformation',
+    component: JsonTrainstatusinformation
+  },
+  {
+    path: '/JsonOdpt_Station',
+    name: 'JsonOdpt_Station',
+    component: JsonOdpt_Station
+  },
+  {
+    path: '/JsonOdpt_Railway',
+    name: 'JsonOdpt_Railway',
+    component: JsonOdpt_Railway
+  },
+  {
+    path: '/JsonOdpt_Train',
+    name: 'JsonOdpt_Train',
+    component: JsonOdpt_Train
+  },
+  {
+    path: '/JsonOdpt_TrainTimetable',
+    name: 'JsonOdpt_TrainTimetable',
+    component: JsonOdpt_TrainTimetable
   },
   {
     path: '/Calender',
