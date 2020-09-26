@@ -262,7 +262,7 @@ export default {
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
         { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/Json1"},
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},
-        // { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
+        { name: 'TMP', icon: 'mdi-help-box' , active: false , link:"/Tmp"},
         { name: 'Map', icon: 'mdi-map-marker' , active: false , link:"/vMap"},
       ],
       Supports: [

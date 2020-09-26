@@ -28,10 +28,10 @@
               append-icon="mdi-magnify"
               label="Search"
               single-line
+              outlined
+              rounded
               hide-details
             ></v-text-field>
-            <!-- 区切り線 -->
-            <v-divider class="mx-4" inset vertical ></v-divider>
 
             <!-- 追加ボタン(+) -->
             <v-spacer></v-spacer>
