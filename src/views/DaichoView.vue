@@ -8,14 +8,14 @@
         <table class="carset-table">
           <tbody>
             <tr>
-              <td v-for="henseiData in henseiDatas" :key="henseiData" v-bind:class="{'is-highlight': henseiData.select}">
+              <td v-for="henseiData in henseiDatas" :key="henseiData" v-bind:class="{'is-highlight': henseiData.gosya === selectgosya}" @click="gosyaClick(henseiData);">
                 <div class="carset-table__number">
                   <span class="carset-table__num">{{henseiData.gosya}}</span>号車<span class="carset-table__num"></span>
                 </div>
                 <div class="carset-table__series">
-                  <a href="/car/7784" title="鉄道車両：JR東日本 クハE235-1">
+                  <!-- <a href="/car/7784" title="鉄道車両：JR東日本 クハE235-1"> -->
                     {{henseiData.sgo}}
-                  </a>
+                  <!-- </a> -->
                 </div>
               </td><!-- //td -->
             </tr>
@@ -59,18 +59,25 @@ export default {
   },
   data(){
     return{
-      henseiDatas:[{gosya:1,sgo:"クハE234-1",select:false},
-                  {gosya:2,sgo:"モハE234-3",select:true},
-                  {gosya:3,sgo:"モハE235-3",select:false},
-                  {gosya:4,sgo:"サハE235-1",select:false},
-                  {gosya:5,sgo:"モハE234-2",select:false},
-                  {gosya:6,sgo:"モハE235-2",select:false},
-                  {gosya:7,sgo:"サハE234-1",select:false},
-                  {gosya:8,sgo:"モハE234-1",select:false},
-                  {gosya:9,sgo:"モハE235-1",select:false},
-                  {gosya:10,sgo:"サハE235-4620",select:false},
-                  {gosya:11,sgo:"クハE235-1",select:false},
+      selectgosya:2,
+      henseiDatas:[{gosya:1,sgo:"クハE234-1",},
+                  {gosya:2,sgo:"モハE234-3",},
+                  {gosya:3,sgo:"モハE235-3",},
+                  {gosya:4,sgo:"サハE235-1",},
+                  {gosya:5,sgo:"モハE234-2",},
+                  {gosya:6,sgo:"モハE235-2",},
+                  {gosya:7,sgo:"サハE234-1",},
+                  {gosya:8,sgo:"モハE234-1",},
+                  {gosya:9,sgo:"モハE235-1",},
+                  {gosya:10,sgo:"サハE235-4620",},
+                  {gosya:11,sgo:"クハE235-1",},
                   ]
+    }
+  },
+  methods: {
+    // 選択号車を変更
+    gosyaClick(value) {
+      this.selectgosya = value.gosya;
     }
   }
 };
