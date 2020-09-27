@@ -8,26 +8,36 @@
       <v-row justify="start" align-content="start" v-for="item in items" :key="item.title">
         <v-col cols="12" sm="12" md="12" lg="12" >
           <span>{{item.grp}}{{item.hens}}編成（{{item.soseis.length}}）</span>
-          <draggable
-            v-model="itemsA"
-            group="myGroup"
-            :options="options"
 
-            @choose="onChoose"
-            @start="onStart"
-            @clone="onClone"
-            @add="onAdd"
-            @remove="onRemove"
-            @update="onUpdate"
-            @sort="onSort"
-            @filter="onFilter"
-            @end="onEnd"
-          >
-            <div class="item" v-for="sosei in item.soseis" :key="sosei.id" :class="isFixed(sosei.fixed)">
-              <div>{{sosei.name.substring(0,8)}}</div>
-              <div>{{sosei.name.substring(8,12)}}</div>
-            </div>
-          </draggable>
+          <table class="carset-table">
+
+            <draggable
+              v-model="itemsA"
+              group="myGroup"
+              :options="options"
+
+              @choose="onChoose"
+              @start="onStart"
+              @clone="onClone"
+              @add="onAdd"
+              @remove="onRemove"
+              @update="onUpdate"
+              @sort="onSort"
+              @filter="onFilter"
+              @end="onEnd"
+            >
+              <!-- 組成表 -->
+              <td v-for="sosei in item.soseis" :key="sosei.id" :class="isFixed(sosei.fixed)">
+                <div class="carset-table__number">
+                  <span class="carset-table__num">{{sosei.name.substring(0,8)}}</span>
+                </div>
+                <div class="carset-table__series">
+                    {{sosei.name.substring(8,12)}}
+                </div>
+              </td>
+
+            </draggable>
+          </table>
         </v-col>
       </v-row>
     </v-container>
@@ -239,7 +249,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped >
   #status {
     min-height: 25px;
     border: 1px solid #42b983;
@@ -259,5 +269,114 @@
   .sortable-chosen {
     background-color: #42b983;
   }
+
+
+// 号車
+.carset-table__number {
+  font-size: 10px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.carset-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 6px 0;
+    position: relative;
+}
+
+.carset-table__series {
+    font-size: 10px;
+}
+
+.carset-table td {
+    text-align: center;
+    border: 1px solid #351c12;
+    padding: 4px 0;
+    position: relative;
+    min-width: 60px;
+}
+
+.carset-table td:first-child:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    border: 10px solid #351c12;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+.carset-table td:before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 8px;
+    border-bottom: 3px solid #351c12;
+    position: absolute;
+    left: -8px;
+    bottom: 10px;
+}
+
+.carset-table td:first-child:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    height: 0;
+    width: 0;
+    border: 10.3px solid #ebebeb;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+// 選択色
+.carset-table td.is-highlight {
+  background-color: #f9f3bb;
+}
+
+// 一番後ろ
+.carset-table td:last-child:before {
+    display: none;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0 !important;
+    height: 0;
+    width: 0;
+    border: 10px solid #351c12;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.carset-table td:last-child:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -1px;
+    right: -1px !important;
+    height: 0;
+    width: 0;
+    border: 10.3px solid #ebebeb;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+// 一番後ろの手前の車両に後ろとつなぐ線を描画
+.carset-table td:nth-last-child(2):after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 8px;
+    border-bottom: 3px solid #351c12;
+    position: absolute;
+    right: -8px;
+    bottom: 10px;
+}
 </style>
 
