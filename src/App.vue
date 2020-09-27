@@ -271,11 +271,11 @@ export default {
         { name: 'ログイン', icon: 'mdi-login' , active: false , link:"/Signin"},
         { name: '研究開発用(Json表示)', icon: 'mdi-message' , active: false , link:"/JsonOdpt_Trainstatusinformation", 
           lists:[
-            {name: '列車運行情報', icon: 'mdi-pencil-box-outline' , link:"/JsonOdpt_Trainstatusinformation"},
-            {name: '駅情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Station"},
-            {name: '路線情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Railway"},
-            {name: '列車位置情報', icon: 'mdi-pencil' , link:"/JsonOdpt_Train"},
-            {name: '列車時刻表', icon: 'mdi-pencil' , link:"/JsonOdpt_TrainTimetable"},
+            {name: '列車運行情報', icon: 'mdi-database' , link:"/JsonOdpt_Trainstatusinformation"},
+            {name: '駅情報', icon: 'mdi-database' , link:"/JsonOdpt_Station"},
+            {name: '路線情報', icon: 'mdi-database' , link:"/JsonOdpt_Railway"},
+            {name: '列車位置情報', icon: 'mdi-database' , link:"/JsonOdpt_Train"},
+            {name: '列車時刻表', icon: 'mdi-database' , link:"/JsonOdpt_TrainTimetable"},
           ]
         },
         { name: 'カレンダー', icon: 'mdi-calendar' , active: false , link:"/Calender"},

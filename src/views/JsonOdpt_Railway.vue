@@ -16,15 +16,11 @@
     <template v-slot:[`item.odpt:railwayTitle`]="{ item }">
       <div v-for="(i) in item" :key="i">{{ i.en }}{{ i.ja }}</div>
     </template>
+    
     <template v-slot:[`item.odpt:stationOrder`]="{ item }">
-      <div v-for="(i) in item" :key="i">
-        <div v-for="(a) in i" :key="a">
-          <!-- {{a["odpt:index"]}} {{a["odpt:station"]}}  -->
-          <div v-for="(w) in a" :key="w">
-            {{w.ja}}
-          </div>
-        </div>
-      </div>
+      <span v-for="(value) in filter_stationOrder(item)" :key="value">
+        {{value}}→
+      </span>
     </template>
   </v-data-table>
 </template>
@@ -48,7 +44,7 @@ export default {
         {text: '固有識別子',value: 'owl:sameAs',width: '50' },
         {text: '事業者ID',value: 'odpt:operator',width: '50' },
         {text: '線区',value: 'odpt:railwayTitle',width: '50' },
-        {text: '駅順序',value: 'odpt:stationOrder',width: '150' },
+        {text: '駅順序',value: 'odpt:stationOrder',width: '550' },
         {text: '上り',value: 'odpt:ascendingRailDirection',width: '50' },
         {text: '下り',value: 'odpt:descendingRailDirection',width: '50' },
       ],
@@ -158,6 +154,18 @@ export default {
     .then(response => this.users = response.data.results).then(console.log(this.users))
 
     console.log(testj)
+  },
+  computed: {
+    filter_stationOrder: function() {
+      return function(item) {
+        var arrt = [];
+        for(let i = 0; i < item[`odpt:stationOrder`].length; i++)
+        {
+          arrt.push(item[`odpt:stationOrder`][i][`odpt:stationTitle`].ja);
+        }
+        return arrt;
+      }
+    },
   }
 };
 </script>
