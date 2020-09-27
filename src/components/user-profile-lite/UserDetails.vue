@@ -1,7 +1,7 @@
 <template>
   <v-card
     :loading="loading"
-    class="mx-auto my-12"
+    class="mx-auto my-5"
   >
     <v-img height="250" :src="userDetails.src"></v-img>
     <v-card-title>{{userDetails.name}}</v-card-title>

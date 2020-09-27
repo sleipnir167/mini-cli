@@ -5,32 +5,48 @@
       <!-- Page Header -->
 
       <v-row no-gutters class="page-header py-4">
-        <table class="carset-table">
-          <tbody>
-            <tr>
-              <td v-for="henseiData in henseiDatas" :key="henseiData" v-bind:class="{'is-highlight': henseiData.gosya === selectgosya}" @click="gosyaClick(henseiData);">
-                <div class="carset-table__number">
-                  <span class="carset-table__num">{{henseiData.gosya}}</span>号車<span class="carset-table__num"></span>
-                </div>
-                <div class="carset-table__series">
-                  <!-- <a href="/car/7784" title="鉄道車両：JR東日本 クハE235-1"> -->
-                    {{henseiData.sgo}}
-                  <!-- </a> -->
-                </div>
-              </td><!-- //td -->
-            </tr>
-          </tbody>
-        </table>
+        <v-col cols="12" sm="12" md="12" lg="12" >
+          <table class="carset-table">
+            <tbody>
+              <tr>
+                <td v-for="henseiData in henseiDatas" :key="henseiData" v-bind:class="{'is-highlight': henseiData.gosya === selectgosya}" @click="gosyaClick(henseiData);">
+                  <div class="carset-table__number">
+                    <span class="carset-table__num">{{henseiData.gosya}}</span>号車<span class="carset-table__num"></span>
+                  </div>
+                  <div class="carset-table__series">
+                    <!-- <a href="/car/7784" title="鉄道車両：JR東日本 クハE235-1"> -->
+                      {{henseiData.sgo}}
+                    <!-- </a> -->
+                  </div>
+                </td><!-- //td -->
+              </tr>
+            </tbody>
+          </table>
+        </v-col>
+
+        <!-- 方面 -->
+        <div>
+          <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
+          大崎(内)
+        </div>
+            <v-spacer></v-spacer>
+        <div>
+          大崎(外)
+          <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
+        </div>
+
       </v-row>
 
       <!-- Content -->
       <v-row>
         <v-col cols="12" sm="12" md="4" lg="4" >
           <uplUserDetails />
+          <uplUserNow/>
           <uplUserCharge />
         </v-col>
         <v-col cols="12" sm="12" md="8" lg="8">
           <uplUserAccountDetails />
+          <uplUserHist/>
         </v-col>
       </v-row>
       <v-row>
@@ -46,6 +62,8 @@
 <script>
 import UserDetails from '@/components/user-profile-lite/UserDetails.vue';
 import UserCharge from '@/components/user-profile-lite/UserCharge.vue';
+import UserNow from '@/components/user-profile-lite/UserNow.vue';
+import UserHist from '@/components/user-profile-lite/UserHist.vue';
 import UserAccountDetails from '@/components/user-profile-lite/UserAccountDetails.vue';
 import UserHistory from '@/components/user-profile-lite/UserHistory.vue';
 
@@ -54,6 +72,8 @@ export default {
   components: {
     uplUserDetails: UserDetails,
     uplUserCharge: UserCharge,
+    uplUserNow:UserNow,
+    uplUserHist:UserHist,
     uplUserAccountDetails: UserAccountDetails,
     uplUserHistorys: UserHistory,
   },
@@ -154,6 +174,7 @@ export default {
   background-color: #f9f3bb;
 }
 
+// 一番後ろ
 .carset-table td:last-child:before {
     display: none;
     content: "";
@@ -182,4 +203,15 @@ export default {
     border-bottom-color: transparent;
 }
 
+// 一番後ろの手前の車両に後ろとつなぐ線を描画
+.carset-table td:nth-last-child(2):after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 8px;
+    border-bottom: 3px solid #351c12;
+    position: absolute;
+    right: -8px;
+    bottom: 10px;
+}
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <v-card>
+  <v-card
+    :loading="loading"
+    class="mx-auto my-5"
+  >
     <v-card-text :inset="inset">管理担当</v-card-text>
     <v-list>
       <template v-for="(item, index) in items">

@@ -3,7 +3,7 @@
 
     <!-- Card Header -->
     <v-card-header class="border-bottom">
-      <h4 class="m-0">{{ title }}</h4>
+      <v-card-text :inset="inset">{{ title }}</v-card-text>
     </v-card-header>
 
     <v-card ref="form">
