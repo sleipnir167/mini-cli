@@ -133,7 +133,7 @@ Vue.component('temp-MoveYM', MoveYM)
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #kensa {
   background-color: #ebebeb;
   overflow:scroll;

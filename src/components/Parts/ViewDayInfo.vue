@@ -87,7 +87,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #ViewDayInfo {
   width: 50px;
   box-sizing:border-box;

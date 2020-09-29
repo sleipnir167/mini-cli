@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 // 号車
 .carset-table__number {

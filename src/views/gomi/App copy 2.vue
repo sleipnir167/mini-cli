@@ -343,7 +343,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 html,
 html.overflow-y-hidden {
   overflow-y: hidden !important;
