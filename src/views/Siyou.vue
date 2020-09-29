@@ -79,10 +79,6 @@
 </template>
 
 <script>
-//  インポート
-import Vue from 'vue'
-import GridYM from '../components/Parts/GridYM'
-import MoveYM from '../components/Parts/MoveYM'
 
 export default {
   data(){
@@ -127,9 +123,6 @@ export default {
   },
 }
 
-//  コンポーネントを登録
-Vue.component('temp-gridym', GridYM)
-Vue.component('temp-MoveYM', MoveYM)
 
 </script>
 
