@@ -287,6 +287,7 @@
 
 .carset-table__series {
     font-size: 10px;
+    background-color: rgb(79, 219, 79);
 }
 
 .carset-table td {
@@ -295,6 +296,7 @@
     padding: 4px 0;
     position: relative;
     min-width: 60px;
+    background-color: rgba(0, 0, 0, 0.24);
 }
 
 .carset-table td:first-child:before {
