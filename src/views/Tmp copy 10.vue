@@ -2,20 +2,29 @@
   <v-app id="inspire">
     <v-container fluid div class="ma-1">
 
+
+      <div id="demo">
+        <button v-on:click="show = !show">
+          Toggle
+        </button>
+        <transition name="fade">
+          <p v-if="show">hello</p>
+        </transition>
+      </div>
+
+
       <!-- カレンダー -->
       <table border="0.1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
 
         <tr>
           <th style="border:solid 1px black;min-width:100px;"></th>
-          <th class="ViewDayInfo2" v-for="viewday in viewdays" :key="viewday" style="border:solid 1px black;min-width:50px;">
-            <v-card class="dayBox">
+          <th class="ViewDayInfo2" cols="1" v-for="viewday in viewdays" :key="viewday" style="border:solid 1px black;min-width:50px;">
               <v-card class="firstBox">
                 <p>{{ viewday.day.substring(5,10) }}</p>
               </v-card>
               <v-card class="secondBox">
                 <p>{{ viewday.youbi }}</p>
               </v-card>
-            </v-card>
           </th>
         </tr>
       </table>
@@ -27,8 +36,8 @@
                 <v-icon v-if="Hensei.expand">mdi-chevron-up</v-icon>
                 <v-icon v-else>mdi-chevron-down</v-icon>
           </td>
-          <td class="ViewDayInfo" v-for="dayinfo in dayinfos" :key="dayinfo" style="border:solid 1px black;min-width:50px;">
-            <v-card class="dayBox"  v-bind:class="{ fix: dayinfo.fix, warn: dayinfo.warn , error: dayinfo.error }" @click.stop="divclick(dayinfo)" >
+          <td class="ViewDayInfo" cols="1" v-for="dayinfo in dayinfos" :key="dayinfo" style="border:solid 1px black;min-width:50px;">
+            <v-card @click.stop="divclick(dayinfo)" >
               <div class="firstBox">
                 <p>{{ dayinfo.kensa }}</p>
               </div>
@@ -44,7 +53,7 @@
             <td style="height:41.5px; border:solid 1px black">
               {{syagou}}
             </td>
-            <td class="ViewDayInfo" v-for="dayinfo in dayinfos" :key="dayinfo">
+            <td class="ViewDayInfo" cols="1" v-for="dayinfo in dayinfos" :key="dayinfo">
               <v-card @click.stop="divclick(dayinfo)" >
                 <div class="firstBox">
                   <p>{{ dayinfo.kensa }}</p>
@@ -140,28 +149,28 @@
         {day: "2020/01/22",youbi:"月"},
       ],
       dayinfos:[
-        {kensa: "　", kiro: "100.0km", day: "2020/01/01", fix: true, warn: false, error:false},
-        {kensa: "　", kiro: "111.0km", day: "2020/01/02", fix: true, warn: false, error:false},
-        {kensa: "車", kiro: "122.0km", day: "2020/01/03", fix: true, warn: false, error:false},
-        {kensa: "　", kiro: "133.0km", day: "2020/01/04", fix: true, warn: false, error:false},
-        {kensa: "　", kiro: "144.0km", day: "2020/01/05", fix: true, warn: false, error:false},
-        {kensa: "　", kiro: "155.0km", day: "2020/01/06", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "166.0km", day: "2020/01/07", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "166.0km", day: "2020/01/08", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "176.0km", day: "2020/01/09", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "116.0km", day: "2020/01/10", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "133.0km", day: "2020/01/11", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "144.0km", day: "2020/01/12", fix: false, warn: false, error:false},
-        {kensa: "　", kiro: "155.0km", day: "2020/01/13", fix: false, warn: false, error:false},
-        {kensa: "月", kiro: "166.0km", day: "2020/01/14", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "166.0km", day: "2020/01/15", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "176.0km", day: "2020/01/16", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "116.0km", day: "2020/01/17", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "166.0km", day: "2020/01/18", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "176.0km", day: "2020/01/19", fix: false, warn: true, error:false},
-        {kensa: "　", kiro: "116.0km", day: "2020/01/20", fix: false, warn: true, error:true},
-        {kensa: "　", kiro: "133.0km", day: "2020/01/21", fix: false, warn: true, error:true},
-        {kensa: "　", kiro: "144.0km", day: "2020/01/22", fix: false, warn: true, error:true},
+        {kensa: "　", kiro: "100.0km", day: "2020/01/01"},
+        {kensa: "　", kiro: "111.0km", day: "2020/01/02"},
+        {kensa: "車", kiro: "122.0km", day: "2020/01/03"},
+        {kensa: "　", kiro: "133.0km", day: "2020/01/04"},
+        {kensa: "　", kiro: "144.0km", day: "2020/01/05"},
+        {kensa: "　", kiro: "155.0km", day: "2020/01/06"},
+        {kensa: "　", kiro: "166.0km", day: "2020/01/07"},
+        {kensa: "　", kiro: "166.0km", day: "2020/01/08"},
+        {kensa: "　", kiro: "176.0km", day: "2020/01/09"},
+        {kensa: "　", kiro: "116.0km", day: "2020/01/10"},
+        {kensa: "　", kiro: "133.0km", day: "2020/01/11"},
+        {kensa: "　", kiro: "144.0km", day: "2020/01/12"},
+        {kensa: "　", kiro: "155.0km", day: "2020/01/13"},
+        {kensa: "月", kiro: "166.0km", day: "2020/01/14"},
+        {kensa: "　", kiro: "166.0km", day: "2020/01/15"},
+        {kensa: "　", kiro: "176.0km", day: "2020/01/16"},
+        {kensa: "　", kiro: "116.0km", day: "2020/01/17"},
+        {kensa: "　", kiro: "166.0km", day: "2020/01/18"},
+        {kensa: "　", kiro: "176.0km", day: "2020/01/19"},
+        {kensa: "　", kiro: "116.0km", day: "2020/01/20"},
+        {kensa: "　", kiro: "133.0km", day: "2020/01/21"},
+        {kensa: "　", kiro: "144.0km", day: "2020/01/22"},
       ]
     }),
     methods: {
@@ -194,26 +203,10 @@
   }
 }
 
-.ViewDayInfo .dayBox {
-  background-color: white;
-  &.fix {
-    background-color: rgba(160, 223, 141, 0.329);
-  }
-  &.warn {
-    background-color: rgba(238, 255, 0, 0.781);
-  }
-  &.error {
-    background-color: rgba(240, 32, 32, 0.568);
-  }
-}
-
-
-
 .ViewDayInfo .firstBox {
   height: 20px;
   width: 100%;
   text-align: center;
-  background-color: transparent;
 }
 
 .ViewDayInfo .secondBox {
@@ -221,9 +214,7 @@
   width: 100%;
   border-top: dotted 1px black;
   text-align: center;
-  background-color: transparent;
 }
-
 
 .ViewDayInfo2 {
   width: 50px;
@@ -235,15 +226,10 @@
   overflow:hidden;
 }
 
-.ViewDayInfo2 .dayBox {
-  background-color: white;
-}
-
 .ViewDayInfo2 .firstBox {
   height: 20px;
   width: 100%;
   text-align: center;
-  background-color: transparent;
 }
 
 .ViewDayInfo2 .secondBox {
@@ -251,7 +237,19 @@
   width: 100%;
   border-top: dotted 1px black;
   text-align: center;
-  background-color: transparent;
 }
 
+.tdexp{
+  background-color: red;
+  border:solid 3px red;
+  transition: all 900ms 0s ease;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
