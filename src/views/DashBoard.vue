@@ -386,7 +386,7 @@ export default {
 
 
 
-<style scoped>
+<style lang="scss" scoped>
 
 .theme--dark .v-main {
     background-color: #181818;

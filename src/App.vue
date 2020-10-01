@@ -249,6 +249,7 @@ export default {
         { name: 'ダッシュボード', icon: 'mdi-television-guide' , active: false , link:"/DashBoard"},
         { name: 'お知らせ', icon: 'mdi-information-outline' , active: false , link:"/Info"},
         { name: '車両台帳', icon: 'mdi-train' , active: false , link:"/Daicho"},
+        { name: '車両選択', icon: 'mdi-train' , active: false , link:"/DaichoSelect"},
         { name: '車両台帳詳細', icon: 'mdi-train' , active: false , link:"/DaichoView"},
         { name: '検査計画', icon: 'mdi-timetable' , active: false , link:"/Kensa"},
         { name: '使用実績', icon: 'mdi-table-edit' , active: false , link:"/Siyou"},
