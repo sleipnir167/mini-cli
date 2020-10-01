@@ -140,13 +140,13 @@ export default {
       //   // const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
       //   // const second = new Date(first.getTime() + secondTimestamp)
 
-      //   const first2 = new Date('2020-09-02')
+      //   const first2 = new Date('2020-10-02')
       //   console.log("first:" + first)
       //   console.log("first2:" + first2)
       // }
 
-      let first = new Date('2020-09-02')
-      let end = new Date('2020-09-07')
+      let first = new Date('2020-10-02')
+      let end = new Date('2020-10-07')
       events.push({
         name: "車体保全",
         start: first,
@@ -155,8 +155,8 @@ export default {
         timed: false,
       })
 
-      first = new Date('2020-09-23')
-      end = new Date('2020-09-23')
+      first = new Date('2020-10-23')
+      end = new Date('2020-10-23')
       events.push({
         name: "月保全",
         start: first,

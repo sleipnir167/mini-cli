@@ -1,171 +1,103 @@
 <template>
   <v-app id="inspire">
     <v-container fluid>
-      <div class="exp">
-        <div class="checkbox">
-          <form>
-            <div>
-              <input type="checkbox" id="check" name="check" value="" />
-              <label for="check">
-                <span></span>Checkbox
-              </label>
-            </div>
-          </form>
+
+      <div class="demo_stage">
+        <div class="demo_wrap" data-order="left">
+        <span class="demo_item anime"></span>
         </div>
       </div>
+
     </v-container>
   </v-app>
 </template>
 
 <script>
-  //  インポート
-
-  export default {
-    data () {
-      return{
-      }
-    },
-  }
-
+export default {
+  data () {
+    return{
+    }
+  },
+}
 </script>
 
-
 <style lang="scss" scoped>
-html {
-  height: 100%; // for styling only
+
+.demo_item{
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  background-image: url(/Picture/icon/tansya.png);
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  display: block;
+  position: relative;
+}
+.demo_item.anime{
+    animation-name: upDown;
+    animation-iteration-count: infinite;
+    animation-duration: 0.15s;
+    animation-direction: alternate;
+    animation-timing-function: steps(2);
+    transition-duration: .3s;
+    transition-property: transform;
 }
 
-body {
-  background-color: #1790b5; // for styling only
-  height: 100%; // for styling only
-  font-family: 'Open Sans', sans-serif;
-}
-
-.exp {
-  display: table; // to center the item
-  width: 100%;
-  height: 100%;
-  
-  .checkbox {
-    display: table-cell; // to center the item
+.demo_stage{
+    position: relative;
     width: 100%;
-    height: 100%;
-    vertical-align: middle; // to center the item
-    text-align: center; // to center the item
-  }
+    height: 65px;
+    top: 0px;
+    display: block;
+	border-bottom: solid #777 1px;
 }
 
-label {
-    display: inline-block; // to make it easier to click
-    color: red;
-    cursor: pointer;
-    position: relative; // important
-  
-    // Now we'll create the checkbox object
-  
-    span {
-      display: inline-block;
-      position: relative;
-      background-color: transparent;
-      width: 25px;
-      height: 25px;
-      transform-origin: center;
-      border: 2px solid red;
-      border-radius: 50%;
-      vertical-align: -6px;
-      margin-right: 10px;
-      transition: background-color 150ms 200ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); // custom ease effect for bouncy animation
-  
-  // Now we'll create the "tick" using pseudo elements - those will be basically two lines that will be rotated to form the "tick"
-  
-    &:before {
-      content: "";
-      width: 0px;
-      height: 2px;
-      border-radius: 2px; // so that the tick has nice rounded look
-      background: red;
-      position: absolute;
-      transform: rotate(45deg);
-      top: 13px; // you'll need to experiment with placement depending on the dimensions you've chosen
-      left: 9px; // you'll need to experiment with placement depending on the dimensions you've chosen
-      transition: width 50ms ease 50ms;
-      transform-origin: 0% 0%;
-    }
-  
-    &:after {
-      content: "";
-      width: 0;
-      height: 2px;
-      border-radius: 2px; // so that the tick has nice rounded look
-      background: red;
-      position: absolute;
-      transform: rotate(305deg);
-      top: 16px; // you'll need to experiment with placement depending on the dimensions you've chosen
-      left: 10px; // you'll need to experiment with placement depending on the dimensions you've chosen
-      transition: width 50ms ease;
-      transform-origin: 0% 0%;
-    }
-  }
-  // Time to add some life to it
-  
-  &:hover {
-    span {
-      &:before {
-        width: 5px;
-        transition: width 100ms ease;
-      }
-      
-      &:after {
-        width: 10px;
-        transition: width 150ms ease 100ms;
-      }
-    }
-  }
+.demo_wrap{
+	display: block;
+    position: absolute;
+    top: 20px;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-duration: 120s;
+    animation-iteration-count: 1;
+	margin-right: -25px;
 }
 
-input[type="checkbox"] {
-    display: none; // hide the system checkbox
-  
-  // Let's add some effects after the checkbox is checked
-  
-  &:checked {
-    + label {
-      span {
-        background-color: red;
-        transform: scale(1.25); // enlarge the box
-        
-        &:after {
-          width: 10px;
-          background: #1790b5;
-          transition: width 150ms ease 100ms; // enlarge the tick
-        }
-        
-        &:before {
-          width: 5px;
-          background: #1790b5;
-          transition: width 150ms ease 100ms; // enlarge the tick
-        }
-      }
-      
-      &:hover { // copy the states for onMouseOver to avoid flickering
-        span {
-          background-color: red;
-          transform: scale(1.25); // enlarge the box
+.demo_wrap[data-order="left"] {
+    animation-name: GoLeft;
+}
+.demo_wrap[data-order="right"] {
+    animation-name: GoRight;
+}
 
-          &:after {
-            width: 10px;
-            background: #1790b5;
-            transition: width 150ms ease 100ms; // enlarge the tick
-          }
+[data-order="right"] > .demo_item {
+    transform: rotateY(180deg);
+}
 
-          &:before {
-            width: 5px;
-            background: #1790b5;
-            transition: width 150ms ease 100ms; // enlarge the tick
-          }
-        }  
-      }
+@keyframes GoLeft {
+    0% {
+        right: 10%;
     }
-  }
+    100% {
+        right: 90%;
+    }
+}
+@keyframes GoRight {
+    0% {
+        right: 90%;
+    }
+    100% {
+        right: 10%;
+    }
+}
+
+@keyframes upDown {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 3px;
+    }
 }
 </style>
