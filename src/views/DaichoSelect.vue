@@ -8,17 +8,18 @@
         </div>
 
 
-        <router-link to="/DaichoView">
         <div v-for="item in items" :key="item.title" >
-          <v-card class="divHensName">{{item.hens}}</v-card>
-          <v-card v-for="sosei in item.soseis" 
-            :class="sosei.stype"
-            :key="sosei" class="sitem rounded-0" 
-            @mouseover="selected = sosei.name"
-            >
-            {{sosei.name}}</v-card>
+          <v-card class="divHensName" >{{item.hens}}</v-card>
+          <router-link to="/DaichoView">
+            <v-card v-for="sosei in item.soseis" 
+              :class="sosei.stype"
+              :key="sosei" class="sitem rounded-0" 
+              @mouseover="selected = sosei.name"
+              >
+              {{sosei.name}}
+            </v-card>
+          </router-link>
         </div>
-        </router-link>
 
       </v-container>
     </v-main>
@@ -37,7 +38,7 @@ export default {
         {
           id:1,
           grp:"Aグループ",
-          hens:"01",
+          hens:"H101",
           soseis:[
             { id: 1, name: "T'c 234 0001", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0003", fixed: false , stype: "M" },
@@ -55,7 +56,7 @@ export default {
         {
           id:2,
           grp:"Aグループ",
-          hens:"02",
+          hens:"H102",
           soseis:[
             { id: 1, name: "T'c 234 0002", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0006", fixed: false , stype: "M" },
@@ -73,7 +74,7 @@ export default {
         {
           id:3,
           grp:"Aグループ",
-          hens:"03",
+          hens:"H103",
           soseis:[
             { id: 1, name: "T'c 234 0003", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0009", fixed: false , stype: "M" },
@@ -91,7 +92,7 @@ export default {
         {
           id:4,
           grp:"Bグループ",
-          hens:"01",
+          hens:"H104",
           soseis:[
             { id: 1, name: "T'c 234 0004", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0012", fixed: false , stype: "M" },
@@ -109,7 +110,7 @@ export default {
         {
           id:5,
           grp:"Bグループ",
-          hens:"02",
+          hens:"H105",
           soseis:[
             { id: 1, name: "T'c 234 0005", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0015", fixed: false , stype: "M" },
@@ -127,7 +128,7 @@ export default {
         {
           id:6,
           grp:"Bグループ",
-          hens:"03",
+          hens:"H106",
           soseis:[
             { id: 1, name: "T'c 234 0006", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0018", fixed: false , stype: "M" },
@@ -145,7 +146,7 @@ export default {
         {
           id:7,
           grp:"Bグループ",
-          hens:"04",
+          hens:"H107",
           soseis:[
             { id: 1, name: "T'c 234 0007", fixed: false , stype: "Tc" },
             { id: 2, name: "M2  234 0021", fixed: false , stype: "M" },
@@ -211,8 +212,8 @@ export default {
 }
 
 .divHensName{
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   border: solid 1px transparent;
   text-align: center;
   vertical-align: middle;
@@ -223,8 +224,8 @@ export default {
 }
 
 .sitem{
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   border: solid 1px transparent;
   text-align: center;
   vertical-align: middle;
@@ -248,8 +249,8 @@ export default {
   
 }
 .sitem:hover{
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   border: solid 1px transparent;
   text-align: center;
   vertical-align: middle;
