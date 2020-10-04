@@ -11,7 +11,12 @@
         <router-link to="/DaichoView">
         <div v-for="item in items" :key="item.title" >
           <v-card class="divHensName">{{item.hens}}</v-card>
-          <v-card v-for="sosei in item.soseis" :key="sosei" class="sitem rounded-0" @mouseover="selected = sosei.name" :class="sosei.stype">{{sosei.name}}</v-card>
+          <v-card v-for="sosei in item.soseis" 
+            :class="sosei.stype"
+            :key="sosei" class="sitem rounded-0" 
+            @mouseover="selected = sosei.name"
+            >
+            {{sosei.name}}</v-card>
         </div>
         </router-link>
 
@@ -202,7 +207,7 @@ export default {
   height:100px;
   border: solid 1px red;
   margin:2px;
-  opacity:0.5;
+  opacity:0.8;
 }
 
 .divHensName{
@@ -213,7 +218,7 @@ export default {
   vertical-align: middle;
   display: inline-block;
   margin:2px;
-  opacity:0.5;
+  opacity:0.8;
   background-color: rgba(28,100,73);
 }
 
@@ -224,7 +229,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   display: inline-block;
-  opacity:0.5;
+  opacity:0.8;
   font-size: 80%;
   
 
@@ -249,7 +254,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   display: inline-block;
-  opacity:0.3;
+  opacity:0.5;
   
 }
 </style>
