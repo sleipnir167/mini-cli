@@ -69,8 +69,8 @@
     
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                  <v-btn color="blue darken-1" outlined @click="close">取消</v-btn>
+                  <v-btn color="blue darken-1" dark @click="save">保存</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
+import axios from 'axios';
 import Vuetify from "vuetify";
 
 export default {
@@ -109,6 +109,7 @@ export default {
     dialog: false,
     Lstate:true,
     search: '',
+    syasData: null,
     headers: [
       { text: '車種ID', value: 'SyasID', },
       { text: '車種', value: 'SyasName' },
@@ -128,7 +129,7 @@ export default {
 
   computed: {
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === -1 ? '新規登録' : '修正'
     },
   },
 
@@ -146,12 +147,23 @@ export default {
     setTimeout(() => {
       this.Lstate = false;
     }, 500);
+
+    // ■ローカル取得
+    axios.get('http://localhost:3000/syas/',
+    {
+      params: {
+        results: '10'
+      }
+    })
+    .then(response => this.desserts = response.data.rows)
+
+    console.log(this.desserts);
   },
 
   methods: {
     initialize () {
-      this.selFireBase();
-      //this.sampleData();
+      // this.selFireBase();
+      // this.sampleData();
     },
 
     editItem (item) {
@@ -160,14 +172,69 @@ export default {
       this.dialog = true
     },
 
+    AddItem (item) {
+      const index = this.desserts.indexOf(item)
+      if(confirm('削除すると戻すことができません。本当に削除しますか?'))
+      {
+
+      // ■ローカル取得
+      axios.delete('http://localhost:3000/syas/' & item.SyasID,
+      {
+        params: {
+        }
+      })
+      // .then(response => this.desserts = response.data)
+
+      //   if(!this.delFireBase(item)){
+      //     alert("削除エラー");
+      //     return false;
+      //   }
+        this.desserts.splice(index, 1)
+      } 
+    },
+
     deleteItem (item) {
       const index = this.desserts.indexOf(item)
       if(confirm('削除すると戻すことができません。本当に削除しますか?'))
       {
-        if(!this.delFireBase(item)){
-          alert("削除エラー");
-          return false;
-        }
+        // const id = '10';
+        //const params = { name: 'SyasID' };
+
+        // const params = new URLSearchParams();
+        // params.append('SyasID', item.SyasID);
+        // console.log(item.SyasID);
+
+        // ■ローカル取得
+        // axios.delete('http://localhost:3000/syas/' + id,
+        //   {
+        //     headers: {'Content-Type': 'application/json'},
+        //     // data: params
+        //   }
+        // );
+
+        axios.delete('http://localhost:3000/syas/13',
+          {
+            headers: {'Content-Type': 'application/json'},
+            // data: params
+          }
+        );
+
+        // axios.delete("http://localhost:3000/syas/11", {
+        //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        //     // params: { foo: 'bar' } //{foo:'bar'}が送りたいデータ
+        // })
+        // axios.delete('http://localhost:3000/syas/' + item.SyasID,
+        // {
+        //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        //   params: {
+        //   }
+        // })
+      // .then(response => this.desserts = response.data)
+
+      //   if(!this.delFireBase(item)){
+      //     alert("削除エラー");
+      //     return false;
+      //   }
         this.desserts.splice(index, 1)
       } 
     },
@@ -180,98 +247,41 @@ export default {
     },
 
     save () {
+      console.log("test");
       if (this.editedIndex > -1) {//修正
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-        if(!this.updFireBase())
-        {
-          alert("更新エラー");
-          return false;
-        }
+
+        const params = new URLSearchParams();
+        params.append('SyasID', this.editedItem.SyasID);
+        params.append('SyasName', this.editedItem.SyasName);
+
+        console.log(this.editedItem.SyasID);
+        axios.patch('http://localhost:3000/syas', params);
+
       } else {//新規
-        if(!this.insFireBase()){
-          alert("追加エラー");
-          return false;
-        }
+      
+        const params = new URLSearchParams();
+        params.append('SyasID', this.editedItem.SyasID);
+        params.append('SyasName', this.editedItem.SyasName);
+
+        console.log(this.editedItem.SyasID);
+        axios.post('http://localhost:3000/syas', params);
+
+
+        // axios.post('http://localhost:3000/syas',
+        // {
+        //   params: {
+        //     SyasID: this.editItem.SyasID,
+        //     SyasName: this.editItem.SyasName
+        //   }
+        // })
+
+        // if(!this.insFireBase()){
+        //   alert("追加エラー");
+        //   return false;
+        // }
         this.desserts.push(this.editedItem)
       }
       this.close()
-    },
-
-    selFireBase () {
-      try {
-        const db = firebase.firestore();
-        db.collection('syasMaster')  
-          .get()  
-          .then(snapshot => {  
-            snapshot.forEach(doc => {  
-              let item = doc.data();
-              item.id = doc.id;
-              this.desserts.push(item);
-            })  
-          }) 
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
-    updFireBase () {
-      try {
-        const db = firebase.firestore();
-        console.log(this.editedItem.id);
-        let dbData = db.collection('syasMaster').doc(this.editedItem.id)
-        dbData.set({
-          SyasID: this.editedItem.SyasID,
-          SyasName: this.editedItem.SyasName
-        })
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
-    
-    insFireBase () {
-      try {
-        const db = firebase.firestore();
-        let dbData = db.collection('syasMaster');
-        dbData
-        .add({
-          SyasID: this.editedItem.SyasID,
-          SyasName: this.editedItem.SyasName,
-        })
-        .then(ref => {
-          console.log('Add ID: ', ref.id);
-        })
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
-    
-    delFireBase (item) {
-      try {
-        const db = firebase.firestore();
-        let dbData = db.collection('syasMaster').doc(item.id)
-        dbData.delete();
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
     },
 
     sampleData () {

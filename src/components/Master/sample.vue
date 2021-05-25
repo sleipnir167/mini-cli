@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+// import firebase from '@/plugins/firebase'
 
 export default {
  data () {
@@ -40,18 +40,18 @@ export default {
    }
  },
  methods: {
-   submit () {
-     const db = firebase.firestore()
-     let dbUsers = db.collection('users')
-     dbUsers
-       .add({
-         name: this.user.name,
-         email: this.user.email,
-       })
-       .then(ref => {
-         console.log('Add ID: ', ref.id)
-       })
-   },
+  //  submit () {
+  //    const db = firebase.firestore()
+  //    let dbUsers = db.collection('users')
+  //    dbUsers
+  //      .add({
+  //        name: this.user.name,
+  //        email: this.user.email,
+  //      })
+  //      .then(ref => {
+  //        console.log('Add ID: ', ref.id)
+  //      })
+  //  },
  },
 }
 </script>

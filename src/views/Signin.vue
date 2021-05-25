@@ -35,9 +35,9 @@ mponents/Signin.vue
 </template>
 
 <script>
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+// import firebase from "firebase/app"
+// import "firebase/auth"
+// import "firebase/firestore"
 
 export default {
   name: 'Signin',
@@ -50,16 +50,16 @@ export default {
   },
   methods: {
     signIn: function () {
-      firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
-        user => {
-          alert('Success!')
-          this.$router.push('/')
-          console.log(user);
-        },
-        err => {
-          alert(err.message)
-        }
-      )
+      // firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
+      //   user => {
+      //     alert('Success!')
+      //     this.$router.push('/')
+      //     console.log(user);
+      //   },
+      //   err => {
+      //     alert(err.message)
+      //   }
+      // )
     }
   }
 }

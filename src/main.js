@@ -11,22 +11,22 @@ Vue.config.productionTip = false
 
 // firebase用 >>>
 // import Login from './views/Login'
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+// import firebase from "firebase/app"
+// import "firebase/auth"
+// import "firebase/firestore"
 import vuetify from './plugins/vuetify';
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
-const config = {
-  apiKey: "AIzaSyDbaVTETBeLgzfed4VFs9VVPypP2MZ-mtY",
-  authDomain: "vue-authentication-ac53f.firebaseapp.com",
-  databaseURL: "https://vue-authentication-ac53f.firebaseio.com",
-  projectId: "vue-authentication-ac53f",
-  storageBucket: "vue-authentication-ac53f.appspot.com",
-  messagingSenderId: "633224124755",
-}
-firebase.initializeApp(config);
+// const config = {
+//   apiKey: "AIzaSyDbaVTETBeLgzfed4VFs9VVPypP2MZ-mtY",
+//   authDomain: "vue-authentication-ac53f.firebaseapp.com",
+//   databaseURL: "https://vue-authentication-ac53f.firebaseio.com",
+//   projectId: "vue-authentication-ac53f",
+//   storageBucket: "vue-authentication-ac53f.appspot.com",
+//   messagingSenderId: "633224124755",
+// }
+// firebase.initializeApp(config);
 
 // /* eslint-disable no-new */
 // new Vue({

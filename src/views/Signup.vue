@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+// import firebase from "firebase/app"
+// import "firebase/auth"
+// import "firebase/firestore"
 
 export default {
   name: 'Signup',
@@ -23,17 +23,17 @@ export default {
       password: ''
     }
   },
-  methods: {
-    signUp: function () {
-      firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
-        .then(user => {
-          alert('Create account: ', user.email)
-        })
-        .catch(error => {
-          alert(error.message)
-        })
-    }
-  }
+  // methods: {
+  //   signUp: function () {
+  //     firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
+  //       .then(user => {
+  //         alert('Create account: ', user.email)
+  //       })
+  //       .catch(error => {
+  //         alert(error.message)
+  //       })
+  //   }
+  // }
 }
 </script>
 

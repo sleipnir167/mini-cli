@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
+// import firebase from "firebase/app"
 
 export default {
   data() {
@@ -36,26 +36,26 @@ export default {
 			});
     },
     selSyasMaster () {
-      try {
-        const db = firebase.firestore();
-        db.collection('syasMaster')  
-          .get()  
-          .then(snapshot => {  
-            snapshot.forEach(doc => {  
-              let item = doc.data();
-              item.id = doc.id;
-              this.FBsyasMaster.push(item);
-              this.items.push(item.SyasName)
-            })  
-          }) 
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catchA");
-        console.log(e);
-        return false;
-      }
+      // try {
+      //   const db = firebase.firestore();
+      //   db.collection('syasMaster')  
+      //     .get()  
+      //     .then(snapshot => {  
+      //       snapshot.forEach(doc => {  
+      //         let item = doc.data();
+      //         item.id = doc.id;
+      //         this.FBsyasMaster.push(item);
+      //         this.items.push(item.SyasName)
+      //       })  
+      //     }) 
+      //   return true;
+      // }
+      // catch(e)
+      // {
+      //   console.log("catchA");
+      //   console.log(e);
+      //   return false;
+      // }
     },
 	}
 };

@@ -12,7 +12,6 @@
           <button @click.stop="divclick(dayinfo)" class="bg-indigo-700 hover:bg-indigo-900 text-white py-2 px-4 rounded-lg text-xs ml-4">
             aaa
           </button>
-
           <teleport to="#form">
             <div class="base" v-show="show">
               <div class="overlay" v-show="show" @click="show=false">
@@ -208,145 +207,42 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-          <teleport to="#form">
-            <div class="base" v-show="show">
-              <div class="overlay" v-show="show" @click="show=false">
-              </div>
-              <div class="content" v-show="show">
-                <h2 class="font-bold" v-if="update_mode">タスクの更新</h2>
-                <h2 class="font-bold" v-else>タスクの追加</h2>
-                <div class="my-4">
-                  <label class="text-xs">カテゴリーID:</label>
-                  <select v-model="form.category_id" class="text-xs border px-4 py-2 rounded-lg">
-                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                    </option>
-                  </select>
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">ID:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model.number="form.id">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">タスク名:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.name">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">担当者:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.incharge_user">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">開始日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.start_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">完了期限日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.end_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">進捗度:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.percentage" type="number">
-                </div>
-                <div>
-                <div v-if="update_mode" class="flex items-center justify-between">
-                  <button
-                    @click="updateTask(form.id)"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-xs flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを更新</span>
-                  </button>
-                  <button @click="deleteTask(form.id)"
-                    class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center ml-2">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを削除</span>
-                  </button>
-                </div>
-                <div v-else>
-                  <button
-                    @click="saveTask"
-                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span class="font-bold text-xs">
-                      タスクを追加する
-                    </span>
-                  </button>
-                </div>
-                </div>
-              </div>
-            </div>
-          </teleport>
-
-
+    <div id="form">
+      aaa
+    </div>
 
 
     <!-- 実績入力画面 -->
-    <v-dialog v-model="dialog" max-width="400" >
+    <v-dialog v-model="dialog" max-width="290" >
       <v-card>
         <v-card-title class="headline">実績入力</v-card-title>
         <v-card-text>
           <v-row>
             <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
-              <label>カテゴリーID</label>
-              <!-- <v-text-field ref="category_id" v-model="form.category_id" outlined dense></v-text-field> -->
-              <v-select v-model="form.category_id" class="text-xs border px-4 py-2 rounded-lg">
-                <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                </option>
-              </v-select>
+              <label>日付</label>
+              <v-text-field ref="selectday" v-model="selectday" placeholder=" " dense disabled></v-text-field>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
-              <label>ID</label>
-              <v-text-field ref="id" v-model="form.id" placeholder=" " outlined dense></v-text-field>
+              <label>検査</label>
+              <v-text-field ref="selectkens" v-model="selectkens" placeholder=" " outlined dense></v-text-field>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>タスク名</label>
-              <v-text-field ref="name" v-model="form.name" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>担当者</label>
-              <v-text-field ref="incharge_user" v-model="form.incharge_user" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>開始日</label>
-              <v-text-field ref="start_date" v-model="form.start_date" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>終了日</label>
-              <v-text-field ref="end_date" v-model="form.end_date" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>進捗率</label>
-              <v-text-field ref="percentage" v-model="form.percentage" placeholder=" " outlined dense></v-text-field>
+              <label>キロ</label>
+              <v-text-field ref="selectkiro" v-model="selectkiro" placeholder=" " outlined dense></v-text-field>
             </v-col>
           </v-row>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-1" text @click="dialog = false">更新</v-btn>
+          <v-btn color="primary darken-1" text @click="dialog = false">取消</v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
-
     </v-container>
   </v-app>
 </template>

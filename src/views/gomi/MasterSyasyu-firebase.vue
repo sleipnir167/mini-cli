@@ -36,12 +36,12 @@
 
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="primary"
-                  dark
-                  class="mb-2"
+                  class="mx-2" fab dark color="blue"
                   v-bind="attrs"
                   v-on="on"
-                >New Item</v-btn>
+                >
+                  <v-icon dark>mdi-plus</v-icon>
+                </v-btn>
               </template>
               <v-card>
                 <v-card-title>
@@ -69,8 +69,8 @@
     
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                  <v-btn color="blue darken-1" text @click="close">取消</v-btn>
+                  <v-btn color="blue darken-1" text @click="save">保存</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -128,7 +128,7 @@ export default {
 
   computed: {
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === -1 ? '新規登録' : 'Edit Item'
     },
   },
 

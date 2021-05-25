@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
+// import firebase from "firebase/app"
 
 export default {
   props:{
@@ -31,44 +31,44 @@ export default {
    }
  },
  methods: {
-  submit () {
-    const db = firebase.firestore()
-    let dbUsers = db.collection('SyaryouDaicho')
-    dbUsers
-      .add({
-        syas: this.form.syas,
-        keis: this.form.keis,
-        syaNo: this.form.syaNo,
-        NewYmd: this.form.NewYmd,
-        KsGun: this.form.KsGun,
-      })
-      .then(ref => {
-        console.log('Add ID: ', ref.id)
-        this.$emit('nextStep');
-      }
-    )
-  },
-  mod () {
-    const db = firebase.firestore()
-    let dbUsers = db.collection('SyaryouDaicho').doc('doc名')
-    dbUsers.set({
-      syas: this.form.syas,
-      keis: this.form.keis,
-      syaNo: this.form.syaNo,
-      NewYmd: this.form.NewYmd,
-      KsGun: this.form.KsGun,
-      }).then(ref => {
-        console.log('Add ID: ', ref.id);
-      }
-    )
-   },
-  getData () {
-    const db = firebase.firestore()
-    let docUsers = db.collection('SyaryouDaicho').doc('8Ner2tNFSFmXYq3hDYck')
-    docUsers.get().then(function(doc) {
-      document.getElementById("user.name").innerHTML = (doc.data().name)
-    })
-  },
+  // submit () {
+  //   const db = firebase.firestore()
+  //   let dbUsers = db.collection('SyaryouDaicho')
+  //   dbUsers
+  //     .add({
+  //       syas: this.form.syas,
+  //       keis: this.form.keis,
+  //       syaNo: this.form.syaNo,
+  //       NewYmd: this.form.NewYmd,
+  //       KsGun: this.form.KsGun,
+  //     })
+  //     .then(ref => {
+  //       console.log('Add ID: ', ref.id)
+  //       this.$emit('nextStep');
+  //     }
+  //   )
+  // },
+  // mod () {
+  //   const db = firebase.firestore()
+  //   let dbUsers = db.collection('SyaryouDaicho').doc('doc名')
+  //   dbUsers.set({
+  //     syas: this.form.syas,
+  //     keis: this.form.keis,
+  //     syaNo: this.form.syaNo,
+  //     NewYmd: this.form.NewYmd,
+  //     KsGun: this.form.KsGun,
+  //     }).then(ref => {
+  //       console.log('Add ID: ', ref.id);
+  //     }
+  //   )
+  //  },
+  // getData () {
+  //   const db = firebase.firestore()
+  //   let docUsers = db.collection('SyaryouDaicho').doc('8Ner2tNFSFmXYq3hDYck')
+  //   docUsers.get().then(function(doc) {
+  //     document.getElementById("user.name").innerHTML = (doc.data().name)
+  //   })
+  // },
  },
 };
 </script>

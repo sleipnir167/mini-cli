@@ -61,7 +61,7 @@
 
 <script>
 import Vue from "vue";
-import firebase from "firebase/app"
+// import firebase from "firebase/app"
 import Vuetify from "vuetify";
 import DaichoEdit from "./DaichoEdit"
 import DaichoView from "./DaichoView"
@@ -230,82 +230,82 @@ export default {
       this.close()
     },
 
-    selFireBase () {
-      try {
-        const db = firebase.firestore();
-        db.collection('syasMaster')  
-          .get()  
-          .then(snapshot => {  
-            snapshot.forEach(doc => {  
-              let item = doc.data();
-              item.id = doc.id;
-              this.desserts.push(item);
-            })  
-          }) 
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
-    updFireBase () {
-      try {
-        const db = firebase.firestore();
-        console.log(this.editedItem.id);
-        let dbData = db.collection('syasMaster').doc(this.editedItem.id)
-        dbData.set({
-          SyasID: this.editedItem.SyasID,
-          SyasName: this.editedItem.SyasName
-        })
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
+    // selFireBase () {
+    //   try {
+    //     const db = firebase.firestore();
+    //     db.collection('syasMaster')  
+    //       .get()  
+    //       .then(snapshot => {  
+    //         snapshot.forEach(doc => {  
+    //           let item = doc.data();
+    //           item.id = doc.id;
+    //           this.desserts.push(item);
+    //         })  
+    //       }) 
+    //     return true;
+    //   }
+    //   catch(e)
+    //   {
+    //     console.log("catch");
+    //     console.log(e);
+    //     return false;
+    //   }
+    // },
+    // updFireBase () {
+    //   try {
+    //     const db = firebase.firestore();
+    //     console.log(this.editedItem.id);
+    //     let dbData = db.collection('syasMaster').doc(this.editedItem.id)
+    //     dbData.set({
+    //       SyasID: this.editedItem.SyasID,
+    //       SyasName: this.editedItem.SyasName
+    //     })
+    //     return true;
+    //   }
+    //   catch(e)
+    //   {
+    //     console.log("catch");
+    //     console.log(e);
+    //     return false;
+    //   }
+    // },
     
-    insFireBase () {
-      try {
-        const db = firebase.firestore();
-        let dbData = db.collection('syasMaster');
-        dbData
-        .add({
-          SyasID: this.editedItem.SyasID,
-          SyasName: this.editedItem.SyasName,
-        })
-        .then(ref => {
-          console.log('Add ID: ', ref.id);
-        })
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
+    // insFireBase () {
+    //   try {
+    //     const db = firebase.firestore();
+    //     let dbData = db.collection('syasMaster');
+    //     dbData
+    //     .add({
+    //       SyasID: this.editedItem.SyasID,
+    //       SyasName: this.editedItem.SyasName,
+    //     })
+    //     .then(ref => {
+    //       console.log('Add ID: ', ref.id);
+    //     })
+    //     return true;
+    //   }
+    //   catch(e)
+    //   {
+    //     console.log("catch");
+    //     console.log(e);
+    //     return false;
+    //   }
+    // },
     
-    delFireBase (item) {
-      try {
-        const db = firebase.firestore();
-        let dbData = db.collection('syasMaster').doc(item.id)
-        dbData.delete();
-        return true;
-      }
-      catch(e)
-      {
-        console.log("catch");
-        console.log(e);
-        return false;
-      }
-    },
+    // delFireBase (item) {
+    //   try {
+    //     const db = firebase.firestore();
+    //     let dbData = db.collection('syasMaster').doc(item.id)
+    //     dbData.delete();
+    //     return true;
+    //   }
+    //   catch(e)
+    //   {
+    //     console.log("catch");
+    //     console.log(e);
+    //     return false;
+    //   }
+    // },
 
     sampleData () {
       this.desserts = [
