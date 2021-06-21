@@ -148,6 +148,15 @@ export default {
       this.Lstate = false;
     }, 500);
 
+
+    // // ■ローカル取得
+    // axios.get('http://localhost:3000/syas/',
+    // {
+    //   params: {
+    //     results: '10'
+    //   }
+    // })
+    // .then(response => this.desserts = response.data.rows)
     // ■ローカル取得
     axios.get('http://localhost:3000/syas/',
     {
@@ -156,6 +165,7 @@ export default {
       }
     })
     .then(response => this.desserts = response.data.rows)
+    // .then(response => console.log("aa" + response.status))
 
     console.log(this.desserts);
   },
@@ -211,8 +221,7 @@ export default {
         //     // data: params
         //   }
         // );
-
-        axios.delete('http://localhost:3000/syas/13',
+        axios.delete('http://localhost:3000/syas/' + item.SyasID,
           {
             headers: {'Content-Type': 'application/json'},
             // data: params

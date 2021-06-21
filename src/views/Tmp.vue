@@ -1,757 +1,301 @@
-
 <template>
   <v-app id="inspire">
     <v-container fluid>
+      <template>
+        <v-row>
+          <v-col cols="8">
+            <v-data-table
+              dense
+              :headers="headers"
+              :items="desserts"
+              item-key="name"
+              class="elevation-1"
+            ></v-data-table>
+          </v-col>
 
-      <div id="app">
-        <div id="gantt-header" class="h-12 p-2 flex items-center">
-          <h1 class="text-sm font-bold">ガントチャート</h1>
-          <button @click="addTask" class="bg-indigo-700 hover:bg-indigo-900 text-white py-2 px-4 rounded-lg text-xs ml-4">
-            タスクを追加する
-          </button>
-          <button @click.stop="divclick(dayinfo)" class="bg-indigo-700 hover:bg-indigo-900 text-white py-2 px-4 rounded-lg text-xs ml-4">
-            aaa
-          </button>
-
-          <teleport to="#form">
-            <div class="base" v-show="show">
-              <div class="overlay" v-show="show" @click="show=false">
-              </div>
-              <div class="content" v-show="show">
-                <h2 class="font-bold" v-if="update_mode">タスクの更新</h2>
-                <h2 class="font-bold" v-else>タスクの追加</h2>
-                <div class="my-4">
-                  <label class="text-xs">カテゴリーID:</label>
-                  <select v-model="form.category_id" class="text-xs border px-4 py-2 rounded-lg">
-                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                    </option>
-                  </select>
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">ID:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model.number="form.id">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">タスク名:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.name">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">担当者:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.incharge_user">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">開始日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.start_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">完了期限日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.end_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">進捗度:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.percentage" type="number">
-                </div>
-                <div>
-                <div v-if="update_mode" class="flex items-center justify-between">
-                  <button
-                    @click="updateTask(form.id)"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-xs flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを更新</span>
-                  </button>
-                  <button @click="deleteTask(form.id)"
-                    class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center ml-2">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを削除</span>
-                  </button>
-                </div>
-                <div v-else>
-                  <button
-                    @click="saveTask"
-                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span class="font-bold text-xs">
-                      タスクを追加する
-                    </span>
-                  </button>
-                </div>
-                </div>
-              </div>
-            </div>
-          </teleport>
-        </div>
-
-        <div id="gantt-content" class="flex">
-          <div id="gantt-task">
-            <div id="gantt-task-title" class="flex items-center bg-green-600 text-white h-20" ref="task">
-              <div class="border-t border-r border-b flex items-center justify-center font-bold text-xs w-48 h-full">タスク
-              </div>
-              <div class="border-t border-r border-b flex items-center justify-center font-bold text-xs w-24 h-full">開始日
-              </div>
-              <div class="border-t border-r border-b flex items-center justify-center font-bold text-xs w-24 h-full">完了期限日
-              </div>
-              <div class="border-t border-r border-b flex items-center justify-center font-bold text-xs w-16 h-full">担当
-              </div>
-              <div class="border-t border-r border-b flex items-center justify-center font-bold text-xs w-12 h-full">進捗
-              </div>
-            </div>
-            <div id="gantt-task-list" class="overflow-y-hidden" :style="`height:${calendarViewHeight}px`">
-              <div v-for="(task,index) in displayTasks" :key="index" class="flex h-10 border-b" @dragstart="dragTask(task)" @dragover.prevent="dragTaskOver(task)" draggable=true>
-
-                <template v-if="task.cat === 'category'">
-                  <div
-                    class="flex items-center font-bold w-full text-sm pl-2 flex justify-between items-center bg-teal-100">
-                    <span>{{task.name}}</span>
-                    <div class="pr-4" @click="toggleCategory(task.id)">
-                      <span v-if="task.collapsed">
-                        <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                      <span v-else>
-                        <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                </template>
-                <template v-else>
-                  <div
-                    @click="editTask(task)" 
-                    class="border-r flex items-center font-bold w-48 text-sm pl-4">
-                    {{task.name}}
-                  </div>
-                  <div class="border-r flex items-center justify-center w-24 text-sm">
-                    {{task.start_date}}
-                  </div>
-                  <div class="border-r flex items-center justify-center w-24 text-sm">
-                    {{task.end_date}}
-                  </div>
-                  <div class="border-r flex items-center justify-center w-16 text-sm">
-                    {{task.incharge_user}}
-                  </div>
-                  <div class="flex items-center justify-center w-12 text-sm">
-                    {{task.percentage}}%
-                  </div>
-                </template>
-              </div>
-            </div>
-          </div>
-          <!-- カレンダー領域 -->
-          <div id="gantt-calendar" class="overflow-x-scroll overflow-y-hidden border-l" :style="`width:${calendarViewWidth}px`" ref="calendar">
-            <div id="gantt-date" class="h-10" >
-              <div id="gantt-year-month" class="relative h-8">
-                <div v-for="(calendar,index) in calendars" :key="index">
-                  <div
-                    class="bg-indigo-700 text-white border-b border-r border-t h-8 absolute font-bold text-sm flex items-center justify-center"
-                    :style="`width:${calendar.calendar*block_size}px;left:${calendar.start_block_number*block_size}px`">
-                    {{calendar.date}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="gantt-day" class="relative h-12">
-              <div v-for="(calendar,index) in calendars" :key="index">
-                <div v-for="(day,index) in calendar.days" :key="index">
-                  <div class="border-r border-b h-12 absolute flex items-center justify-center flex-col font-bold text-xs"
-                    :class="{'bg-blue-100': day.dayOfWeek === '土', 'bg-red-100': day.dayOfWeek ==='日',
-                    'bg-red-600 text-white': calendar.year=== today.year() && calendar.month === today.month() && day.day === today.date()}"
-                    :style="`width:${block_size}px;left:${day.block_number*block_size}px`">
-                    <span>{{ day.day }}</span>
-                    <span>{{ day.dayOfWeek }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="gantt-height" class="relative">
-              <div v-for="(calendar,index) in calendars" :key="index">
-                <div v-for="(day,index) in calendar.days" :key="index">
-                  <div class="border-r border-b absolute"
-                    :style="`width:${block_size}px;left:${day.block_number*block_size}px;height:${calendarViewHeight}px`">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="gantt-bar-area" class="relative" :style="`width:${calendarViewWidth}px;height:${calendarViewHeight}px`">
-              <div v-for="(bar,index) in taskBars" :key="index">
-                <div :style="bar.style" class="rounded-lg absolute h-5 bg-yellow-100" v-if="bar.task.cat === 'task'" @mousedown="mouseDownMove(bar.task)">
-                  <div class="w-full h-full" style="pointer-events: none;">
-                    <div class="h-full bg-yellow-500 rounded-l-lg" 
-                        style="pointer-events: none;" 
-                        :style="`width:${bar.task.percentage}%`"
-                        :class="{'rounded-r-lg': bar.task.percentage === 100}">
-                    </div>
-                  </div>
-                  <!-- 以下を追加 四角いボタン -->
-                  <div class="absolute w-2 h-2 bg-gray-300 border border-black" 
-                        style="top:6px;left:-6px;cursor:col-resize" 
-                        @mousedown.stop="mouseDownResize(bar.task,'left')">
-                  </div>
-                  <div class="absolute w-2 h-2 bg-gray-300 border border-black" 
-                        style="top:6px;right:-6px;cursor:col-resize" 
-                        @mousedown.stop="mouseDownResize(bar.task,'right')">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <v-col cols="4">
+            <template>
+              <v-card
+                class="mx-auto"
+                max-width="400"
+              >
+                <v-list-item two-line>
+                  <v-list-item-content>
+                    <v-list-item-title class="headline">
+                      設定値
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
 
 
+                <v-list-item>
+                  <v-list-item-subtitle>一日の走行キロ</v-list-item-subtitle>
+                  <v-list-item-subtitle>23.5km</v-list-item-subtitle>
+                </v-list-item>
 
+                <v-list-item>
+                  <v-list-item-subtitle>基準日</v-list-item-subtitle>
+                  <v-list-item-subtitle>{{ ViewBaseDay }}</v-list-item-subtitle>
+                </v-list-item>
 
+                <v-divider></v-divider>
 
+                <v-list-item>
+                  <v-list-item-subtitle>日付</v-list-item-subtitle>
+                  <v-list-item-subtitle>{{ targetDay }}</v-list-item-subtitle>
+                </v-list-item>
 
-          <teleport to="#form">
-            <div class="base" v-show="show">
-              <div class="overlay" v-show="show" @click="show=false">
-              </div>
-              <div class="content" v-show="show">
-                <h2 class="font-bold" v-if="update_mode">タスクの更新</h2>
-                <h2 class="font-bold" v-else>タスクの追加</h2>
-                <div class="my-4">
-                  <label class="text-xs">カテゴリーID:</label>
-                  <select v-model="form.category_id" class="text-xs border px-4 py-2 rounded-lg">
-                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                    </option>
-                  </select>
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">ID:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model.number="form.id">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">タスク名:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.name">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">担当者:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.incharge_user">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">開始日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.start_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">完了期限日:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.end_date" type="date">
-                </div>
-                <div class="my-4">
-                  <label class="text-xs">進捗度:</label>
-                  <input class="text-xs border rounded-lg px-4 py-2" v-model="form.percentage" type="number">
-                </div>
-                <div>
-                <div v-if="update_mode" class="flex items-center justify-between">
-                  <button
-                    @click="updateTask(form.id)"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-xs flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを更新</span>
-                  </button>
-                  <button @click="deleteTask(form.id)"
-                    class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center ml-2">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <span class="text-xs font-bold text-white">タスクを削除</span>
-                  </button>
-                </div>
-                <div v-else>
-                  <button
-                    @click="saveTask"
-                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span class="font-bold text-xs">
-                      タスクを追加する
-                    </span>
-                  </button>
-                </div>
-                </div>
-              </div>
-            </div>
-          </teleport>
+                <v-slider
+                  v-model="slider"
+                  :thumb-size="24"
+                  thumb-label="always"
+                  class="mx-4 mt-10"
+                ></v-slider>
 
+                <v-list class="transparent">
+                  <v-list-item
+                    v-for="item in forecast"
+                    :key="item.day"
+                  >
+                    <v-list-item-title>{{ item.day }}</v-list-item-title>
 
+                    <v-list-item-icon>
+                      <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-item-icon>
 
+                    <v-list-item-subtitle class="text-right">
+                      {{ item.temp }}
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
 
-    <!-- 実績入力画面 -->
-    <v-dialog v-model="dialog" max-width="400" >
-      <v-card>
-        <v-card-title class="headline">実績入力</v-card-title>
-        <v-card-text>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
-              <label>カテゴリーID</label>
-              <!-- <v-text-field ref="category_id" v-model="form.category_id" outlined dense></v-text-field> -->
-              <v-select v-model="form.category_id" class="text-xs border px-4 py-2 rounded-lg">
-                <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                </option>
-              </v-select>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12" class="py-0">
-              <label>ID</label>
-              <v-text-field ref="id" v-model="form.id" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>タスク名</label>
-              <v-text-field ref="name" v-model="form.name" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>担当者</label>
-              <v-text-field ref="incharge_user" v-model="form.incharge_user" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>開始日</label>
-              <v-text-field ref="start_date" v-model="form.start_date" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>終了日</label>
-              <v-text-field ref="end_date" v-model="form.end_date" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" md="12" lg="12"  class="py-0">
-              <label>進捗率</label>
-              <v-text-field ref="percentage" v-model="form.percentage" placeholder=" " outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+              </v-card>
+            </template>
 
+          </v-col>
+        </v-row>
+      </template>
     </v-container>
   </v-app>
 </template>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ja.min.js"></script>
-
 <script>
-
 export default {
-  data() {
+  data () {
+    
     return {
-      start_month: '2021-05',
-      end_month: '2021-08',
-      block_size: 30,
-      block_number: 0,
-      calendars:[],
-      inner_width: '',
-      inner_height: '', 
-      task_width: '',
-      task_height: '',
-      today:moment(),
-      position_id : 0,
-      
-      dragging:false,
-      pageX:'',
-      elememt:'',
-      left:'',
-      task_id:'',
-      width:'',
-      leftResizing:false,
-      rightResizing:false,
-      task:'',
-
-      dialog: false,
-
-      show:false,
-      update_mode:false,
-
-      form: {
-        category_id: '',
-        id: '',
-        name: '',
-        start_date: '',
-        end_date: '',
-        incharge_user: '',
-        percentage: 0
-      },
-      
-      categories: [
+      desserts: [
         {
-        id: 1,
-        name: 'テストA',
-        collapsed: false,
-        }, {
-        id: 2,
-        name: 'テストB',
-        collapsed: false,
-        }
+          name: '車両A',
+          車体保全: 159,
+          装置保全: 6.0,
+          指定保全: 24,
+          年保全: 4.0,
+          月保全: 111,
+          iron: '1%',
+        },
+        {
+          name: '車両B',
+          車体保全: 237,
+          装置保全: 9.0,
+          指定保全: 37,
+          年保全: 4.3,
+          月保全: 111,
+          iron: '1%',
+        },
+        {
+          name: '車両C',
+          車体保全: 262,
+          装置保全: 16.0,
+          指定保全: 23,
+          年保全: 6.0,
+          月保全: 111,
+          iron: '7%',
+        },
+        {
+          name: '車両D',
+          車体保全: 305,
+          装置保全: 3.7,
+          指定保全: 67,
+          年保全: 4.3,
+          月保全: 111,
+          iron: '8%',
+        },
+        {
+          name: '車両E',
+          車体保全: 356,
+          装置保全: 16.0,
+          指定保全: 49,
+          年保全: 3.9,
+          月保全: 111,
+          iron: '16%',
+        },
+        {
+          name: '車両F',
+          車体保全: 375,
+          装置保全: 0.0,
+          指定保全: 94,
+          年保全: 0.0,
+          月保全: 111,
+          iron: '0%',
+        },
+        {
+          name: '車両G',
+          車体保全: 392,
+          装置保全: 0.2,
+          指定保全: 98,
+          年保全: 0,
+          月保全: 111,
+          iron: '2%',
+        },
+        {
+          name: '車両H',
+          車体保全: 408,
+          装置保全: 3.2,
+          指定保全: 87,
+          年保全: 6.5,
+          月保全: 111,
+          iron: '45%',
+        },
+        {
+          name: '車両I',
+          車体保全: 452,
+          装置保全: 25.0,
+          指定保全: 51,
+          年保全: 4.9,
+          月保全: 111,
+          iron: '22%',
+        },
+        {
+          name: '車両J',
+          車体保全: 518,
+          装置保全: 26.0,
+          指定保全: 65,
+          年保全: 7,
+          月保全: 111,
+          iron: '6%',
+        },
       ],
-      
-      tasks: [
-          {
-          id: 1,
-          category_id: 1,
-          name: 'テスト1',
-          start_date: '2021-05-18',
-          end_date: '2021-05-20',
-          incharge_user: '鈴木',
-          percentage: 100,
-          },
-          {
-          id: 2,
-          category_id: 1,
-          name: 'テスト2',
-          start_date: '2021-05-19',
-          end_date: '2021-05-23',
-          incharge_user: '佐藤',
-          percentage: 90,
-          },
-          {
-          id: 3,
-          category_id: 1,
-          name: 'テスト3',
-          start_date: '2021-05-19',
-          end_date: '2021-06-04',
-          incharge_user: '鈴木',
-          percentage: 40,
-          },
-          {
-          id: 4,
-          category_id: 1,
-          name: 'テスト4',
-          start_date: '2021-05-21',
-          end_date: '2021-05-30',
-          incharge_user: '山下',
-          percentage: 60,
-          },
-          {
-          id: 5,
-          category_id: 1,
-          name: 'テスト5',
-          start_date: '2021-05-25',
-          end_date: '2021-06-04',
-          incharge_user: '佐藤',
-          percentage: 5,
-          },
-          {
-          id: 6,
-          category_id: 2,
-          name: 'テスト6',
-          start_date: '2021-05-28',
-          end_date: '2021-06-08',
-          incharge_user: '佐藤',
-          percentage: 0,
-          },
+      headers: [
+        {
+          text: '車両',
+          align: 'start',
+          value: 'name',
+        },
+        { text: '車体保全', value: '車体保全' },
+        { text: '装置保全', value: '装置保全' },
+        { text: '指定保全', value: '指定保全' },
+        { text: '年保全', value: '年保全' },
+        { text: '月保全', value: '月保全' },
+        { text: '限度 (%)', value: 'iron' },
       ],
+      slider: 0,
+      BaseDay: new Date(),
     };
   },
   methods:{
-    getDays(year, month, block_number) {
-      const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
-      let days = [];
-      let date = moment(`${year}-${month}-01`);
-      let num = date.daysInMonth();
-      for (let i = 0; i < num; i++) {
-        days.push({
-          day: date.date(),
-          dayOfWeek: dayOfWeek[date.day()],
-          block_number
-        })
-        date.add(1, 'day');
-        block_number++;
-      }
-      return days;
+    setList(val) {
+      this.desserts.forEach(function(element){
+        element.車体保全 = element.車体保全 + val
+        element.装置保全 = element.装置保全 + val
+        element.指定保全 = element.指定保全 + val
+        element.年保全 = element.年保全 + val
+        element.月保全 = element.月保全 + val
+        element.iron = Math.floor((parseFloat(element.iron) + (val * 0.1) + (Math.random() * 0.1) ) *100) / 100 + '%'
+      });
     },
-    getCalendar() {
-      let block_number = 0;
-      let days;
-      let start_month = moment(this.start_month)
-      let end_month = moment(this.end_month)
-      let between_month = end_month.diff(start_month, 'months')
-      for (let i = 0; i <= between_month; i++) {
-        days = this.getDays(start_month.year(), start_month.format('MM'), block_number);
-        this.calendars.push({
-          date: start_month.format('YYYY年MM月'),
-          year: start_month.year(),
-          month: start_month.month(), //month(), 0,1..11と表示
-          start_block_number: block_number,
-          calendar: days.length,
-          days: days
-        })
-        start_month.add(1, 'months')
-        block_number = days[days.length - 1].block_number
-        block_number++;
-      }
-      return block_number;
-    },
-    getWindowSize() {
-      this.inner_width = window.innerWidth;
-      this.inner_height = window.innerHeight;
-      this.task_width = this.$refs.task.offsetWidth;
-      this.task_height = this.$refs.task.offsetHeight;
-    },
-    scrollDistance() {
-      let start_date = moment(this.start_month);
-      let between_days = this.today.diff(start_date, 'days')
-      return (between_days + 1) * this.block_size - this.calendarViewWidth / 2;
-    },
-    todayPosition() {
-      this.$refs.calendar.scrollLeft = this.scrollDistance
-    },
-    windowSizeCheck() {
-      let height = this.lists.length - this.position_id
-      if (event.deltaY > 0 && height * 40 > this.calendarViewHeight) {
-        this.position_id++
-      } else if (event.deltaY < 0 && this.position_id !== 0) {
-        this.position_id--
-      }
-    },
-    mouseDownMove(task){
-      this.dragging = true;
-      this.pageX = event.pageX;
-      this.element = event.target;
-      this.left = event.target.style.left;
-      this.task_id = task.id
-      console.log(event.pageX)
-      console.log(event.target)
-    },
-    mouseMove() {
-      if (this.dragging) {
-        let diff = this.pageX - event.pageX;
-        this.element.style.left = `${parseInt(this.left.replace('px', '')) - diff}px`;
-      }
-    },
-    stopDrag(){
-      if (this.dragging) {
-          //mouseDownMoveの処理
-      }
-      if (this.leftResizing) {
-      // 左側の四角の拡大・縮小に関する処理
-      }
-      if (this.rightResizing) {
-        let diff = this.pageX - event.pageX;
-        let days = Math.ceil(diff / this.block_size)
-        if (days === 1) {
-          this.element.style.width = `${parseInt(this.width.replace('px', ''))}px`;
-        } else if (days <= 2) {
-          days--;
-          let task = this.tasks.find(task => task.id === this.task_id);
-          let end_date = moment(task.end_date).add(-days, 'days')
-          task['end_date'] = end_date.format('YYYY-MM-DD')
-        } else {
-          let task = this.tasks.find(task => task.id === this.task_id);
-          let start_date = moment(task.start_date);
-          let end_date = moment(task.end_date).add(-days, 'days')
-          if (end_date.diff(start_date, 'days') < 0) {
-            task['end_date'] = start_date.format('YYYY-MM-DD')
-          } else {
-            task['end_date'] = end_date.format('YYYY-MM-DD')
-          }
-        }
-      }
-      this.dragging = false;
-      this.leftResizing = false;
-      this.rightResizing = false;
-    },
-    mouseDownResize(task, direction) {
-      direction === 'left' ? this.leftResizing = true : this.rightResizing = true;
-      this.pageX = event.pageX;
-      this.width = event.target.parentElement.style.width;
-      this.left = event.target.parentElement.style.left;
-      this.element = event.target.parentElement;
-      this.task_id = task.id
-    },
-    mouseResize() {
-      if (this.leftResizing) {
-        let diff = this.pageX - event.pageX
-        if (parseInt(this.width.replace('px', '')) + diff > this.block_size) {
-          this.element.style.width = `${parseInt(this.width.replace('px', '')) + diff}px`
-          this.element.style.left = `${this.left.replace('px', '') - diff}px`;
-        }
-      }
-      if (this.rightResizing) {
-        let diff = this.pageX - event.pageX;
-        if (parseInt(this.width.replace('px', '')) - diff > this.block_size) {
-          this.element.style.width = `${parseInt(this.width.replace('px', '')) - diff}px`
-        }
-      }
-    },
-    dragTask(dragTask) {
-      this.task = dragTask
-    },
-    dragTaskOver(overTask) {
-      let deleteIndex;
-      let addIndex;
-      if (this.task.cat !== 'category') {
-        if (overTask.cat === 'category') {
-          let updateTask = this.tasks.find(task => task.id === this.task.id)
-          updateTask['category_id'] = overTask['id']
-        } else {
-          if (overTask.id !== this.task.id) {
-            this.tasks.map((task, index) => { if (task.id === this.task.id) deleteIndex = index })
-            this.tasks.map((task, index) => { if (task.id === overTask.id) addIndex = index })
-            this.tasks.splice(deleteIndex, 1)
-            this.task['category_id'] = overTask['category_id']
-            this.tasks.splice(addIndex, 0, this.task)
-          }
-        }
-      }
-    },
-    toggleCategory(task_id) {
-      let category = this.categories.find(category => category.id === task_id)
-      category['collapsed'] = !category['collapsed'];
-    },
-    addTask() {
-      this.update_mode = false;
-      this.form = {}
-      this.show = true;
-    },
-    saveTask() {
-      this.tasks.push(
-        this.form
-      )
-      this.form = {}
-      this.show = false
-    },
-    divclick(dayinfo){
-      this.dialog = true
-    },
-    editTask(task){
-      this.update_mode=true;
-      this.show = true;
-      Object.assign(this.form, task);
-    },
-    updateTask(id) {
-      let task = this.tasks.find(task => task.id === id);
-      Object.assign(task, this.form);
-      this.form = {}
-      this.show = false;
-    },
-    deleteTask(id) {
-      let delete_index;
-      this.tasks.map((task, index) => {
-        if (task.id === id) delete_index = index;
-      })
-      this.tasks.splice(delete_index, 1)
-      this.form = {}
-      this.show = false;
-    },
-  },
-  mounted() {
-    this.getCalendar();
-    this.getWindowSize();
-    this.$nextTick(() => {
-      this.todayPosition();
-    })
-    window.addEventListener('resize', this.getWindowSize);
-    window.addEventListener('wheel', this.windowSizeCheck);
-    window.addEventListener('mousemove', this.mouseMove);
-    window.addEventListener('mouseup', this.stopDrag);
-    window.addEventListener('mousemove', this.mouseResize);
   },
   computed: {
-    calendarViewWidth() {
-      return this.inner_width - this.task_width;
+    ViewBaseDay() {
+      return this.BaseDay.toISOString().substr(0, 10)
     },
-    calendarViewHeight() {
-      return this.inner_height - this.task_height - 48 - 20 - 800;
-    },
-    lists() {
-      let lists = [];
-      this.categories.map(category => {
-        lists.push({ cat: 'category', ...category });
-        this.tasks.map(task => {
-          if (task.category_id === category.id && !category.collapsed) {
-            lists.push({ cat: 'task', ...task })
-          }
-        })
-      })
-      return lists;
-    },
-    taskBars() {
-      let start_date = moment(this.start_month);
-      let top = 10;
-      let left;
-      let between;
-      let start;
-      let style;
-      return this.displayTasks.map(task => {
-        style = {}
-        if(task.cat==='task'){
-          let date_from = moment(task.start_date);
-          let date_to = moment(task.end_date);
-          between = date_to.diff(date_from, 'days');
-          between++;
-          start = date_from.diff(start_date, 'days');
-          left = start * this.block_size;
-          style = {
-            top: `${top}px`,
-            left: `${left}px`,
-            width: `${this.block_size * between}px`,
-          }
-        }
-        top = top + 40;
-        return {
-          style,
-          task
-        }
-      })
-    },
-    displayTasks() {
-      let display_task_number = Math.floor(this.calendarViewHeight / 40);
-      return this.lists.slice(this.position_id, this.position_id + display_task_number);
+    targetDay() {
+      var dt = new Date();
+      dt.setDate(this.BaseDay.getDate() + this.slider);
+      this.setList(this.slider)
+      return dt.toISOString().substr(0, 10);
     },
   },
 };
+  
 </script>
 
 <style lang="scss" scoped>
-
-.base {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: gray;
-  opacity: 0.5;
-}
-
-.content {
-  background-color: white;
-  position: relative;
+.demo_item {
+  width: 50px;
+  height: 30px;
   border-radius: 10px;
-  padding: 40px;
+  background-image: url(/Picture/icon/tansya.png);
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  display: block;
+  position: relative;
+}
+.demo_item.anime {
+  animation-name: upDown;
+  animation-iteration-count: infinite;
+  animation-duration: 0.15s;
+  animation-direction: alternate;
+  animation-timing-function: steps(2);
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.demo_stage {
+  position: relative;
+  width: 100%;
+  height: 65px;
+  top: 0px;
+  display: block;
+  border-bottom: solid #777 1px;
+}
+
+.demo_wrap {
+  display: block;
+  position: absolute;
+  top: 20px;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: 120s;
+  animation-iteration-count: 1;
+  margin-right: -25px;
+}
+
+.demo_wrap[data-order="left"] {
+  animation-name: GoLeft;
+}
+.demo_wrap[data-order="right"] {
+  animation-name: GoRight;
+}
+
+[data-order="right"] > .demo_item {
+  transform: rotateY(180deg);
+}
+
+@keyframes GoLeft {
+  0% {
+    right: 10%;
+  }
+  100% {
+    right: 90%;
+  }
+}
+@keyframes GoRight {
+  0% {
+    right: 90%;
+  }
+  100% {
+    right: 10%;
+  }
+}
+
+@keyframes upDown {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 3px;
+  }
 }
 </style>

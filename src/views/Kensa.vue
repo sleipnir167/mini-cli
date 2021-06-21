@@ -415,7 +415,7 @@ export default {
           name: 'テスト1',
           start_date: '2021-05-18',
           end_date: '2021-05-20',
-          incharge_user: '鈴木',
+          incharge_user: '車体',
           percentage: 100,
           },
           {
@@ -424,7 +424,7 @@ export default {
           name: 'テスト2',
           start_date: '2021-05-19',
           end_date: '2021-05-23',
-          incharge_user: '佐藤',
+          incharge_user: '装置',
           percentage: 90,
           },
           {
@@ -433,7 +433,7 @@ export default {
           name: 'テスト3',
           start_date: '2021-05-19',
           end_date: '2021-06-04',
-          incharge_user: '鈴木',
+          incharge_user: '指定',
           percentage: 40,
           },
           {
@@ -442,7 +442,7 @@ export default {
           name: 'テスト4',
           start_date: '2021-05-21',
           end_date: '2021-05-30',
-          incharge_user: '山下',
+          incharge_user: '年保全',
           percentage: 60,
           },
           {
@@ -451,7 +451,7 @@ export default {
           name: 'テスト5',
           start_date: '2021-05-25',
           end_date: '2021-06-04',
-          incharge_user: '佐藤',
+          incharge_user: '月保全',
           percentage: 5,
           },
           {
@@ -460,7 +460,7 @@ export default {
           name: 'テスト6',
           start_date: '2021-05-28',
           end_date: '2021-06-08',
-          incharge_user: '佐藤',
+          incharge_user: '全検',
           percentage: 0,
           },
       ],
@@ -675,7 +675,7 @@ export default {
       return this.inner_width - this.task_width;
     },
     calendarViewHeight() {
-      return this.inner_height - this.task_height - 48 - 20 - 800;
+      return this.inner_height - this.task_height - 48 - 20 ;
     },
     lists() {
       let lists = [];

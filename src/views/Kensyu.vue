@@ -176,11 +176,12 @@
           {name: '車輪4', score: 100, measuredvalue: 0.2, Healthyvalue: 98, prevmeasuredvalue: 0, iron: '0%',},
           {name: '起動試験', score: 60, measuredvalue: 3.2, Healthyvalue: 87, prevmeasuredvalue: 6.5, iron: '45%',},
         ],
-        message:70,
+        message:110,
         bui:{bui:1, Max:400, limit:100, Now:100}
       }
     },
     mounted() {
+      
     },
     methods: {
       getColor (score) {
