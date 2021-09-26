@@ -120,8 +120,8 @@ export default {
     updateRange () {
       const events = []
 
-      let first = new Date('2020-10-02')
-      let end = new Date('2020-10-07')
+      let first = new Date('2021-10-02')
+      let end = new Date('2021-10-07')
       events.push({
         name: "車体保全",
         start: first,
@@ -130,8 +130,8 @@ export default {
         timed: false,
       })
 
-      first = new Date('2020-10-23')
-      end = new Date('2020-10-23')
+      first = new Date('2021-10-23')
+      end = new Date('2021-10-23')
       events.push({
         name: "月保全",
         start: first,

@@ -55,6 +55,8 @@
                 </v-toolbar>
                 <v-card-text>
                   <span v-html="selectedEvent.details"></span>
+                  <div>{{selectedEvent.name}}に関する詳細情報です。</div>
+                  <div>○○をXXしてください</div>
                 </v-card-text>
                 <v-card-actions>
                   <v-btn
@@ -145,8 +147,92 @@ export default {
       //   console.log("first2:" + first2)
       // }
 
-      let first = new Date('2020-10-02')
-      let end = new Date('2020-10-07')
+
+      let first = new Date('2021-09-02')
+      let end = new Date('2021-09-07')
+
+      first = new Date('2021-09-01')
+      end = new Date('2021-09-01')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-09-08')
+      end = new Date('2021-09-08')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-09-15')
+      end = new Date('2021-09-15')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-09-22')
+      end = new Date('2021-09-22')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-09-29')
+      end = new Date('2021-09-29')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-09-02')
+      end = new Date('2021-09-05')
+      events.push({name: "車体保全(H201)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-09-06')
+      end = new Date('2021-09-06')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-09-07')
+      end = new Date('2021-09-10')
+      events.push({name: "車体保全(H202)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-09-13')
+      end = new Date('2021-09-16')
+      events.push({name: "車体保全(H203)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-09-17')
+      end = new Date('2021-09-17')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-09-20')
+      end = new Date('2021-09-23')
+      events.push({name: "車体保全(H204)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-09-21')
+      end = new Date('2021-09-21')
+      events.push({name: "一斉点検", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-09-24')
+      end = new Date('2021-09-24')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-09-26')
+      end = new Date('2021-09-26')
+      events.push({name: "指定保全(A14)", start: first, end: end, color: "grey", timed: false,})
+
+      first = new Date('2021-09-26')
+      end = new Date('2021-09-26')
+      events.push({name: "指定保全(A25)", start: first, end: end, color: "grey", timed: false,})
+
+      first = new Date('2021-09-27')
+      end = new Date('2021-09-27')
+      events.push({name: "指定保全(A15)", start: first, end: end, color: "grey", timed: false,})
+
+      first = new Date('2021-09-27')
+      end = new Date('2021-09-27')
+      events.push({name: "指定保全(A27)", start: first, end: end, color: "grey", timed: false,})
+
+      first = new Date('2021-09-28')
+      end = new Date('2021-09-28')
+      events.push({name: "指定保全(A14)", start: first, end: end, color: "grey", timed: false,})
+
+      first = new Date('2021-09-30')
+      end = new Date('2021-09-30')
+      events.push({name: "検査実績報告期限", start: first, end: end, color: "red", timed: false,})
+
+      first = new Date('2021-09-29')
+      end = new Date('2021-09-29')
+      events.push({name: "検査調整会議", start: first, end: end, color: this.colors[this.rnd(0, this.colors.length - 1)], timed: false,})
+
+      first = new Date('2021-09-08')
+      end = new Date('2021-09-13')
       events.push({
         name: "車体保全",
         start: first,
@@ -155,8 +241,8 @@ export default {
         timed: false,
       })
 
-      first = new Date('2020-10-23')
-      end = new Date('2020-10-23')
+      first = new Date('2021-09-23')
+      end = new Date('2021-09-23')
       events.push({
         name: "月保全",
         start: first,
@@ -164,6 +250,181 @@ export default {
         color: this.colors[this.rnd(0, this.colors.length - 1)],
         timed: false,
       })
+
+
+
+
+
+
+
+
+      first = new Date('2021-10-06')
+      end = new Date('2021-10-06')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-10-13')
+      end = new Date('2021-10-13')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-10-20')
+      end = new Date('2021-10-20')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-10-27')
+      end = new Date('2021-10-27')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: false,})
+
+
+
+      first = new Date('2021-10-02')
+      end = new Date('2021-10-05')
+      events.push({name: "車体保全(H101)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-10-06')
+      end = new Date('2021-10-06')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-10-07')
+      end = new Date('2021-10-10')
+      events.push({name: "車体保全(H102)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-10-12')
+      end = new Date('2021-10-12')
+      events.push({name: "全体調整会議", start: first, end: end, color: "brown", timed: false,})
+
+      first = new Date('2021-10-13')
+      end = new Date('2021-10-16')
+      events.push({name: "車体保全(H103)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-10-17')
+      end = new Date('2021-10-17')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-10-20')
+      end = new Date('2021-10-23')
+      events.push({name: "車体保全(H104)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-10-21')
+      end = new Date('2021-10-21')
+      events.push({name: "一斉点検", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-10-24')
+      end = new Date('2021-10-24')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-10-26')
+      end = new Date('2021-10-26')
+      events.push({name: "装置保全(A10)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-10-26')
+      end = new Date('2021-10-26')
+      events.push({name: "装置保全(A21)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-10-27')
+      end = new Date('2021-10-27')
+      events.push({name: "装置保全(A11)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-10-27')
+      end = new Date('2021-10-27')
+      events.push({name: "装置保全(A22)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-10-28')
+      end = new Date('2021-10-28')
+      events.push({name: "装置保全(A12)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-10-30')
+      end = new Date('2021-10-30')
+      events.push({name: "検査実績報告期限", start: first, end: end, color: "red", timed: false,})
+
+      first = new Date('2021-10-29')
+      end = new Date('2021-10-29')
+      events.push({name: "検査調整会議", start: first, end: end, color: this.colors[this.rnd(0, this.colors.length - 1)], timed: false,})
+
+
+
+
+
+
+      first = new Date('2021-11-06')
+      end = new Date('2021-11-06')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-11-13')
+      end = new Date('2021-11-13')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-11-20')
+      end = new Date('2021-11-20')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: true,})
+
+      first = new Date('2021-11-27')
+      end = new Date('2021-11-27')
+      events.push({name: "朝礼", start: first, end: end, color: "blue", timed: false,})
+
+
+
+      first = new Date('2021-11-02')
+      end = new Date('2021-11-05')
+      events.push({name: "車体保全(H101)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-11-06')
+      end = new Date('2021-11-06')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-11-07')
+      end = new Date('2021-11-10')
+      events.push({name: "車体保全(H102)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-11-13')
+      end = new Date('2021-11-16')
+      events.push({name: "車体保全(H103)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-11-17')
+      end = new Date('2021-11-17')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-11-20')
+      end = new Date('2021-11-23')
+      events.push({name: "車体保全(H104)", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-11-21')
+      end = new Date('2021-11-21')
+      events.push({name: "一斉点検", start: first, end: end, color: "green", timed: false,})
+
+      first = new Date('2021-11-24')
+      end = new Date('2021-11-24')
+      events.push({name: "予備日", start: first, end: end, color: "purple", timed: false,})
+
+      first = new Date('2021-11-26')
+      end = new Date('2021-11-26')
+      events.push({name: "装置保全(A10)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-11-26')
+      end = new Date('2021-11-26')
+      events.push({name: "装置保全(A21)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-11-27')
+      end = new Date('2021-11-27')
+      events.push({name: "装置保全(A11)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-11-27')
+      end = new Date('2021-11-27')
+      events.push({name: "装置保全(A22)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-11-28')
+      end = new Date('2021-11-28')
+      events.push({name: "装置保全(A12)", start: first, end: end, color: "orange", timed: false,})
+
+      first = new Date('2021-11-30')
+      end = new Date('2021-11-30')
+      events.push({name: "検査実績報告期限", start: first, end: end, color: "red", timed: false,})
+
+      first = new Date('2021-11-29')
+      end = new Date('2021-11-29')
+      events.push({name: "検査調整会議", start: first, end: end, color: this.colors[this.rnd(0, this.colors.length - 1)], timed: false,})
+
+
+
 
       this.events = events
     },

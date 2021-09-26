@@ -376,8 +376,8 @@ export default {
   },
   methods: {
     toggleTheme() {
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;   
-        //this.$vuetify.theme.dark = true; //やっぱり固定
+        // this.$vuetify.theme.dark = !this.$vuetify.theme.dark;   
+        this.$vuetify.theme.dark = true; //やっぱり固定
     },
   }
 };

@@ -4,7 +4,8 @@
       <v-container fluid>
 
         <div class="divHeader">
-          <div>Selected: {{ selected }}</div>
+          <div>車両を選択してください</div>
+          <div>選択中の車両: {{ selected }}</div>
         </div>
 
 
@@ -182,7 +183,7 @@ export default {
   },
   methods: {
     toggleTheme() {
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;   
+        // this.$vuetify.theme.dark = !this.$vuetify.theme.dark;   
         this.$vuetify.theme.dark = true; //やっぱり固定
     },
     setselect(){
@@ -196,11 +197,12 @@ export default {
 <style lang="scss" scoped>
 
 .theme--dark .v-main {
-    background-color: #181818;
+    // background-color: #181818;
 }
 
 .theme--dark.v-application {
-    background-color: #181818;
+    // background-color: #181818;
+    color: #181818;
 }
 
 .divHeader{

@@ -2,6 +2,7 @@
   <v-app id="inspire">
     <v-container fluid>
       <div id="status">
+        <span v-show="status.default">ドラッグで移動してください</span>
         <span v-show="status.moving">移動中</span>
         <span v-show="status.fixed">そのアイテムは操作できません</span>
       </div>
@@ -185,6 +186,7 @@
                 }
               ],
               status: {
+                  default: true,
                   moving: false,
                   fixed: false,
               }
@@ -219,6 +221,7 @@
           onStart () {
               console.log('onStart')
               this.status.moving = true;
+              this.status.default = false;
           },
           // 動作が開始され要素のコピーが行われた時（cloneイベント）
           onClone () {
@@ -244,6 +247,7 @@
           onEnd () {
               console.log('onEnd')
               this.status.moving = false;
+              this.status.default = true;
           }
       }
   }
